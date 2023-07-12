@@ -3,7 +3,7 @@
 This project is an ecommerce application built using the MERN stack (MongoDB, Express.js, React, and Node.js) with Vite as the build tool. It includes an Admin Dashboard with a custom CMS (Content Management System) and a frontend where customers can place orders.
 
 <div align="center">
-  <img src="https://cdn.dribbble.com/users/1912990/screenshots/6496981/web_developing.gif" alt="Banner">
+  <img src="https://assets.cdn.prod.twilio.com/images/lI7CV0Ljd8jXb6wL-YJevh0h0D2eItC8P9mJtHZ_JgdSzF.width-808.gif" alt="Banner">
 </div>
 
 ## Project Dependencies

@@ -2,6 +2,10 @@
 
 This project is an ecommerce application built using the MERN stack (MongoDB, Express.js, React, and Node.js) with Vite as the build tool. It includes an Admin Dashboard with a custom CMS (Content Management System) and a frontend where customers can place orders.
 
+<div align="center">
+  <img src="https://dresma.ai/wp-content/uploads/2022/02/Engineering-Manager-MERN-Stack.gif" alt="Banner">
+</div>
+
 ## Project Dependencies
 
 The project has the following dependencies:

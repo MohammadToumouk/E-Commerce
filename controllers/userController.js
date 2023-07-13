@@ -1,4 +1,6 @@
 const User = require('../Models/user');
+const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
 
 // Register a new user
 const registerUser = async (req, res) => {
@@ -15,11 +17,17 @@ const registerUser = async (req, res) => {
     // Create a new user instance
     const newUser = new User({ name, email, password });
 
+    // Hash the password
+    const salt = await bcrypt.genSalt(10);
+    newUser.password = await bcrypt.hash(newUser.password, salt);
+
     // Save the user to the database
     await newUser.save();
 
+    // Generate JWT token
+    const token = jwt.sign({ userId: newUser._id }, process.env.JWT_Secret)
     // Return a success response
-    res.status(201).json({ message: 'User registered successfully' });
+    res.status(201).json({token, message: 'User registered successfully' });
   } catch (error) {
     // Handle any errors
     res.status(500).json({ message: 'An error occurred', error });
@@ -39,13 +47,18 @@ const loginUser = async (req, res) => {
     }
 
     // Validate the password
-    const isPasswordValid = await user.validatePassword(password);
+    const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(401).json({ message: 'Invalid password' });
     }
 
+    // Generate JWT token
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_Secret,{
+      expiresIn:'15m'
+    });
+
     // Return the user information
-    res.status(200).json({ user });
+    res.status(200).json({ token, user });
   } catch (error) {
     // Handle any errors
     res.status(500).json({ message: 'An error occurred', error });
@@ -90,6 +103,12 @@ const updateUserProfile = async (req, res) => {
   }
 };
 
+const logoutUser = (req, res) => {
+  
+  res.status(200).json({ message: 'User logged out successfully' });
+};
+
+
 // Get all users
 const getAllUsers = async (req, res) => {
     try {
@@ -106,4 +125,5 @@ module.exports = {
   getUserProfile,
   updateUserProfile,
   getAllUsers,
+  logoutUser
 };

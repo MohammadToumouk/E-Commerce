@@ -10,15 +10,15 @@ userRouter.post('/register', userController.registerUser);
 userRouter.post('/login', userController.loginUser);
 
 // Get user profile
-userRouter.get('/profile', userController.getUserProfile);
+userRouter.get('/profile',authentication(['admin','manger','user']), userController.getUserProfile);
 
 // Update user profile
-userRouter.put('/profile', userController.updateUserProfile);
+userRouter.put('/profile',authentication(['admin','manger']), userController.updateUserProfile);
 
 // Get all users
-userRouter.get('/', userController.getAllUsers);
+userRouter.get('/',authentication(['admin']), userController.getAllUsers);
 
 // Logout user
-userRouter.post('/logout', authentication, userController.logoutUser);
+userRouter.post('/logout', userController.logoutUser);
 
 module.exports = userRouter;

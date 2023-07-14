@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const registerUser = async (req, res) => {
   try {
     // Extract user information from the request body
-    const { name, email, password } = req.body;
+    const { name, email, password, role } = req.body;
 
     // Check if the user with the given email already exists
     const existingUser = await User.findOne({ email });
@@ -15,7 +15,7 @@ const registerUser = async (req, res) => {
     }
 
     // Create a new user instance
-    const newUser = new User({ name, email, password });
+    const newUser = new User({ name, email, password, role });
 
     // Hash the password
     const salt = await bcrypt.genSalt(10);
@@ -53,7 +53,7 @@ const loginUser = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_Secret,{
+    const token = jwt.sign({ user }, process.env.JWT_Secret,{
       expiresIn:'15m'
     });
 
@@ -68,29 +68,32 @@ const loginUser = async (req, res) => {
 // Get user profile
 const getUserProfile = async (req, res) => {
   try {
-    // Get the user ID from the request object (assuming authentication middleware sets req.user)
-    const userId = req.user._id;
-
+    // Get the user ID from the request object
+    const id = req.user._id;
+    
+    
     // Find the user by ID
-    const user = await User.findById(userId);
+    const user = await User.findById(id);
 
     // Return the user profile
-    res.status(200).json({ user });
+    res.status(200).json({message: 'Authoraized to Access'});
+    
   } catch (error) {
     // Handle any errors
     res.status(500).json({ message: 'An error occurred', error });
+    
   }
 };
 
 // Update user profile
 const updateUserProfile = async (req, res) => {
   try {
-    // Get the user ID from the request object (assuming authentication middleware sets req.user)
-    const userId = req.user._id;
+    // Get the user ID from the request object 
+    const id = req.user._id;
 
     // Find the user by ID and update the profile
     const updatedUser = await User.findByIdAndUpdate(
-      userId,
+      id,
       { $set: req.body },
       { new: true }
     );

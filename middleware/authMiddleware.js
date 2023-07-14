@@ -1,4 +1,6 @@
-    const jwt = require('jsonwebtoken')
+    const { response } = require('express');
+const jwt = require('jsonwebtoken')
+   
 
     const authMiddleware = (req, res, next) => {
         const token = req.headers.authorization; 
@@ -10,6 +12,7 @@
         try {
         const decoded = jwt.verify(token, process.env.JWT_Secret);
         req.user = { _id: decoded.userId };
+        console.log(req.user._id)
         next();
         } catch (error) {
         res.status(401).json({ message: 'Invalid token' });

@@ -53,7 +53,7 @@ const loginUser = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user._id }, process.env.JWT_Secret,{
+    const token = jwt.sign({ user }, process.env.JWT_Secret,{
       expiresIn:'15m'
     });
 
@@ -76,7 +76,7 @@ const getUserProfile = async (req, res) => {
     const user = await User.findById(id);
 
     // Return the user profile
-    res.status(200).json({ user });
+    res.status(200).json({message: 'Authoraized to Access'});
     
   } catch (error) {
     // Handle any errors

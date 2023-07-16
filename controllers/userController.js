@@ -14,8 +14,9 @@ const registerUser = async (req, res) => {
       return res.status(400).json({ message: 'Email already registered' });
     }
 
-    // Create a new user instance
+    // Create a new user instance and sign it into user(important for the cookies auth)
     const newUser = new User({ name, email, password, role });
+    const user = newUser;
 
     // Hash the password
     const salt = await bcrypt.genSalt(10);
@@ -25,9 +26,9 @@ const registerUser = async (req, res) => {
     await newUser.save();
 
     // Generate JWT token
-    const token = jwt.sign({ userId: newUser._id }, process.env.JWT_Secret)
+    const token = jwt.sign({ user }, process.env.JWT_Secret)
     // Return a success response
-    res.status(201).json({token, message: 'User registered successfully' });
+    res.status(201).cookie("access_token", token,{ maxAge: 15*60*1000 , httponly:true}).json({ message: 'User registered successfully', newUser});
   } catch (error) {
     // Handle any errors
     res.status(500).json({ message: 'An error occurred', error });
@@ -58,7 +59,7 @@ const loginUser = async (req, res) => {
     });
 
     // Return the user information
-    res.status(200).json({ token, user });
+    res.status(200).cookie("access_token", token, {maxAge:15 * 60 * 1000,httponly: true}).json({  user });
   } catch (error) {
     // Handle any errors
     res.status(500).json({ message: 'An error occurred', error });
@@ -66,17 +67,17 @@ const loginUser = async (req, res) => {
 };
 
 // Get user profile
-const getUserProfile = async (req, res) => {
+const getUserProfile = async(req, res) => {
   try {
     // Get the user ID from the request object
-    const id = req.user._id;
-    
-    
+    const id = req.user.user._id;
+    //ask besslan why it is double user (only one user get undefined)
+    console.log(req.user.user._id)
     // Find the user by ID
     const user = await User.findById(id);
 
     // Return the user profile
-    res.status(200).json({message: 'Authoraized to Access'});
+    res.status(200).json({user});
     
   } catch (error) {
     // Handle any errors
@@ -107,7 +108,11 @@ const updateUserProfile = async (req, res) => {
 };
 
 const logoutUser = (req, res) => {
-  
+  try {
+    res.cookie("access_token", "",{maxAge: 0 }).end();
+  } catch (error) {
+    next(error)
+  }
   res.status(200).json({ message: 'User logged out successfully' });
 };
 

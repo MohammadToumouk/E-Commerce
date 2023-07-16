@@ -10,7 +10,7 @@ userRouter.post('/register', userController.registerUser);
 userRouter.post('/login', userController.loginUser);
 
 // Get user profile
-userRouter.get('/profile',authentication(['admin','manger','user']), userController.getUserProfile);
+userRouter.get('/profile',authentication(['admin','manger','employee']), userController.getUserProfile);
 
 // Update user profile
 userRouter.put('/profile',authentication(['admin','manger']), userController.updateUserProfile);

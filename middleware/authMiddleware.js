@@ -19,9 +19,6 @@ const authMiddleware = (requiredRoles) => {
       if (!requiredRoles.includes(decoded.user.role)) {
         return res.status(403).json({ message: 'Access denied. you have no permission for this page :/' });
       }
-      
-      // Attach the user object to the request for further processing
-      
       next();
     } catch (error) {
       return res.status(401).json({ message: 'Invalid token.' });

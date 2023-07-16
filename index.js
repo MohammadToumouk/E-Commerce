@@ -1,13 +1,16 @@
 const express = require('express')
 const cors = require('cors');
-const userRouter = require('./Routes/userRoutes');
+const userRouter = require('./routes/userRoutes');
 const productRouter = require('./routes/productRoutes');
 const orderRouter = require('./routes/orderRoutes');
+const cookieParser = require('cookie-parser')
 const port = 3069;
 require('dotenv/config');
 require('./db')
 
 const app = express();
+
+app.use(cookieParser());
 app.use(express.json());
 app.use(cors());
 

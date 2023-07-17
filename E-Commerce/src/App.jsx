@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage/homePage';
-import ShopPage from './pages/ShopPage/ShopPage';
 import Privacy from '../src/pages/Privacy/Privacy';
 import AboutUs from '../src/pages/AboutUs/AboutUs';
+import ShopPage from '../src/pages/ShopPage/ShopPage';
 
 const App = () => {
   return (

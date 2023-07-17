@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './ShopPage.css';
+import Card from '../../components/card/card';
 
 const ShopPage = () => {
+
+
   return (
-    <div>
-      <h1>Shop Page</h1>
-      {}
-    </div>
+<div>
+  <h1>Shop</h1>
+  <Card/>
+</div>
   );
 };
 

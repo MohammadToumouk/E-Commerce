@@ -1,0 +1,150 @@
+.shop-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    width: 400px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.image-wrapper {
+    position: relative;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('https://images.pexels.com/photos/7989741/pexels-photo-7989741.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+}
+
+.actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.actions input[type='checkbox'] {
+    margin-right: 8px;
+}
+
+.actions button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.availability {
+    display: flex;
+    justify-content: flex-start;
+    padding: 8px;
+}
+
+.badge {
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    background-color: #4caf50;
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.details {
+    padding: 16px;
+}
+
+.brand {
+    color: #888;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.item-name {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 16px;
+}
+
+.description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 16px;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.category {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 16px;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.quantity button {
+    /* background-color: transparent; */
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    /* color: #333; */
+}
+
+.quantity button svg {
+    width: 20px;
+    height: 20px;
+}
+
+.count {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 8px;
+}
+
+.add-to-order {
+    /* display: flex; */
+    /* align-items: center;
+    justify-content: center; */
+    background-color: #2196f3;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    /* padding: 8px; */
+    cursor: pointer;
+    width: 180px;
+    height: 50px;
+}
+
+
+.add-to-order svg {
+    margin-left: 8px;
+}
+
+.svg1 {
+    width: 15px;
+    height: 15px;
+}
+
+.svg2 {
+    width: 15px;
+    height: 15px;
+}

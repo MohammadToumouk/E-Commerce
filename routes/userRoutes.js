@@ -2,6 +2,7 @@ const express = require('express');
 const userRouter = express.Router();
 const userController = require('../controllers/userController');
 const authMiddleware = require('../middleware/authMiddleware')
+const verifyToken = require('../middleware/verfiyToken')
 
 // User registration
 userRouter.post('/register', userController.registerUser);
@@ -10,13 +11,13 @@ userRouter.post('/register', userController.registerUser);
 userRouter.post('/login', userController.loginUser);
 
 // Get user profile
-userRouter.get('/profile',authMiddleware(['admin','manger','employee']), userController.getUserProfile);
+userRouter.get('/profile',verifyToken,authMiddleware(['admin','manger','employee']), userController.getUserProfile);
 
 // Update user profile
 userRouter.put('/profile',authMiddleware(['admin','manger']), userController.updateUserProfile);
 
 // Get all users
-userRouter.get('/',authMiddleware(['admin']), userController.getAllUsers);
+userRouter.get('/',verifyToken,authMiddleware(['admin']), userController.getAllUsers);
 
 // Logout user
 userRouter.post('/logout', userController.logoutUser);

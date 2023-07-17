@@ -73,6 +73,7 @@ const getUserProfile = async(req, res) => {
     const id = req.user.user._id;
     //ask besslan why it is double user (only one user get undefined)
     console.log(req.user.user._id)
+    
     // Find the user by ID
     const user = await User.findById(id);
 

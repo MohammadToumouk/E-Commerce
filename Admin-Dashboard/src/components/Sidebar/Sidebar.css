@@ -1,0 +1,64 @@
+.sidebar-container {
+    background-color:#2D2D2D;
+    width: 180px;
+    color: #eee;
+    position: relative;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.sidebar-title {
+    font-size: 20px;
+    margin: 40px 0;
+    text-align: center;
+}
+
+.sidebar-profileImage {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+    margin-top: 100px;
+}
+
+.sidebar-username {
+    text-align: center;
+    font-size: 12px;
+    padding: 5px 0;
+}
+
+.sidebar-menu {
+   list-style: none;
+   margin-top: 45%;
+}
+
+.sidebar-listItem {
+    margin: 40px 0;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    color: grey;
+}
+
+.sidebar-link-active {
+    color: #eee;
+}
+
+.sidebar-listItem:hover {
+    color: #eee;
+}
+
+.sidebar-logout {
+    position: absolute;
+    bottom: 60px;
+    left: 60px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    color: grey;
+}
+
+.sidebar-logout:hover {
+    color: #eee;
+}

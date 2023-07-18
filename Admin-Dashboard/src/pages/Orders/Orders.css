@@ -1,4 +1,4 @@
-.dashboard-container {
+.orders-container {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -8,7 +8,7 @@
     color: #eee;
 }
 
-.dashboard-content {
+.orders-content {
     background-color:#2D2D2D;
     width: 100%;
     color: #eee;
@@ -19,7 +19,7 @@
     padding-top: 20px; 
 }
 
-.dashboard-title {
+.orders-title {
     font-size: 32px;
     padding: 25px 50px;
 }

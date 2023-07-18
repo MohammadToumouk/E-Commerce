@@ -40,9 +40,10 @@ const loginUser = async (req, res) => {
   try {
     // Extract user credentials from the request body
     const { email, password } = req.body;
+    
 
     // Check if the user with the given email exists
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("+password")
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -54,9 +55,8 @@ const loginUser = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ user }, process.env.JWT_Secret,{
-      expiresIn:'15m'
-    });
+    const token = jwt.sign( {user} , process.env.JWT_Secret, {expiresIn:'500m'}
+    );
 
     // Return the user information
     res.status(200).cookie("access_token", token, {maxAge:15 * 60 * 1000,httponly: true}).json({  user });

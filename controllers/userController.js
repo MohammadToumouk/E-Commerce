@@ -6,7 +6,7 @@ const bcrypt = require('bcrypt');
 const registerUser = async (req, res) => {
   try {
     // Extract user information from the request body
-    const { name, email, password, role } = req.body;
+    const { name, email, password } = req.body;
 
     // Check if the user with the given email already exists
     const existingUser = await User.findOne({ email });
@@ -15,7 +15,7 @@ const registerUser = async (req, res) => {
     }
 
     // Create a new user instance and sign it into user(important for the cookies auth)
-    const newUser = new User({ name, email, password, role });
+    const newUser = new User({ name, email, password });
     const user = newUser;
 
     // Hash the password
@@ -59,7 +59,7 @@ const loginUser = async (req, res) => {
     );
 
     // Return the user information
-    res.status(200).cookie("access_token", token, {maxAge:15 * 60 * 1000,httponly: true}).json({  user });
+    res.status(200).cookie("access_token", token, {maxAge:15 * 60 * 1000,httponly: true,SameSite: 'None'}).json({  user });
   } catch (error) {
     // Handle any errors
     res.status(500).json({ message: 'An error occurred', error });

@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Login.css";
+import axios from 'axios'
 
 import * as z from 'zod';
 import { useForm } from "react-hook-form";
@@ -12,7 +13,7 @@ import { NavLink } from 'react-router-dom';
 
 const formSchema = z.object({
     email: z.string().email(),
-    password: z.string().min(8).max(100),
+    password: z.string().min(6).max(100),
 });
 
 const Login = () => {
@@ -24,8 +25,35 @@ const Login = () => {
     });
 
     const onSubmit = async (data) => {
-       await console.log(data);
-    };
+       try {
+        await axios.post('http://localhost:3069/user/login',{
+            email: data.email,
+            password: data.password
+        },{
+            withCredentials:true
+        });
+        
+
+        console.log("Login successful")
+
+       } catch (error) {
+        if (error.response) {
+            // Handle specific HTTP response status codes
+            if (error.response.status === 401) {
+              console.log("Unauthorized: Invalid credentials");
+            } else if (error.response.status === 403) {
+              console.log("Forbidden: Access denied");
+            }
+          } else if (error.message) {
+            // Handle specific error messages
+            if (error.message === "Network Error") {
+              console.log("Network error: Unable to reach the server");
+            } else {
+              console.log("Unknown error occurred");
+            }
+          }
+        }
+      };
 
 
   return (

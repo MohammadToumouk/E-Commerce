@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Register.css";
-
+import axios from 'axios'
 import * as z from 'zod';
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -38,15 +38,47 @@ const Register = () => {
     });
 
     const onSubmit = async (data) => {
+        
         if (data.password !== data.confirmPassword) {
             form.setError("confirmPassword", {
-                type: "manual",
-                message: "Passwords do not match",
+              type: "manual",
+              message: "Passwords do not match",
             });
-            return;
-        }
-       await console.log(data);
-    };
+            return; // Stop the execution of onSubmit if passwords do not match
+          }
+            
+            try {
+                await axios.post('http://localhost:3069/user/register',{
+                    name: data.name,
+                    email: data.email,
+                    password: data.password
+                },{
+                    withCredentials: true
+                })
+                
+                
+                
+            } catch (error) {
+                if (error.response) {
+                    // Handle specific HTTP response status codes
+                    if (error.response.status === 401) {
+                      console.log("Unauthorized: Invalid credentials");
+                    } else if (error.response.status === 403) {
+                      console.log("Forbidden: Access denied");
+                    }
+                  } else if (error.message) {
+                    // Handle specific error messages
+                    if (error.message === "Network Error") {
+                      console.log("Network error: Unable to reach the server");
+                    } else {
+                      console.log("Unknown error occurred");
+                    }
+                  }
+                }
+                await console.log(data);
+              };
+       
+    
 
 
   return (

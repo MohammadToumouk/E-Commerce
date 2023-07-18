@@ -1,9 +1,17 @@
-const Product = require('../Models/product');
+const Product = require("../models/product");
+const cloudinary = require("../utils/cloudinary")
 
 // Create a new product
 const createProduct = async (req, res) => {
   try {
-    const { name, description, price, category, quantity, images } = req.body;
+    const { name, description, price, category, quantity } = req.body;
+
+    const image = await cloudinary.uploader.upload(req.file.path);
+
+    // Access the URL and other information of the uploaded file from the Cloudinary response
+    const imageUrl = image.secure_url;
+    const publicId = image.public_id;
+
 
     const newProduct = new Product({
       name,
@@ -11,14 +19,14 @@ const createProduct = async (req, res) => {
       price,
       category,
       quantity,
-      images,
+      image: imageUrl,
     });
 
     const savedProduct = await newProduct.save();
 
-    res.status(201).json({ product: savedProduct });
+    res.status(201).json({ product: savedProduct  });
   } catch (error) {
-    res.status(500).json({ message: 'An error occurred', error });
+    res.status(500).json({ message: "An error occurred", error });
   }
 };
 
@@ -29,7 +37,7 @@ const getAllProducts = async (req, res) => {
 
     res.status(200).json({ products });
   } catch (error) {
-    res.status(500).json({ message: 'An error occurred', error });
+    res.status(500).json({ message: "An error occurred", error });
   }
 };
 
@@ -40,12 +48,12 @@ const getProductById = async (req, res) => {
     const product = await Product.findById(productId);
 
     if (!product) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
 
     res.status(200).json({ product });
   } catch (error) {
-    res.status(500).json({ message: 'An error occurred', error });
+    res.status(500).json({ message: "An error occurred", error });
   }
 };
 
@@ -69,12 +77,12 @@ const updateProduct = async (req, res) => {
     );
 
     if (!updatedProduct) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
 
     res.status(200).json({ product: updatedProduct });
   } catch (error) {
-    res.status(500).json({ message: 'An error occurred', error });
+    res.status(500).json({ message: "An error occurred", error });
   }
 };
 
@@ -86,12 +94,12 @@ const deleteProduct = async (req, res) => {
     const deletedProduct = await Product.findByIdAndDelete(productId);
 
     if (!deletedProduct) {
-      return res.status(404).json({ message: 'Product not found' });
+      return res.status(404).json({ message: "Product not found" });
     }
 
-    res.status(200).json({ message: 'Product deleted successfully' });
+    res.status(200).json({ message: "Product deleted successfully" });
   } catch (error) {
-    res.status(500).json({ message: 'An error occurred', error });
+    res.status(500).json({ message: "An error occurred", error });
   }
 };
 

@@ -2,9 +2,12 @@ const express = require('express');
 const productRouter = express.Router();
 const productController = require('../controllers/productController');
 const authMiddleware = require('../middleware/authMiddleware');
+const cloudinary = require('../utils/cloudinary');
+const upload = require('../middleware/multer');
+const errorHandler = require('../middleware/errorhandler')
 
 // Create a new product
-productRouter.post('/', productController.createProduct);
+productRouter.post('/',upload.single('image'), productController.createProduct);
 
 // Get all products
 productRouter.get('/', productController.getAllProducts);

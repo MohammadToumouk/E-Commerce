@@ -28,9 +28,7 @@ app.use("/customer", customerRoutes)
 app.use(errorHandler)
 
 
-app.use("/user", userRouter);
-app.use("/product", productRouter);
-app.use("/order", orderRouter);
+
 
 
 app.listen(port, () => {

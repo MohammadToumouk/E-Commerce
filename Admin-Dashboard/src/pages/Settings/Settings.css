@@ -1,4 +1,4 @@
-.products-container {
+.settings-container {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -8,8 +8,7 @@
     color: #eee;
     background-color: black;
 }
-
-.products-content {
+.settings-content {
     background-color:#2D2D2D;
     width: 100%;
     color: #eee;
@@ -20,19 +19,14 @@
     padding-top: 20px; 
 }
 
-.products-header {
+.settings-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.addProduct-button {
+
+.deleteSettings-button {
     color: #eee;
     margin-right: 50px;
-    background-color: transparent !important;
     margin-top: 5px;
-}
-
-.addProduct-button:hover {
-    background-color: #eee !important;
-    color: black !important;
 }

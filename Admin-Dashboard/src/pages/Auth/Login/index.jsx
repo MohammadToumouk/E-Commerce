@@ -9,7 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Navigate } from 'react-router-dom';
 
 const formSchema = z.object({
     email: z.string().email(),
@@ -32,7 +32,6 @@ const Login = () => {
         },{
             withCredentials:true
         });
-        
 
         console.log("Login successful")
 
@@ -53,7 +52,9 @@ const Login = () => {
             }
           }
         }
-      };
+
+        window.location.href = "/dashboard"
+    };
 
 
   return (

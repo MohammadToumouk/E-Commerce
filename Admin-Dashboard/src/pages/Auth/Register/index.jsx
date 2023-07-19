@@ -179,10 +179,10 @@ const Register = () => {
                 </p>
 
                 <p className="register-terms">
-                    By creating an account you agree to the 
-                    <a href="/terms" className="register-link">{" Terms of Service"}</a> 
-                    and 
-                    <a href="/privacy" className="register-link">{"Privacy Policy"}</a>
+                    {"By creating an account you agree to the "} 
+                    <a href="/terms" className="terms-link">{"Terms of Service"}</a> 
+                    {" and "}    
+                    <a href="/privacy" className="terms-link">{"Privacy Policy"}</a>
                 </p>
             </form>
         </Form>

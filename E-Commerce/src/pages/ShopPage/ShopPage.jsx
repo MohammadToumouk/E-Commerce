@@ -1,7 +1,9 @@
-// ShopPage.jsx
+import { Link } from 'react-router-dom';
 import React from 'react';
 import './ShopPage.css';
 import Card from '../../components/card/card';
+
+
 
 
 const cardData = [
@@ -51,6 +53,7 @@ const ShopPage = () => {
             price={card.price}
             color={card.color}
             currency="€"
+            productId={card.id} 
           />
         </div>
       ))}

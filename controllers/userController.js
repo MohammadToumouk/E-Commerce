@@ -59,7 +59,7 @@ const loginUser = async (req, res) => {
     );
 
     // Return the user information
-    res.status(200).cookie("access_token", token, {maxAge:15 * 60 * 1000,httponly: true,SameSite: 'None'}).json({  user });
+    res.status(200).cookie("access_token", token, {maxAge: 4 * 60 * 60 * 1000,httponly: true,SameSite: 'None'}).json({  user });
   } catch (error) {
     // Handle any errors
     res.status(500).json({ message: 'An error occurred', error });

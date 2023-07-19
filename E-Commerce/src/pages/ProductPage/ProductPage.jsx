@@ -12,6 +12,9 @@ const cardData2 = [
       imageSrc: 'https://www.citypng.com/public/uploads/preview/iphone-14-pro-and-max-deep-purple-png-11662587434zacaxkb4sd.png',
       productName: 'Iphone 13',
       price: '199.99',
+      description: 'Die Polar Ignite ist eine wasserdichte Fitnessuhr mit optischer Pulsmessung am Handgelenk und integriertem GPS. Die Fitnessuhr ist dein Trainingspartner der neuen Generation und hilft dir, dein wahres Potenzial zu entdecken und auf intelligente Weise neue Bestleistungen zu erreichen. Die Polar Ignite bietet dir eine ganzheitliche Übersicht deines Tages und bringt dich einer ausgewogeneren Lebensweise näher.',
+      size: 'S',
+    
     },
     {
       id: 2,
@@ -20,6 +23,8 @@ const cardData2 = [
       imageSrc: 'https://www.citypng.com/public/uploads/preview/iphone-14-pro-and-max-deep-purple-png-11662587434zacaxkb4sd.png',
       productName: 'Iphone 13',
       price: '499.99',
+      description: 'Die Polar Ignite ist eine wasserdichte Fitnessuhr mit optischer Pulsmessung am Handgelenk und integriertem GPS. Die Fitnessuhr ist dein Trainingspartner der neuen Generation und hilft dir, dein wahres Potenzial zu entdecken und auf intelligente Weise neue Bestleistungen zu erreichen. Die Polar Ignite bietet dir eine ganzheitliche Übersicht deines Tages und bringt dich einer ausgewogeneren Lebensweise näher.',
+      size: 'M',
     },
     {
       id: 3,
@@ -28,6 +33,8 @@ const cardData2 = [
       imageSrc: 'https://www.citypng.com/public/uploads/preview/iphone-14-pro-and-max-deep-purple-png-11662587434zacaxkb4sd.png',
       productName: 'Iphone 13',
       price: '499.99',
+      description: 'Die Polar Ignite ist eine wasserdichte Fitnessuhr mit optischer Pulsmessung am Handgelenk und integriertem GPS. Die Fitnessuhr ist dein Trainingspartner der neuen Generation und hilft dir, dein wahres Potenzial zu entdecken und auf intelligente Weise neue Bestleistungen zu erreichen. Die Polar Ignite bietet dir eine ganzheitliche Übersicht deines Tages und bringt dich einer ausgewogeneren Lebensweise näher.',
+      size: 'L',
     },
     {
       id: 4,
@@ -36,6 +43,8 @@ const cardData2 = [
       imageSrc: 'https://www.citypng.com/public/uploads/preview/iphone-14-pro-and-max-deep-purple-png-11662587434zacaxkb4sd.png',
       productName: 'Iphone 13',
       price: '499.99',
+      description: 'Die Polar Ignite ist eine wasserdichte Fitnessuhr mit optischer Pulsmessung am Handgelenk und integriertem GPS. Die Fitnessuhr ist dein Trainingspartner der neuen Generation und hilft dir, dein wahres Potenzial zu entdecken und auf intelligente Weise neue Bestleistungen zu erreichen. Die Polar Ignite bietet dir eine ganzheitliche Übersicht deines Tages und bringt dich einer ausgewogeneren Lebensweise näher.',
+      size: 'xl',
     },
   ];
 
@@ -52,9 +61,7 @@ const ProductPage = ({ cardData }) => {
 
   return (
     <div className="product-page">
-      <ProductCard price={product.price}
-                productName={product.productName} 
-                imageSrc={product.imageSrc}/>
+      <ProductCard imageSrc={product.imageSrc}/>
       <ProductDescription
         productName={product.productName}
         description={product.description}

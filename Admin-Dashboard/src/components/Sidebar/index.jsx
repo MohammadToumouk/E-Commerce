@@ -9,7 +9,7 @@ import StoreCombobox from '../StoreCombobox'
 const Sidebar = () => {
 
   const handleLogout = async () => {
-    await axios.get('http://localhost:3069/user/logout', { withCredentials: true })
+    await axios.post('http://localhost:3069/user/logout', { withCredentials: true })
       .then((response) => {
         console.log(response)
       })

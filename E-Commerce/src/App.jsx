@@ -4,14 +4,24 @@ import HomePage from './pages/HomePage/homePage';
 import Privacy from '../src/pages/Privacy/Privacy';
 import AboutUs from '../src/pages/AboutUs/AboutUs';
 import ShopPage from '../src/pages/ShopPage/ShopPage';
+import Navbar from './components/Navbar/navbar';
+import Footer from './components/Footer/Footer';
+import Card from './components/card/card';
+import ProductPage from './pages/ProductPage/ProductPage';
 
 const App = () => {
   return (
+    
     <Router>
+      
+      <Footer/>
+      <Navbar/>
       <Route path="/" exact component={HomePage} />
       <Route path="/shop" component={ShopPage} />
+      <Route path="/shop/:id" component={ProductPage} />
       <Route path="/privacy" component={Privacy} />
       <Route path="/About" component={AboutUs} />
+      
     </Router>
   );
 };

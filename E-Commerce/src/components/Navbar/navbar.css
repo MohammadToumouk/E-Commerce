@@ -1,0 +1,69 @@
+.navigation-bar {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    padding: 10px;
+    z-index: 9999;
+    /* Add a higher z-index value */
+}
+
+/* Add some padding to the top of the content to prevent overlap */
+.content {
+    /* Adjust this value to give enough space for the navbar */
+    padding-top: 80px;
+    /* Increased padding to create more space */
+}
+
+/* Rest of your existing CSS styles for the navbar remain the same */
+.navigation-links {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+.navigation-item {
+    margin-right: 40px;
+    font-size: larger;
+}
+
+.navigation-item-center {
+    margin-right: 170px;
+    margin-left: 170px;
+    font-size: larger;
+    font-weight: 700;
+}
+
+.navigation-link {
+    text-decoration: none;
+    color: #333;
+    position: relative;
+}
+
+.navigation-link:hover {
+    text-decoration: none;
+}
+
+.navigation-link:hover::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #333;
+}
+
+.navigation-right {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.shopping-bag-image {
+    margin-left: 10px;
+}

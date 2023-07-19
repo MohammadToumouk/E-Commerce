@@ -1,0 +1,33 @@
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f0f0f0;
+    padding: 20px 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer p {
+    margin: 0;
+}
+
+.footer-links a {
+    color: #000;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+/* Additional styles to push the content up so it's not overlapped by the footer */
+.content {
+    /* Adjust this value to give enough space for the footer */
+    margin-bottom: 80px;
+}

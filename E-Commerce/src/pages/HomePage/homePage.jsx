@@ -2,48 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // import { Avatar, AvatarFallback, AvatarImage } from "../../components/avatar";
 import './HomePage.css';
+import '../../components/Navbar/navbar'
 import Privacy from '../Privacy/Privacy';
 
 const HomePage = () => {
   return (
-    <div>
-      <nav className="navigation-bar">
-        <ul className="navigation-links">
-          <li className="navigation-item">
-            <Link to="/" className="navigation-link">
-              Stores
-            </Link>
-          </li>
-          <li className="navigation-item">
-            <Link to="/blog" className="navigation-link">
-              Blog
-            </Link>
-          </li>
-          <li className="navigation-item-center">
-            EMAzing Online Store
-          </li>
-          <li className="navigation-item">
-            <Link to="/shop" className="navigation-link">
-              Shop
-            </Link>
-          </li>
-          <li className="navigation-item">
-            <Link to="/about" className="navigation-link">
-              About
-            </Link>
-          </li>
-          <div className="shopping-bag-image">
-          <img 
-          	  src="https://cdn-icons-png.flaticon.com/512/7596/7596622.png" 
-              alt="ShoppingCart"
-              style={{ width: '20px', height: 'auto' }}
-          />
-          </div>
-          
-        </ul>
-      </nav>
-
-      
+    <div>      
       <div className="image-container">
         <div className="image-text">
           <p>FASHION LIKE NEVER BEFORE</p>
@@ -65,16 +29,7 @@ const HomePage = () => {
       className="overlay-image"
       style={{ width: '500px', height: 'auto', borderRadius: '8px' }}/>
 </div>
-<footer className="footer">
-        <div className="footer-content">
-          <p>&copy; 2023 EMAzing Shopping. All rights reserved.</p>
-          <nav className="footer-links">
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
-            <Link to="/privacy">Privacy Policy</Link>
-          </nav>
-        </div>
-      </footer>
+
 
     </div>
   );

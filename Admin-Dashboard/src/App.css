@@ -3,3 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.app-dashboard-container {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  padding: 40px 0 40px 40px;
+  background-color: #eee;
+  color: #eee;
+  background-color: black;
+}

@@ -1,14 +1,13 @@
 import React from 'react'
 import "./Dashboard.css"
-import Sidebar from '@/components/Sidebar'
+import TitleHeadings from '@/components/TitleHeading'
 
 const Dashboard = () => {
   return (
     <div className='dashboard-container'>
-        <Sidebar />
       <div className='dashboard-content'>
         <div className='dashboard-header'>
-          <h1 className='dashboard-title' >Dashboard</h1>
+          <TitleHeadings title='Dashboard' subtitle='Welcome to the Dashboard' />
         </div>
       </div>
     </div>

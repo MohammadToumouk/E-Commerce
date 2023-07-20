@@ -7,6 +7,7 @@ import { CardDashboard } from "@/components/Card/Card";
 import { SearchBar } from "@/components/Searchbar/SearchBar";
 import axios from "axios";
 
+
 const Dashboard = () => {
 
   const [customers, setCustomers] = useState([])
@@ -37,12 +38,18 @@ const Dashboard = () => {
     console.log(sales[0])
   }, [])
 
+
+
   useEffect(() => {
+    
     // Calculate total revenue whenever sales data changes
     const totalRevenue = sales?.reduce((total, sale) => {
-      return sale.total + (sale.total || 0);
+      return total + (sale.total || 0);
+      
     }, 0);
     setRevenueTotal(totalRevenue);
+    
+    console.log(totalRevenue)
     console.log(revenueTotal)
   }, [sales]);
 

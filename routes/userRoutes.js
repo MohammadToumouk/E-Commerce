@@ -25,4 +25,7 @@ userRouter.get('/',verifyToken,authMiddleware(['admin']), userController.getAllU
 // Logout user
 userRouter.post('/logout', userController.logoutUser);
 
+
+
+
 module.exports = userRouter;

@@ -7,6 +7,7 @@ import ShopPage from '../src/pages/ShopPage/ShopPage';
 import Navbar from './components/Navbar/navbar';
 import Footer from './components/Footer/Footer';
 import ProductPage from './pages/ProductPage/ProductPage';
+import './app.css';
 
 const App = () => {
   return (

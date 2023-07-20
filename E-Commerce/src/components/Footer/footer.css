@@ -1,3 +1,5 @@
+/* footer.css */
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -24,10 +26,4 @@
     color: #000;
     text-decoration: none;
     margin-left: 10px;
-}
-
-/* Additional styles to push the content up so it's not overlapped by the footer */
-.content {
-    /* Adjust this value to give enough space for the footer */
-    margin-bottom: 80px;
 }

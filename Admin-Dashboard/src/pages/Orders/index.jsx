@@ -43,7 +43,7 @@ const Orders = () => {
     updatedAt: format(new Date(order.updatedAt), 'dd/MM/yyyy'),
   }))
 
-  console.log("allOrders", orders?.orders[0]?.products[0])
+  console.log("allOrders", orders?.orders)
 
   return (
     <div className='orders-container'>

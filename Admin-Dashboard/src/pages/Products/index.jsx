@@ -10,7 +10,7 @@ import { format } from 'date-fns'
 import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 import { DataTable } from '@/components/ui/data-table'
-import { columns } from "../../components/Tables/columns"
+import { ProductColumns } from "../../components/Tables/columns"
 import { formatter } from '@/lib/utils'
  
 const Products = () => {
@@ -30,7 +30,7 @@ const Products = () => {
   }, [])
 
   const formattedProducts = products?.products?.map((product) => ({
-    id: product.id,
+    id: product._id,
     name: product.name,
     price: formatter.format(product.price),
     category: product.category,
@@ -59,7 +59,7 @@ const Products = () => {
           </Button>
         </div>
         <div className='mt-10'>
-            {formattedProducts && <DataTable columns={columns} data={formattedProducts} searchKey="name" />}
+            {formattedProducts && <DataTable columns={ProductColumns} data={formattedProducts} searchKey="name" />}
         </div>
       </div>
     </div>

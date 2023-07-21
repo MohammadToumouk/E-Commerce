@@ -22,6 +22,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { SearchBar } from "../Searchbar/SearchBar"
 
 
 export function DataTable({
@@ -45,14 +46,10 @@ export function DataTable({
 
   return (
     <div>
-      <div className="flex items-center py-4 data-table-searchBox">
-        <Input
-          placeholder="Search..."
-          value={(table.getColumn(searchKey)?.getFilterValue()) ?? ""}
-          onChange={(event) =>
-            table.getColumn(searchKey)?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
+      <div className="flex items-center ml-auto pb-5 space-x-4 ">
+        <SearchBar 
+          value={(table.getColumn(searchKey)?.getFilterValue()) ?? ""} 
+          onChange={(event) => table.getColumn(searchKey)?.setFilterValue(event.target.value)}
         />
       </div>
       <div className="rounded-md border mr-12 ml-8">

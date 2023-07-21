@@ -27,6 +27,12 @@ function App() {
           })
     }
     fetchUser()
+    if (user) {
+      window.location.href = "/dashboard"
+    } else {
+      
+    }
+
   }, [])
 
   console.log("currentUser:", user)

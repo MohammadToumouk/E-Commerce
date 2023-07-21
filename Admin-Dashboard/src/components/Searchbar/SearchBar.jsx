@@ -1,15 +1,14 @@
 import React from 'react'
 import { Input } from '../ui/input'
 
-export const SearchBar = () => {
+export const SearchBar = ({value, onChange}) => {
   return (
-    <div>
       <Input
         type="search"
         placeholder="Search..."
-        className="md:w-[100px] lg:w-[300px] text-white bg-transparent"
+        className="md:w-[100px] lg:w-[300px] text-white bg-transparent ml-8"
+        value={value}
+        onChange={onChange}
       />
-    </div>
-
   )
 }

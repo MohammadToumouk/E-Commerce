@@ -55,7 +55,6 @@ const Dashboard = () => {
 
   
   return (
-    
     <div className="dashboard-container">
       <div className="dashboard-content">
         <div className="dashboard-header">
@@ -63,42 +62,42 @@ const Dashboard = () => {
             title="Dashboard"
             subtitle="Welcome to the Dashboard"
           />
-          <div className="ml-auto flex items-center space-x-4 "  >
+          <div className="ml-auto flex items-center space-x-4 mt-10"  >
           <SearchBar />
           </div>
         </div>
-        <div className="mt-20 space-y-16">
-        <div className="grid gap-4 p-4 md:grid-cols-2 lg:grid-cols-4">
-          <CardDashboard
-            title={"Total Revenue"}
-            avatarUrl={"asasd"}
-            content={revenueTotal + " €"}
-            details={"aksddas"}
-          />
-          <CardDashboard
-            title={"Customers"}
-            avatarUrl={"asasd"}
-            content={customers.length}
-            details={"100% increase"}
-          />
-          <CardDashboard
-            title={"Sales"}
-            avatarUrl={"asasd"}
-            content={sales.length}
-            details={"aksddas"}
-          />
-          <CardDashboard
-            title={"Today revenue"}
-            avatarUrl={"asasd"}
-            content={"0"}
-            details={"aksddas"}
-          />
-        </div>
-        <div className="grid gap-4  p-4 md:grid-cols-2 lg:grid-cols-2">
-        <Overview />
-        <Recentorders />
-        </div>
-      </div>
+        <div className="mt-5 space-y-16">
+            <div className="grid ml-4 mr-8 gap-4 p-4 md:grid-cols-2 lg:grid-cols-4">
+              <CardDashboard
+                title={"Total Revenue"}
+                avatarUrl={"asasd"}
+                content={revenueTotal + " €"}
+                details={"aksddas"}
+              />
+              <CardDashboard
+                title={"Customers"}
+                avatarUrl={"asasd"}
+                content={customers.length}
+                details={"100% increase"}
+              />
+              <CardDashboard
+                title={"Sales"}
+                avatarUrl={"asasd"}
+                content={sales.length}
+                details={"aksddas"}
+              />
+              <CardDashboard
+                title={"Today revenue"}
+                avatarUrl={"asasd"}
+                content={"0"}
+                details={"aksddas"}
+              />
+            </div>
+            <div className="grid gap-4 ml-4 mr-8 p-4 md:grid-cols-2 lg:grid-cols-2">
+              <Overview />
+              <Recentorders />
+            </div>
+          </div>
       </div>
     </div>
   );

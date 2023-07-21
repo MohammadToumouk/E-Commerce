@@ -20,7 +20,7 @@ export type Product = {
   updatedAt: string
 }
 
-export const columns: ColumnDef<Product>[] = [
+export const ProductColumns: ColumnDef<Product>[] = [
   {
     accessorKey: "name",
     header: "Name",
@@ -36,6 +36,12 @@ export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "color",
     header: "Color",
+    cell: ({ row }) => (
+      <div className="flex items-center gap-x-2">
+        {row.original.color}
+        <div className="w-4 h-4 rounded-full" style={{ backgroundColor: row.original.color }} />
+      </div>
+    ),
   },
   {
     accessorKey: "size",
@@ -48,6 +54,58 @@ export const columns: ColumnDef<Product>[] = [
   {
     accessorKey: "createdAt",
     header: "Created At",
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => <CellAction data={row.original} />,
+  },
+]
+
+
+export const OrderColumns = [
+  {
+    accessorKey: "createdAt",
+    header: "Ordered",
+  },
+  {
+    accessorKey: "name",
+    header: "Name",
+  },
+  {
+    accessorKey: "shippingAddress",
+    header: "Shipping Address",
+  },
+  {
+    accessorKey: "products",
+    header: "Product",
+  },
+  // {
+  //   accessorKey: "color",
+  //   header: "Color",
+  // },
+  // {
+  //   accessorKey: "size",
+  //   header: "Size",
+  // },
+  {
+    accessorKey: "totalQuantity",
+    header: "Quantity",
+  },
+  {
+    accessorKey: "total",
+    header: "Total",
+  },
+  {
+    accessorKey: "paymentStatus",
+    header: "Payment",
+  },
+  {
+    accessorKey: "shippingStatus",
+    header: "Shipping",
+  },
+  {
+    accessorKey: "updatedAt",
+    header: "Updated At",
   },
   {
     id: "actions",

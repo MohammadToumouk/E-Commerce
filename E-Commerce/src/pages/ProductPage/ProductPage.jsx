@@ -11,7 +11,7 @@ const cardData2 = [
       { name: 'Red', color: '#ff0000', available: true },
       { name: 'Blue', color: '#0000ff', available: true },
       { name: 'Green', color: '#00ff00', available: false },
-      { name: 'Orange', color: '#ffa500', available: false },
+      { name: 'Orange', color: '#ffa500', available: true },
       // Add more color options here if needed
     ],
     available: true,
@@ -23,7 +23,8 @@ const cardData2 = [
       { name: 'S', available: true},
       { name: 'M', available: true},
       { name: 'L', available: false},
-      { name: 'XL', available: false},
+      { name: 'XL', available: true},
+      { name: 'XXL', available: true},
       
     ],
     additionalImages: [

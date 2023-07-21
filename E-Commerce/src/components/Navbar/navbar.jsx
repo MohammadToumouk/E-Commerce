@@ -9,7 +9,7 @@ const Navbar = () => {
         <ul className="navigation-links">
           <li className="navigation-item">
             <Link to="/" className="navigation-link">
-              Stores
+              Home
             </Link>
           </li>
           <li className="navigation-item">
@@ -30,14 +30,21 @@ const Navbar = () => {
               About
             </Link>
           </li>
-          <div className="shopping-bag-image">
-          <img 
-          	  src="https://cdn-icons-png.flaticon.com/512/7596/7596622.png" 
-              alt="ShoppingCart"
-              style={{ width: '20px', height: 'auto' }}
-          />
+          <div className="shopping-and-login">
+            <div className="shopping-bag-image">
+              <img 
+          	    src="https://cdn-icons-png.flaticon.com/512/7596/7596622.png" 
+                alt="ShoppingCart"
+              />
+            </div>
+            <Link to="/login" className="login">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQCX5_wYEa6hyWoqSBOaPbaHw5Ff8Ljp0WcA&usqp=CAU"
+                alt="Login"
+              />
+            </Link>
           </div>
-          
+         
         </ul>
       </nav>
     )

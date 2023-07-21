@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-// import { Avatar, AvatarFallback, AvatarImage } from "../../components/avatar";
 import './HomePage.css';
 import '../../components/Navbar/navbar'
 import Privacy from '../Privacy/Privacy';

@@ -77,7 +77,7 @@ const ProductDescription = ({ productName, description, price, available, availa
       ) : (
         <div className="availability">
           <span className="x-mark">&#10008;</span>
-          <span className="availability-text">Not Available</span>
+          <span className="availability-text">Out of Stock</span>
         </div>
       )}
 

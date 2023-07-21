@@ -34,7 +34,6 @@
 .product-card {
     position: relative;
     flex: 1 1 100%;
-    /* border: 1px solid #ccc; */
     border-radius: 20px;
     margin-bottom: 20px;
     overflow: hidden;
@@ -73,12 +72,20 @@
 
 .additional-images .product-card {
     flex: 1 1 calc(50% - 10px);
-    /* Change this line to make additional image cards take half width minus spacing */
-    /* The spacing is accounted for with '10px' to avoid overflow */
-    /* border: 1px solid #ccc; */
     border-radius: 20px;
     overflow: hidden;
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.product-card.main-image img {
+    max-width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+
+}
+
+.product-card.main-image {
+    max-height: 100%;
 }

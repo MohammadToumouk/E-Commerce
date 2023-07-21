@@ -1,5 +1,3 @@
-/* App.css */
-
 html,
 body {
   height: 100%;
@@ -15,6 +13,5 @@ body {
 
 .content {
   flex: 1;
-  /* Adjust this value to give enough space for the footer */
   margin-bottom: 80px;
 }

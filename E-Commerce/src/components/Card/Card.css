@@ -10,13 +10,14 @@
     position: relative;
     width: 450px;
     height: 750px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    /* border: 1px solid #ccc; */
+    border-radius: 20px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-color: #f6f6f6;
 
 }
 

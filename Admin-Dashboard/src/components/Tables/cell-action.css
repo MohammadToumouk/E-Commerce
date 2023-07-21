@@ -1,0 +1,10 @@
+.cell-action-button {
+  border: none;
+  color: #cacaca !important;
+  cursor: pointer;
+}
+
+.cell-action-button:hover {
+  color: #eee !important;
+  background-color: transparent !important;
+}

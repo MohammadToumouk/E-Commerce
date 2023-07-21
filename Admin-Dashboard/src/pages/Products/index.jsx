@@ -11,6 +11,7 @@ import { Button } from '@/components/ui/button'
 import { Plus } from 'lucide-react'
 import { DataTable } from '@/components/ui/data-table'
 import { columns } from "../../components/Tables/columns"
+import { formatter } from '@/lib/utils'
  
 const Products = () => {
   const [products, setProducts] = useState()
@@ -31,7 +32,7 @@ const Products = () => {
   const formattedProducts = products?.products?.map((product) => ({
     id: product.id,
     name: product.name,
-    price: product.price,
+    price: formatter.format(product.price),
     category: product.category,
     quantity: product.quantity,
     createdAt: format(new Date(product.createdAt), 'dd/MM/yyyy'),
@@ -58,7 +59,7 @@ const Products = () => {
           </Button>
         </div>
         <div className='mt-10'>
-            {formattedProducts && <DataTable columns={columns} data={formattedProducts} />}
+            {formattedProducts && <DataTable columns={columns} data={formattedProducts} searchKey="name" />}
         </div>
       </div>
     </div>

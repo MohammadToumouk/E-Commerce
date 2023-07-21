@@ -1,0 +1,32 @@
+.data-table-searchBox {
+  margin-left: 33px;
+  color: black !important;
+  border: none !important;
+  width: 200px !important;
+}
+
+.data-table-head {
+  color: #eee !important;
+  font-size: small;
+  font-weight: 600 !important; 
+}
+
+.data-table-body {
+  color: #bababa !important;
+}
+
+.data-table-row:hover {
+  color: #eee !important;
+}
+
+.data-table-cell {
+   padding-top: 10px;
+   padding-bottom: 10px;
+  font-size: small;
+}
+
+.data-table-paginationButton {
+  color: grey !important;
+  font-size: small;
+  cursor: pointer;
+}

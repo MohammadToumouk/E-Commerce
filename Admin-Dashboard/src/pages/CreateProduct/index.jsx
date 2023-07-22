@@ -67,6 +67,8 @@ const CreateProduct = () => {
             </Button>
           </Link>
         </div>
+         <div className='mt-10'>
+         </div>
       </div>
     </div>
   )

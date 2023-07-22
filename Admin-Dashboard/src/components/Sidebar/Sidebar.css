@@ -1,10 +1,11 @@
 .sidebar-container {
     background-color:#2D2D2D;
-    width: 150px;
+    width: 170px;
     color: #eee;
     position: relative;
     border-top-left-radius: 50px;
     border-bottom-left-radius: 50px;
+    text-align: center;
 }
 
 .sidebar-title {
@@ -20,6 +21,21 @@
     margin-top: 40px;
     margin-bottom: 45px;
     text-align: center;
+}
+
+.sidebar-storeLink {
+    font-size: 12px;
+    color: rgb(150, 150, 150);
+    text-align: center;
+    margin-bottom: 50px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.sidebar-storeLink:hover {
+    color: #eee;
+    transition: 0.3s ease;
+    text-decoration: underline;
 }
 
 .sidebar-profileImage {
@@ -55,16 +71,17 @@
 
 .sidebar-listItem:hover {
     color: #eee;
+    transition: 0.3s ease;
 }
 
 .sidebar-logout {
     position: absolute;
     bottom: 60px;
-    left: 60px;
+    left: 65px;
     text-align: center;
     cursor: pointer;
     font-size: 12px;
-    color: grey;
+    color: rgb(150, 150, 150);
 }
 
 .sidebar-logout:hover {

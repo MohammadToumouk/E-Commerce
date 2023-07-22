@@ -63,7 +63,7 @@ const Orders = () => {
           </Button> */}
         </div>
         <div className='mt-10'>
-            {formattedOrders && <DataTable columns={OrderColumns} data={formattedOrders} searchKey="name" />}
+            {formattedOrders && <DataTable columns={OrderColumns} data={formattedOrders} searchKey={ ["name", "email", "id"]} />}
         </div>
       </div>
     </div>

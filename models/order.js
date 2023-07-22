@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Customer',
+      ref: "Customer",
       /* 
       uncomment this field once we only want to accept orders from Registred users
       
@@ -15,7 +15,7 @@ const orderSchema = new mongoose.Schema(
       {
         product: {
           type: mongoose.Schema.Types.ObjectId,
-          ref: 'Product',
+          ref: "Product",
         },
         quantity: {
           type: Number,
@@ -34,12 +34,12 @@ const orderSchema = new mongoose.Schema(
     paymentStatus: {
       type: String,
       required: true,
-      default: 'pending',
+      default: "pending",
     },
     shippingStatus: {
       type: String,
       required: true,
-      default: 'pending',
+      default: "pending",
     },
     createdAt: {
       type: Date,
@@ -50,7 +50,7 @@ const orderSchema = new mongoose.Schema(
       default: Date.now,
     },
   },
-  { collection: 'orders' }
+  { collection: "orders" }
 );
 
-module.exports = mongoose.model('Order', orderSchema);
+module.exports = mongoose.model("Order", orderSchema);

@@ -28,7 +28,7 @@ import { SearchBar } from "../Searchbar/SearchBar"
 export function DataTable({
   columns,
   data,
-  searchKey,
+  searchKey = ["name", "email", "id"]
 }) {
   const [columnFilters, setColumnFilters] = useState([]);
 

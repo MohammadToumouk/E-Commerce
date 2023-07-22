@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import "./Products.css"
 
 import TitleHeadings from '@/components/TitleHeading'
 
@@ -8,14 +7,14 @@ import axios from 'axios'
 import { format } from 'date-fns' 
 
 import { Button } from '@/components/ui/button'
-import { Plus } from 'lucide-react'
+import { Plus, XIcon } from 'lucide-react'
 import { DataTable } from '@/components/ui/data-table'
 import { ProductColumns } from "../../components/Tables/columns"
 import { formatter } from '@/lib/utils'
 import Sidebar from '@/components/Sidebar'
 import { Link } from 'react-router-dom'
  
-const Products = () => {
+const CreateProduct = () => {
   const [products, setProducts] = useState()
 
   const addNewProduct = (e) => {
@@ -55,26 +54,22 @@ const Products = () => {
       <div className='products-content'>
         <div className='products-header'>
           <TitleHeadings 
-            title='Products'
-            elements={products?.products?.length}
-            subtitle='Manage all of your products'
+            title='Create Product'
+            subtitle="Add a new product to your store"
           />
-          <Link to='/products/add'>
+          <Link to='/products'>
             <Button 
               variant="outline" 
               className="addProduct-button" 
               size="sm" 
             >
-              <Plus className='mr-2' size={16} /> Add Product
+              <XIcon size={20} /> 
             </Button>
           </Link>
-        </div>
-        <div className='mt-10'>
-            {formattedProducts && <DataTable columns={ProductColumns} data={formattedProducts} searchKey="name" />}
         </div>
       </div>
     </div>
   )
 }
 
-export default Products
+export default CreateProduct

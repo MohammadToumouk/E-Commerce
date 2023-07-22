@@ -28,7 +28,7 @@ const Sidebar = () => {
         {/* <StoreCombobox />  */}
       </div>
       <div className='sidebar-storeLink'>
-        <a href="http://localhost:5174/shop" target='_blank' >Visit Store</a>
+        <a href="http://localhost:5174/shop" target='_blank'>Visit Store</a>
       </div>
 
       <div>

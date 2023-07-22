@@ -64,7 +64,7 @@ const Dashboard = () => {
             title="Dashboard"
             subtitle="Welcome to the Dashboard"
           />
-          <div className="ml-auto flex items-center space-x-4 mt-10"  >
+          <div className="ml-8 flex items-center space-x-4 mt-10"  >
           <SearchBar />
           </div>
         </div>

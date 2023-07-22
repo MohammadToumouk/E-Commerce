@@ -1,0 +1,14 @@
+.titleHeading-title {
+    font-size: xx-large;
+    font-weight: bold;
+    margin: 0 30px;
+    letter-spacing: -0.025em;
+    line-height: 2.25em;
+    margin-top: 10px;
+}
+
+.titleHeading-subtitle {
+    font-size: 14px;
+    color: grey;
+    margin: -15px 30px;
+}

@@ -1,0 +1,24 @@
+.store-button {
+    color: #eee;
+    width: 115px !important;
+    justify-content: space-between;
+    border: 1px solid #eee !important;
+}
+
+.store-name {
+    font-size: x-small;
+}
+
+.store-popover {
+    width: 100% !important;
+    max-width: 300px;
+}
+
+.store-item:hover {
+    cursor: pointer;
+    background-color: lightgrey !important;
+}
+
+.store-namepopover {
+    font-size: 12px;
+}

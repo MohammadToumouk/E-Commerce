@@ -1,0 +1,55 @@
+.register-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #09090b;
+    line-height: 32px;
+    text-align: center;
+}
+
+.register-subtitle {
+    font-size: 14px;
+    font-weight: 400;
+    color: #6e6e6e;
+    line-height: 24px;
+    text-align: center;
+}
+
+.register-error {
+    font-size: 14px;
+    font-weight: 400;
+    color: #ff0000;
+    line-height: 24px;
+    text-align: center;
+}
+
+.register-signInInfo {
+    font-size: 14px;
+    font-weight: 400;
+    color: #6e6e6e;
+    line-height: 24px;
+    text-align: center;
+    margin-top: 5px;
+}
+
+.register-signInInfo a {
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(81, 81, 81);
+    line-height: 24px;
+    text-align: center;
+}
+
+.register-terms {
+    margin-top: 25px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #6e6e6e;
+    line-height: 24px;
+    text-align: center;
+}
+
+.terms-link {
+    text-decoration: underline;
+    color: grey;
+    font-weight: 600;
+}

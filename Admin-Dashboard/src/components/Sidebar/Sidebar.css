@@ -1,0 +1,89 @@
+.sidebar-container {
+    background-color:#2D2D2D;
+    width: 170px;
+    color: #eee;
+    position: relative;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+    text-align: center;
+}
+
+.sidebar-title {
+    font-size: 20px;
+    margin: 40px 0;
+    text-align: center;
+}
+
+.sidebar-storebox {
+    width: 90%;
+    background-color: #2D2D2D;
+    margin: 0 auto;
+    margin-top: 40px;
+    margin-bottom: 45px;
+    text-align: center;
+}
+
+.sidebar-storeLink {
+    font-size: 12px;
+    color: rgb(150, 150, 150);
+    text-align: center;
+    margin-bottom: 50px;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.sidebar-storeLink:hover {
+    color: #eee;
+    transition: 0.3s ease;
+    text-decoration: underline;
+}
+
+.sidebar-profileImage {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: block;
+}
+
+.sidebar-username {
+    text-align: center;
+    font-size: 12px;
+    padding: 5px 0;
+}
+
+.sidebar-menu {
+   list-style: none;
+   margin-top: 45%;
+}
+
+.sidebar-listItem {
+    margin: 40px 0;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    color: grey;
+}
+
+.sidebar-link-active {
+    color: #eee;
+}
+
+.sidebar-listItem:hover {
+    color: #eee;
+    transition: 0.3s ease;
+}
+
+.sidebar-logout {
+    position: absolute;
+    bottom: 60px;
+    left: 65px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 12px;
+    color: rgb(150, 150, 150);
+}
+
+.sidebar-logout:hover {
+    color: #eee;
+}

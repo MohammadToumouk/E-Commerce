@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState, useEffect } from 'react'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+import Auth from './pages/Auth'
+import { Route, Routes } from 'react-router-dom'
+import Dashboard from './pages/Dashboard'
+import Products from './pages/Products'
+import Orders from './pages/Orders'
+import axios from 'axios'
+import Settings from './pages/Settings'
+import Sidebar from './components/Sidebar'
+import Home from './pages/Home'
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+function App() {
+  const [user, setUser] = useState()
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      await axios.get('http://localhost:3069/user/profile', { withCredentials: true })
+        .then((response) => {
+          setUser(response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+    fetchUser()
+    if (user) {
+      window.location.href = "/dashboard"
+    }
+  }, [])
+
+  console.log("currentUser:", user)
+
+  if (user) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <Routes>
+          <Route path="/" element={<Home user={user} />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/settings" element={<Settings />} />
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+    )
+  }
+
+  if (!user) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Auth routeTo={"login"} />} />
+          <Route path="/register" element={<Auth routeTo={""} />} />
+        </Routes>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    )
+  }
 }
 
 export default App

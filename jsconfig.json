@@ -3,7 +3,11 @@
         "baseUrl": "src"
     },
     "include": [
-        "src"
+        "src",
+        "E-Commerce/src/components/Navigation-menu/navigation-menu.jsx",
+        "E-Commerce/src/lib",
+        "E-Commerce/src/components/Button/button.jsx",
+        "E-Commerce/src/components/Avatar/avatar.jsx"
     ],
     "baseUrl": ".",
     "paths": {

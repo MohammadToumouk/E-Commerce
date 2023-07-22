@@ -6,6 +6,7 @@ import { Recentorders } from "@/components/RecentOrders/Recentorders";
 import { CardDashboard } from "@/components/Card/Card";
 import { SearchBar } from "@/components/Searchbar/SearchBar";
 import axios from "axios";
+import Sidebar from "@/components/Sidebar";
 
 
 const Dashboard = () => {
@@ -56,6 +57,7 @@ const Dashboard = () => {
   
   return (
     <div className="dashboard-container">
+      <Sidebar />
       <div className="dashboard-content">
         <div className="dashboard-header">
           <TitleHeadings

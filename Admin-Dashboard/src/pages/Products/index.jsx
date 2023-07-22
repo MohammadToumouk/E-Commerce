@@ -12,6 +12,7 @@ import { Plus } from 'lucide-react'
 import { DataTable } from '@/components/ui/data-table'
 import { ProductColumns } from "../../components/Tables/columns"
 import { formatter } from '@/lib/utils'
+import Sidebar from '@/components/Sidebar'
  
 const Products = () => {
   const [products, setProducts] = useState()
@@ -43,6 +44,7 @@ const Products = () => {
 
   return (
     <div className='products-container'>
+      <Sidebar />
       <div className='products-content'>
         <div className='products-header'>
           <TitleHeadings 

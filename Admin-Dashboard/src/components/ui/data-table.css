@@ -11,11 +11,13 @@
 }
 
 .data-table-body {
-  color: #bababa !important;
+  color: #b2b0b0 !important;
+ 
 }
 
 .data-table-row:hover {
   color: #eee !important;
+  background-color: rgb(94, 94, 94) !important;
 }
 
 .data-table-cell {

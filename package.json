@@ -5,11 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-<<<<<<< HEAD
-    "dev": "node index.js"
-=======
     "dev": "nodemon index.js"
->>>>>>> edd85486a98700a090d8ecbf542f9db2b18c65bd
   },
   "keywords": [],
   "author": "",

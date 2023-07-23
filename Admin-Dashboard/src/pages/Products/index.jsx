@@ -59,7 +59,7 @@ const Products = () => {
             elements={products?.products?.length}
             subtitle='Manage all of your products'
           />
-          <Link to='/products/add'>
+          <Link to='/products/add-new-product'>
             <Button 
               variant="outline" 
               className="addProduct-button" 

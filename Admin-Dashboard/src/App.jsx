@@ -40,7 +40,7 @@ function App() {
           <Route path="/" element={<Home user={user} />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/products/add" element={<CreateProduct />} />
+          <Route path="/products/add-new-product" element={<CreateProduct />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/settings" element={<Settings />} />
         </Routes>

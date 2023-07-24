@@ -7,11 +7,15 @@
     background-color: #eee;
     color: #eee;
     background-color: black;
+    
 }
 .settings-content {
+    
     background-color:#2D2D2D;
     width: 100%;
     color: #eee;
+    display: flex;
+    flex-direction: column;
     position: relative;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
@@ -29,4 +33,7 @@
     color: #eee;
     margin-right: 50px;
     margin-top: 15px;
+}
+.test{
+    margin: 50px 30px;
 }

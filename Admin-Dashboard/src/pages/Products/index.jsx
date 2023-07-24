@@ -12,9 +12,17 @@ import { Plus } from 'lucide-react'
 import { DataTable } from '@/components/ui/data-table'
 import { ProductColumns } from "../../components/Tables/columns"
 import { formatter } from '@/lib/utils'
+import Sidebar from '@/components/Sidebar'
+import { Link } from 'react-router-dom'
  
 const Products = () => {
   const [products, setProducts] = useState()
+
+  const addNewProduct = (e) => {
+    e.preventDefault()
+
+    window.location.href = "/products/add"
+  }
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -43,6 +51,7 @@ const Products = () => {
 
   return (
     <div className='products-container'>
+      <Sidebar />
       <div className='products-content'>
         <div className='products-header'>
           <TitleHeadings 
@@ -50,13 +59,15 @@ const Products = () => {
             elements={products?.products?.length}
             subtitle='Manage all of your products'
           />
-          <Button 
-            variant="outline" 
-            className="addProduct-button" 
-            size="sm" 
-          >
-            <Plus className='mr-2' size={16} /> Add Product
-          </Button>
+          <Link to='/products/add-new-product'>
+            <Button 
+              variant="outline" 
+              className="addProduct-button" 
+              size="sm" 
+            >
+              <Plus className='mr-2' size={16} /> Add Product
+            </Button>
+          </Link>
         </div>
         <div className='mt-10'>
             {formattedProducts && <DataTable columns={ProductColumns} data={formattedProducts} searchKey="name" />}

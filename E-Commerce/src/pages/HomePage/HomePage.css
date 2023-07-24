@@ -1,0 +1,86 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.image-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.image-container img {
+    width: 500px;
+    height: auto;
+    border-radius: 8px;
+    margin-left: 10px;
+}
+
+.overlay-image {
+    position: absolute;
+    top: 70%;
+    left: 55%;
+    width: calc(33.33% + 50px);
+    height: auto;
+    border-radius: 8px;
+    z-index: 1;
+}
+
+.text-container {
+    text-align: left;
+    white-space: pre-wrap;
+}
+
+.image-text p {
+    font-size: 36px;
+    margin-left: 150px;
+    margin-top: 150px;
+
+}
+
+.image-text h1 {
+    font-size: 60px;
+    margin-left: 150px;
+    margin-top: 35px;
+    line-height: 1.6;
+}
+
+.shop-link {
+    display: inline-block;
+    color: #000;
+    font-weight: bold;
+    text-decoration: none;
+    position: relative;
+    margin-left: 150px;
+    margin-top: 150px;
+    font-size: 1.5rem;
+}
+
+.arrow-icon {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid #000;
+    border-right: 2px solid #000;
+    transform: rotate(45deg);
+    margin-left: 5px;
+}
+
+.shop-link:hover {
+    color: grey;
+}
+
+.arrow-icon {
+    border-color: grey;
+}
+
+.page-wrapper {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+}

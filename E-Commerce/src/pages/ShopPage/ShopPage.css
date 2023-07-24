@@ -1,0 +1,12 @@
+/* ShopPage.css */
+.shop-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.card-container {
+    /* width: 50%; */
+    padding: 8px;
+    /* Add some padding for spacing between cards */
+}

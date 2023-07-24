@@ -79,7 +79,7 @@ export function Overview() {
         <BarChart data={ordersPipeline}>
           <XAxis
             dataKey="month"
-            stroke="#888888"
+            stroke="#ffffff"
             fontSize={12}
             tickLine={true}
             axisLine={false}

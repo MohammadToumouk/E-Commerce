@@ -1,54 +1,101 @@
-/* sidebar.css */
+/* Sidebar.css */
 
-/* General styles for the sidebar */
 .sidebar {
+    margin-top: 50px;
     width: 250px;
-    background-color: #f0f0f0;
     padding: 20px;
+    background-color: #f6f6f6;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
-}
-
-.sidebar.active {
     left: 0;
-    /* Slide in from the left when active */
+    height: 100%;
+    overflow-y: auto;
+    border-radius: 20px;
 }
 
-.sidebar-toggle {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-size: 24px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    outline: none;
-    z-index: 1001;
-    /* Set a higher z-index to ensure the toggle button is clickable */
-}
-
-/* Styles for filters and checkboxes */
 .sidebar h3 {
-    margin-top: 0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: #333;
 }
 
 .sidebar label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    cursor: pointer;
 }
 
 .sidebar input[type="checkbox"] {
-    margin-right: 5px;
+    margin-right: 8px;
+    cursor: pointer;
 }
 
 .sidebar input[type="range"] {
     width: 100%;
+    cursor: pointer;
 }
 
-/* Styles for the main content on the right side of the page */
-.main-content {
-    margin-left: 250px;
-    /* Adjust the value to create space for the sidebar */
-    padding: 20px;
-    background-color: #ffffff;
+.sidebar .filter-section {
+    margin-bottom: 20px;
+}
+
+.sidebar .filter-section:last-child {
+    margin-bottom: 0;
+}
+
+.sidebar .price-range-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Active state for checkboxes */
+.sidebar input[type="checkbox"]:checked+span {
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Styling for the sliders */
+.sidebar .price-range-slider {
+    margin-bottom: 15px;
+}
+
+.sidebar .price-range-label {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar .price-range-value {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.sidebar .price-range-track {
+    width: 100%;
+    height: 6px;
+    background-color: #ccc;
+    border-radius: 3px;
+}
+
+.sidebar .price-range-thumb {
+    width: 14px;
+    height: 14px;
+    background-color: #007bff;
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    top: -4px;
+}
+
+/* Hover state for sliders */
+.sidebar .price-range-thumb:hover {
+    background-color: #0056b3;
+}
+
+/* Active state for sliders */
+.sidebar .price-range-thumb:active {
+    background-color: #003d80;
 }

@@ -10,7 +10,6 @@
     position: relative;
     width: 400px;
     height: 600px;
-
     border-radius: 20px;
     overflow: hidden;
     display: flex;
@@ -18,7 +17,7 @@
     justify-content: center;
     align-items: center;
     background-color: #f6f6f6;
-
+    margin: 5px;
 }
 
 .badge {
@@ -86,6 +85,7 @@
     justify-content: space-between;
     padding: 8px 12px;
     width: 100%;
+
 }
 
 .buy-now-button,

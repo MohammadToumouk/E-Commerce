@@ -22,11 +22,13 @@ const StoreCombobox = () => {
   return (
     <Popover className="store-container" open={open} onOpenChange={setOpen}>
         <PopoverTrigger>
-            <Button className="store-button" variant="ghost" size="sm" aria-haspopup="combobox" aria-expanded={open} aria-label="Select a Store">
-                <StoreIcon className="store-icon mr-2 h-4 w-3" size={24} />
-                <span className="store-name">EMAzing Store</span>
-                {/* <ChevronDown className="store-chevron" size={18} /> */}
-            </Button>
+            <>
+                <Button className="store-button" variant="ghost" size="sm" aria-haspopup="combobox" aria-expanded={open} aria-label="Select a Store">
+                    <StoreIcon className="store-icon mr-2 h-4 w-3" size={24} />
+                    <span className="store-name">EMAzing Store</span>
+                    {/* <ChevronDown className="store-chevron" size={18} /> */}
+                </Button>
+            </>
         </PopoverTrigger>
         <PopoverContent className="w-[200px] p-0" align="start" width="full" height="full">
             <Command>

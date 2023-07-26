@@ -31,7 +31,7 @@ const Navbar = () => {
             </Link>
           </li>
           <div className="shopping-and-login">
-            <div className="shopping-bag-image">
+            <div className="shopping-bag-image mr-5 ">
               <img 
           	    src="https://cdn-icons-png.flaticon.com/512/7596/7596622.png" 
                 alt="ShoppingCart"

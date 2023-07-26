@@ -1,0 +1,28 @@
+.product-image-container {
+  width: 200px;
+  height: 150px;
+  margin-top: 12px;
+} 
+
+.inputs-container {
+    width: 550px;
+    margin-right: 50px;
+}
+
+.input-item-container {
+    padding-top: 20px;
+}
+
+.add-product-input {
+    background-color: #141414 !important;
+    border: none !important;
+    outline: none !important;
+    color: #eee !important;
+    box-shadow:  0px 0px 0px 1px #3a3a3a;
+}
+
+.create-product-button {
+    margin-top: 80px;
+    width: 100px;
+    background-color: green !important;
+}

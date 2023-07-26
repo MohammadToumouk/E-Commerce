@@ -9,19 +9,20 @@ import Footer from './components/Footer/Footer';
 import ProductPage from './pages/ProductPage/ProductPage';
 import './app.css';
 import Login from './components/Login/login';
+import ToastProvider from './components/toast-provider.jsx';
 
 const App = () => {
   return (
     <Router>
-      
+      <ToastProvider />
       <Navbar />
       <Switch>
-      <Route path="/" exact component={HomePage} />
-      <Route path="/shop/:id" component={ProductPage} />
-      <Route path="/shop" component={ShopPage} />
-      <Route path="/privacy" component={Privacy} />
-      <Route path="/About" component={AboutUs} />
-      <Route path="/login" component={Login}/>
+        <Route path="/" exact component={HomePage} />
+        <Route path="/shop/:id" component={ProductPage} />
+        <Route path="/shop" component={ShopPage} />
+        <Route path="/privacy" component={Privacy} />
+        <Route path="/About" component={AboutUs} />
+        <Route path="/login" component={Login}/>
       </Switch>
       <Footer />
     </Router>

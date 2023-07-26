@@ -1,5 +1,5 @@
 .sidebar-container {
-    background-color:#2D2D2D;
+    background-color:#1e1e1e;    
     width: 170px;
     color: #eee;
     position: relative;
@@ -44,12 +44,14 @@
     border-radius: 50%;
     margin: 0 auto;
     display: block;
+    cursor: pointer;
 }
 
 .sidebar-username {
     text-align: center;
     font-size: 12px;
     padding: 5px 0;
+    cursor: pointer;
 }
 
 .sidebar-menu {

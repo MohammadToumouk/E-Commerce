@@ -1,3 +1,4 @@
+// Card.jsx
 import React, { useState } from 'react';
 import './Card.css';
 import { Link } from 'react-router-dom';
@@ -5,6 +6,11 @@ import { Button } from '../Button/button';
 
 const Card = ({ available, imageSrc, productName, price, color, currency, productId }) => {
   const [selectedColor, setSelectedColor] = useState(color);
+
+  const handleAddToCart = () => {
+    // Implement your add to cart logic here
+    alert('Added to Cart!');
+  };
 
   return (
     <div className="card">
@@ -28,7 +34,11 @@ const Card = ({ available, imageSrc, productName, price, color, currency, produc
         <div className="product-price">{currency}{price}</div>
       </div>
       <div className="buttons">
-        {available && <Button className="buy-now-button">Add to Card</Button>}
+        {available && (
+          <Button className="buy-now-button" onClick={handleAddToCart}>
+            Add to Cart
+          </Button>
+        )}
         <Link to={`/shop/${productId}`} className="details-button">
           Details
         </Link>

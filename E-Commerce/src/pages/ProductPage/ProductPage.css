@@ -45,7 +45,6 @@
 .product-info {
     font-weight: 700;
     position: absolute;
-    /* Add this line to make the color and price absolute */
     top: 10px;
     left: 10px;
     background-color: rgba(255, 255, 255, 0.8);

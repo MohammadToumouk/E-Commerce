@@ -1,12 +1,27 @@
 /* ShopPage.css */
+
 .shop-page {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+}
+
+.sidebar-container {
+    flex: 0 0 250px;
+    margin-right: 20px;
+
 }
 
 .card-container {
-    /* width: 50%; */
-    padding: 8px;
-    /* Add some padding for spacing between cards */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+}
+
+.shop-page .sidebar {
+    height: 100%;
+}
+
+.shop-page .card-container {
+    margin-left: 250px;
 }

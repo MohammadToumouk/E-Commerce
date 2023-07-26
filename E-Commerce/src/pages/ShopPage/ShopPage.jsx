@@ -1,62 +1,43 @@
-import { Link } from 'react-router-dom';
-import React from 'react';
+// ShopPage.jsx
+import React, { useState, useEffect } from 'react';
 import './ShopPage.css';
-import Card from '../../components/card/card';
-
-
-
-
-const cardData = [
-  {
-    id: 1,
-    color: 'red',
-    available: true,
-    imageSrc: 'https://www.citypng.com/public/uploads/preview/iphone-14-pro-and-max-deep-purple-png-11662587434zacaxkb4sd.png',
-    productName: 'Iphone 13',
-    price: '199.99',
-  },
-  {
-    id: 2,
-    color: 'blue',
-    available: false,
-    imageSrc: 'https://www.citypng.com/public/uploads/preview/iphone-14-pro-and-max-deep-purple-png-11662587434zacaxkb4sd.png',
-    productName: 'Iphone 13',
-    price: '499.99',
-  },
-  {
-    id: 3,
-    color: 'black',
-    available: true,
-    imageSrc: 'https://www.citypng.com/public/uploads/preview/iphone-14-pro-and-max-deep-purple-png-11662587434zacaxkb4sd.png',
-    productName: 'Iphone 13',
-    price: '499.99',
-  },
-  {
-    id: 4,
-    color: 'purple',
-    available: true,
-    imageSrc: 'https://www.citypng.com/public/uploads/preview/iphone-14-pro-and-max-deep-purple-png-11662587434zacaxkb4sd.png',
-    productName: 'Iphone 13',
-    price: '499.99',
-  },
-];
+import Sidebar from '../../components/sidebar/sidebar';
+import Card from '../../components/Card/Card';
 
 const ShopPage = () => {
+  const [filteredProducts, setFilteredProducts] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  // Fetch data from the API
+  useEffect(() => {
+    fetch('http://localhost:3069/product/')
+      .then((response) => response.json())
+      .then((data) => {
+        setProducts(data.products);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }, []);
+
   return (
     <div className="shop-page">
-      {cardData.map((card) => (
-        <div key={card.id} className="card-container">
+      <Sidebar setFilteredProducts={setFilteredProducts} products={products} />
+
+      <div className="card-container">
+        {filteredProducts.map((product) => (
           <Card
-            available={card.available}
-            imageSrc={card.imageSrc}
-            productName={card.productName}
-            price={card.price}
-            color={card.color}
+            key={product._id}
+            available={product.quantity > 0}
+            imageSrc={product.images[0]} // Use the first image URL from the 'images' array if available
+            productName={product.name}
+            price={product.price}
+            color="black"
             currency="€"
-            productId={card.id} 
+            productId={product._id}
           />
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

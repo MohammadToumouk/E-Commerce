@@ -16,6 +16,7 @@ const App = () => {
     <Router>
       <ToastProvider />
       <Navbar />
+      {/* <Sidebar /> */}
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/shop/:id" component={ProductPage} />
@@ -26,6 +27,7 @@ const App = () => {
       </Switch>
       <Footer />
     </Router>
+   
   );
 };
 

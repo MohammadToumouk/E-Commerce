@@ -5,7 +5,7 @@ export default function Navbar() {
     <nav className="nav">
       <ul className="flex flex-row gap-4 my-10 mx-8">
         <CustomLink to="/settings/profile">Account</CustomLink>
-        <CustomLink to="/settings/apperance">Apperance</CustomLink>
+        <CustomLink to="/settings/apperance">Users</CustomLink>
         <CustomLink to="/settings/display">Display</CustomLink>
         <CustomLink to="/settings/notifications">Notifications</CustomLink>
       </ul>

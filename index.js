@@ -8,8 +8,7 @@ const cookieParser = require('cookie-parser');
 const { errorHandler } = require('./middleware/errorhandler');
 
 const port = 3069;
-require("dotenv/config");
-require("./db");
+
 
 const app = express();
 
@@ -20,6 +19,8 @@ app.use(cors({
   credentials: true
 }));
 
+require("dotenv/config");
+require("./db");
 
 app.use("/user", userRouter)
 app.use("/product", productRouter)

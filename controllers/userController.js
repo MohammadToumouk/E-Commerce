@@ -120,13 +120,21 @@ const logoutUser = (req, res) => {
 
 // Get all users
 const getAllUsers = async (req, res) => {
-    try {
-      const users = await User.find();
-      res.status(200).json({ users });
-    } catch (error) {
-      res.status(500).json({ message: 'An error occurred', error });
-    }
-  };
+  try {
+    const page = parseInt(req.query.page) || 1;
+    const perPage = parseInt(req.query.perPage) || 10;
+
+    const users = await User.find()
+      .skip((page - 1) * perPage)
+      .limit(perPage);
+
+    const totalUsers = await User.countDocuments();
+
+    res.status(200).json({ users, totalUsers });
+  } catch (error) {
+    res.status(500).json({ message: 'An error occurred', error });
+  }
+};
 
 module.exports = {
   registerUser,

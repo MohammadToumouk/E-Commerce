@@ -71,7 +71,12 @@ const Login = () => {
                                 <FormItem>
                                     <FormLabel>E-Mail</FormLabel>
                                     <FormControl>
-                                        <Input placeholder="E-Mail" {...field}/>
+                                        <Input 
+                                          type="email"
+                                          className="ml--4"
+                                          placeholder="E-Mail"
+                                          {...field}
+                                        />
                                     </FormControl>
                                     <FormMessage>
                                         {formState.errors?.email?.message}
@@ -88,7 +93,7 @@ const Login = () => {
                                 <FormItem>
                                     <FormLabel>Password</FormLabel>
                                     <FormControl>
-                                        <Input type="password" placeholder="Password" {...field}/>
+                                        <Input type="password" className="ml--4" placeholder="Password" {...field}/>
                                     </FormControl>
                                     <FormMessage>
                                         {formState.errors?.password?.message}

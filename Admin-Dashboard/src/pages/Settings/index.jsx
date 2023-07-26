@@ -1,3 +1,4 @@
+import Sidebar from "@/components/Sidebar"
 import "./Settings.css"
 
 import TitleHeadings from '@/components/TitleHeading'
@@ -14,6 +15,7 @@ const Settings = () => {
   return (
     <>
     <div className='settings-container'>
+      <Sidebar />
       <div className='settings-content'>
         <div className='settings-header'>
           <TitleHeadings title='Settings' subtitle='Manage User and Store' />

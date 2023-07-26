@@ -1,0 +1,54 @@
+.navbar-container {
+    display: flex;
+    height: 80px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: black;
+    padding: 0 20px;
+    -webkit-box-shadow: 0px 4px 15px 0px #0f0e0e;
+    box-shadow: 0px 4px 15px 0px #101010;
+    position: sticky;
+    top: 0;
+}
+
+.navbar-headerItemContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.navbar-leftHeaderItems {
+    margin-left: 31px;
+}
+
+.navbar-rightHeaderItems {
+    color: #818181;
+    margin-right: 10px;
+}
+
+.navbar-redirectButton {
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 8px 30px;
+    border: 1px solid #eee;
+}
+
+.navbar-redirectButton:hover {
+    background-color: #eee;
+    color: black;
+    transition: 0.3s ease-in-out;
+}
+
+.navbar-dashboardButton {
+    font-size: larger;
+    color: lightgray;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.navbar-dashboardButton:hover {
+    color: #eee;
+    text-decoration: underline 2px solid white;
+    transition: 0.3s ease;
+}

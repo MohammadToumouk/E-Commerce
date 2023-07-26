@@ -97,7 +97,7 @@ const Register = () => {
                             <FormItem>
                                 <FormLabel>Name</FormLabel>
                                 <FormControl>
-                                    <Input placeholder="Name" {...field}/>
+                                    <Input className="ml--4" placeholder="Name" {...field}/>
                                 </FormControl>
                                 <FormMessage>
                                     {formState.errors?.name?.message}
@@ -114,7 +114,7 @@ const Register = () => {
                             <FormItem>
                                 <FormLabel>E-Mail</FormLabel>
                                 <FormControl>
-                                    <Input type="email" placeholder="E-Mail" {...field}/>
+                                    <Input className="ml--4" type="email" placeholder="E-Mail" {...field}/>
                                 </FormControl>
                                 <FormMessage>
                                     {formState.errors?.email?.message}
@@ -131,7 +131,7 @@ const Register = () => {
                             <FormItem>
                                 <FormLabel>Password</FormLabel>
                                 <FormControl>
-                                    <Input type="password" placeholder="Password" {...field}/>
+                                    <Input className="ml--4" type="password" placeholder="Password" {...field}/>
                                 </FormControl>
                                 <FormMessage>
                                     {formState.errors?.password?.message}
@@ -149,7 +149,7 @@ const Register = () => {
                             <FormItem>
                                 <FormLabel>Confirm Password</FormLabel>
                                 <FormControl>
-                                    <Input type="password" placeholder="Confirm Password" {...field} />
+                                    <Input className="ml--4" type="password" placeholder="Confirm Password" {...field} />
                                 </FormControl>
                                 <FormMessage>
                                     {formState.errors?.confirmPassword?.message}

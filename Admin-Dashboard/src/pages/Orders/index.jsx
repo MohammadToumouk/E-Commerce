@@ -12,6 +12,7 @@ import { Plus } from 'lucide-react'
 import { DataTable } from '@/components/ui/data-table'
 import { OrderColumns } from "../../components/Tables/columns"
 import { formatter } from '@/lib/utils'
+import Sidebar from '@/components/Sidebar'
  
 const Orders = () => {
   const [orders, setOrders] = useState()
@@ -47,6 +48,7 @@ const Orders = () => {
 
   return (
     <div className='orders-container'>
+      <Sidebar />
       <div className='orders-content'>
         <div className='orders-header'>
           <TitleHeadings 
@@ -63,7 +65,7 @@ const Orders = () => {
           </Button> */}
         </div>
         <div className='mt-10'>
-            {formattedOrders && <DataTable columns={OrderColumns} data={formattedOrders} searchKey="name" />}
+            {formattedOrders && <DataTable columns={OrderColumns} data={formattedOrders} searchKey={ ["name", "email", "id"]} />}
         </div>
       </div>
     </div>

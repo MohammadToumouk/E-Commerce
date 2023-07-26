@@ -4,6 +4,7 @@ import userprofile from '../../assets/icons/user.png'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import StoreCombobox from '../StoreCombobox'
+import { LogOut, LogOutIcon, PowerIcon, ActivityIcon } from 'lucide-react'
 
 
 const Sidebar = () => {
@@ -17,7 +18,7 @@ const Sidebar = () => {
         console.log(error)
       })
 
-    window.location.href = "/login"
+    window.location.href = "/"
   }
 
   return (
@@ -26,9 +27,12 @@ const Sidebar = () => {
       <div className='sidebar-storebox'>
         {/* <StoreCombobox />  */}
       </div>
+      <div className='sidebar-storeLink'>
+        <a href="http://localhost:5174/shop" target='_blank'>Visit Store</a>
+      </div>
 
       <div>
-        <img className="sidebar-profileImage" src={userprofile} alt="logo" />
+        <img className="sidebar-profileImage" src={userprofile} alt="Profile Image" />
       </div>
 
       <p className='sidebar-username'>Username</p>
@@ -73,7 +77,7 @@ const Sidebar = () => {
       </ul>
 
       <div className='sidebar-logout' onClick={handleLogout}>
-        logout
+        <PowerIcon size={24} />
       </div>
     </div>
   )

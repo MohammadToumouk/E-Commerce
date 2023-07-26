@@ -6,7 +6,7 @@ export const SearchBar = ({value, onChange}) => {
       <Input
         type="search"
         placeholder="Search..."
-        className="md:w-[100px] lg:w-[300px] text-white bg-transparent ml-8"
+        className="md:w-[100px] lg:w-[300px] text-white bg-transparent"
         value={value}
         onChange={onChange}
       />

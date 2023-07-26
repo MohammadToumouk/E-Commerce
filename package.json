@@ -5,11 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-<<<<<<< HEAD
     "dev": "node index.js"
-=======
-    "dev": "nodemon index.js"
->>>>>>> edd85486a98700a090d8ecbf542f9db2b18c65bd
   },
   "keywords": [],
   "author": "",
@@ -27,7 +23,7 @@
     "jsconfig.json": "^2.3.3",
     "jsonwebtoken": "^9.0.1",
     "mongodb": "^5.7.0",
-    "mongoose": "^7.3.3",
+    "mongoose": "^7.4.1",
     "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {

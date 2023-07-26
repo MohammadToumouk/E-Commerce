@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 import './ShopPage.css';
 import Card from '../../components/card/card';
+import Sidebar from '../../components/sidebar/sidebar';
+
 
 
 
@@ -44,19 +46,25 @@ const cardData = [
 const ShopPage = () => {
   return (
     <div className="shop-page">
-      {cardData.map((card) => (
-        <div key={card.id} className="card-container">
+      {/* Button to toggle the sidebar */}
+      <button className="sidebar-toggle" onClick={() => window.dispatchEvent(new Event('toggleSidebar'))}>
+        ☰ Toggle Sidebar
+      </button>
+
+      <div className="card-container">
+        {cardData.map((card) => (
           <Card
+            key={card.id}
             available={card.available}
             imageSrc={card.imageSrc}
             productName={card.productName}
             price={card.price}
             color={card.color}
             currency="€"
-            productId={card.id} 
+            productId={card.id}
           />
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

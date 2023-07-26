@@ -2,17 +2,20 @@ import React from 'react';
 import { useParams, Redirect } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard/productCard';
 import ProductDescription from '../../components/ProductDescription/productDescription';
-import './ProductPage.css'; // Assuming you have a CSS file for ProductPage
+import './ProductPage.css'; 
+import Sidebar from '../../components/sidebar/sidebar';
 
 const cardData2 = [
   {
     id: 1,
+    category: 'Mobile Phones',
+    brand: 'Apple',
     colorOptions: [
       { name: 'Red', color: '#ff0000', available: true },
       { name: 'Blue', color: '#0000ff', available: true },
       { name: 'Green', color: '#00ff00', available: false },
       { name: 'Orange', color: '#ffa500', available: true },
-      // Add more color options here if needed
+    
     ],
     available: true,
     imageSrc: 'https://images.unsplash.com/photo-1611472173362-3f53dbd65d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=704&q=80',
@@ -35,6 +38,8 @@ const cardData2 = [
   },
   {
     id: 2,
+    category: 'Accessories',
+    brand: 'Sony',
     colorOptions: [
       { name: 'Red', color: '#ff0000', available: true },
       { name: 'Blue', color: '#0000ff', available: false },
@@ -61,6 +66,8 @@ const cardData2 = [
   },
       {
         id: 3,
+        category: 'Mobile Phones',
+        brand: 'Huawei',
         colorOptions: [
           { name: 'Red', color: '#ff0000', available: true },
           { name: 'Blue', color: '#0000ff', available: true },
@@ -91,6 +98,8 @@ const cardData2 = [
 
       {
         id: 4,
+        category: 'Tablets',
+        brand: 'Samsung',
         colorOptions: [
           { name: 'Red', color: '#ff0000', available: false },
           { name: 'Blue', color: '#0000ff', available: false },
@@ -123,6 +132,7 @@ const cardData2 = [
       const product = cardData2.find((card) => card.id === Number(id));
       const availableColors = product.colorOptions.filter((color) => color.available);
       const availableSizes = product.sizeOptions.filter((size) => size.available);
+      
       
     
       if (!product) {

@@ -1,12 +1,21 @@
 /* ShopPage.css */
+
 .shop-page {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+}
+
+.sidebar-container {
+    flex: 0 0 250px;
+    /* Sidebar width: 250px */
+    margin-right: 20px;
+    /* Add some space between the sidebar and cards */
 }
 
 .card-container {
-    /* width: 50%; */
-    padding: 8px;
-    /* Add some padding for spacing between cards */
+    display: flex;
+    flex-wrap: wrap;
+    /* Ensure cards wrap to the next line if there's not enough space */
+    justify-content: flex-start;
+    /* Align cards from left to right */
 }

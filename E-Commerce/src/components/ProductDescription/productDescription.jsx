@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-import './ProductDescription.css'; // Assuming you have a CSS file for ProductDescription
+import './ProductDescription.css'; 
 
 const sizeOptions = ['S', 'M', 'L', 'XL', 'XXL'];
 
-const ProductDescription = ({ productName, description, price, available, availableColors, availableSizes }) => {
+const ProductDescription = ({ productName, description, price, available, availableColors, availableSizes, filters,
+  setFilters, filteredProducts, }) => {
   const [selectedColor, setSelectedColor] = useState(
     availableColors.find((color) => color.available)?.color || ''
-  ); // Default color is the first available color or an empty string if none available
-  const [selectedSize, setSelectedSize] = useState(sizeOptions[0]); // Default size is 'S'
+  );
+  const [selectedSize, setSelectedSize] = useState(sizeOptions[0]); 
 
   const handleColorChange = (color) => {
     setSelectedColor(color);

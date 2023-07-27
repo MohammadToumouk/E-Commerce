@@ -53,12 +53,13 @@ const CreateProduct = () => {
 
   const onSubmit = async (values) => {
     try {
-      const response = await axios.post('http://localhost:5173/products', {
+      const response = await axios.post('http://localhost:3069/product/', {
         name: values.name,
-        images: values.images,
-        price: values.price,
-        quantity: values.quantity,
-        description: values.description,
+        images: values.images[0]["url"],
+        price: parseInt(values.price),
+        quantity: parseInt(values.quantity),
+        category: "Mobiles",
+        description: "sdsdfsdf",
       }, {
         headers: {
           'Content-Type': 'application/json'
@@ -68,8 +69,8 @@ const CreateProduct = () => {
       console.log('Response from server:', response.data);
       // Add any further actions or notifications for successful submission here.
     } catch (error) {
-      console.error('Error while submitting:', error);
-      // Add error handling or notifications for failed submissions here.
+      console.error('Error while submitting:', error);// Add error handling or notifications for failed submissions here.
+      console.log("PassedData", values)
     }
 
     console.log("testData", values)

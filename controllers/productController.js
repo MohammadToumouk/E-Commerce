@@ -1,17 +1,16 @@
 const Product = require("../models/product");
-const cloudinary = require("../utils/cloudinary")
+const cloudinary = require("../utils/cloudinary");
 
 // Create a new product
 const createProduct = async (req, res) => {
   try {
-    const { name, description, price, category, quantity } = req.body;
+    const { name, images, description, price, category, quantity } = req.body;
 
-    const image = await cloudinary.uploader.upload(req.file.path);
+    // const image = await cloudinary.uploader.upload(req.file.path);
 
-    // Access the URL and other information of the uploaded file from the Cloudinary response
-    const imageUrl = image.secure_url;
-    const publicId = image.public_id;
-
+    // // Access the URL and other information of the uploaded file from the Cloudinary response
+    // const imageUrl = image.secure_url;
+    // const publicId = image.public_id;
 
     const newProduct = new Product({
       name,
@@ -19,12 +18,12 @@ const createProduct = async (req, res) => {
       price,
       category,
       quantity,
-      image: imageUrl,
+      images,
     });
 
     const savedProduct = await newProduct.save();
 
-    res.status(201).json({ product: savedProduct  });
+    res.status(201).json({ product: savedProduct });
   } catch (error) {
     res.status(500).json({ message: "An error occurred", error });
   }

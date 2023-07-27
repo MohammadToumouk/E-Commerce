@@ -6,6 +6,7 @@ const customerRoutes = require("./routes/customerRoutes");
 const orderRouter = require("./routes/orderRoutes");
 const cookieParser = require("cookie-parser");
 const { errorHandler } = require("./middleware/errorhandler");
+const cartRouter = require("./routes/cartRoutes");
 
 const port = 3069;
 const app = express();
@@ -32,6 +33,7 @@ app.use("/user", userRouter);
 app.use("/product", productRouter);
 app.use("/order", orderRouter);
 app.use("/customer", customerRoutes);
+app.use("/cart", cartRouter)
 app.use(errorHandler);
 
 app.listen(port, () => {

@@ -19,13 +19,14 @@ const createProduct = async (req, res) => {
       price,
       category,
       quantity,
-      image: imageUrl,
+      images: imageUrl,
     });
 
     const savedProduct = await newProduct.save();
 
     res.status(201).json({ product: savedProduct  });
   } catch (error) {
+    console.log(req.body)
     res.status(500).json({ message: "An error occurred", error });
   }
 };

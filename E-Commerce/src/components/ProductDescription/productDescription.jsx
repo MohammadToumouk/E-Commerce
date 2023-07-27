@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
-import './ProductDescription.css'; // Assuming you have a CSS file for ProductDescription
+import './ProductDescription.css';
 
-const sizeOptions = ['S', 'M', 'L', 'XL', 'XXL'];
+const ProductDescription = ({ product }) => {
+  const { name, description, price, image, additionalImages, quantity } = product;
 
-const ProductDescription = ({ productName, description, price, available, availableColors, availableSizes }) => {
-  const [selectedColor, setSelectedColor] = useState(
-    availableColors.find((color) => color.available)?.color || ''
-  ); // Default color is the first available color or an empty string if none available
-  const [selectedSize, setSelectedSize] = useState(sizeOptions[0]); // Default size is 'S'
+  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedSize, setSelectedSize] = useState('');
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
@@ -17,42 +15,50 @@ const ProductDescription = ({ productName, description, price, available, availa
     setSelectedSize(size);
   };
 
-  const filteredAvailableColors = availableColors.filter((color) => color.color !== selectedColor);
+  // Replace this with the correct data from 'availableColors' when available
+  const filteredAvailableColors = [];
+
+  // Replace this with the correct data from 'availableSizes' when available
+  const filteredAvailableSizes = [];
 
   return (
     <div className="product-description">
-      <h2>{productName}</h2>
+      <h2>{name}</h2>
       <div className="divider"></div>
       <p>{description}</p>
       <div className="divider"></div>
 
-      <div className="size-picker">
-        <p>Choose Size:</p>
-        <div className="size-options">
-          {availableSizes.map((size, index) => (
-            <div
-              key={index}
-              className={`size-option ${selectedSize === size.name ? 'selected' : ''}`}
-              onClick={() => handleSizeChange(size.name)}
-            >
-              {size.name}
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="divider"></div>
-
-      {availableColors.length > 0 && (
+      {/* Color Options */}
+      {filteredAvailableColors.length > 0 && (
         <div className="color-picker">
           <p>Choose Color:</p>
           <div className="color-options">
-            {availableColors.map((color, index) => (
+            {filteredAvailableColors.map((color, index) => (
               <div
                 key={index}
-                className={`color-option ${selectedColor === color.color ? 'selected' : ''}`}
-                style={{ backgroundColor: color.color }}
-                onClick={() => handleColorChange(color.color)}
+                className={`color-option ${selectedColor === color ? 'selected' : ''}`}
+                style={{ backgroundColor: color }}
+                onClick={() => handleColorChange(color)}
               ></div>
+            ))}
+          </div>
+        </div>
+      )}
+      <div className="divider"></div>
+
+      {/* Size Options */}
+      {filteredAvailableSizes.length > 0 && (
+        <div className="size-picker">
+          <p>Choose Size:</p>
+          <div className="size-options">
+            {filteredAvailableSizes.map((size, index) => (
+              <div
+                key={index}
+                className={`size-option ${selectedSize === size ? 'selected' : ''}`}
+                onClick={() => handleSizeChange(size)}
+              >
+                {size}
+              </div>
             ))}
           </div>
         </div>
@@ -61,33 +67,31 @@ const ProductDescription = ({ productName, description, price, available, availa
 
       <p>Price: {price} EUR</p>
 
-      <div className="add-to-cart-container">
-        <button
-          className={`add-to-cart-button ${available ? 'available' : 'not-available'}`}
-          disabled={!available}
-        >
-          {available ? 'Add to Cart' : 'Not Available'}
-        </button>
-      </div>
-      {available ? (
-        <div className="availability">
-          <span className="checkmark">&#9989;</span>
-          <span className="availability-text">In Stock. Delivery in 3-5 working days.</span>
+      {/* Add to Cart Button */}
+      {quantity > 0 ? (
+        <div className="add-to-cart-container">
+          <button className="add-to-cart-button">Add to Cart</button>
         </div>
       ) : (
-        <div className="availability">
-          <span className="x-mark">&#10008;</span>
-          <span className="availability-text">Out of Stock</span>
+        <div className="sold-out-container">
+          <div className="sold-out-text">Sold Out</div>
         </div>
       )}
 
+      {/* Availability */}
+      <div className="availability">
+        <span className={quantity > 0 ? 'checkmark' : 'x-symbol'}>{quantity > 0 ? '✅' : '❌'}</span>
+        <span className="availability-text">
+          {quantity > 0 ? 'In Stock. Delivery in 3-5 working days.' : 'Out of stock'}
+        </span>
+      </div>
+
       <div className="delivery-info">
-        <span className="delivery-symbol">🚚</span> {/* Delivery truck symbol */}
-        <span className="delivery-text">{available ? 'Free Delivery' : 'Delivery Not Possible'}</span>
+        <span className="delivery-symbol">🚚</span> 
+        <span className="delivery-text">{quantity > 0 ? 'Free Delivery' : 'No Delivery Available'}</span>
       </div>
     </div>
   );
 };
-
 
 export default ProductDescription;

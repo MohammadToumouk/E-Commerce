@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema(
   {
@@ -27,6 +27,7 @@ const productSchema = new mongoose.Schema(
         type: String,
       },
     ],
+
     createdAt: {
       type: Date,
       default: Date.now,
@@ -36,7 +37,7 @@ const productSchema = new mongoose.Schema(
       default: Date.now,
     },
   },
-  { collection: 'products' }
+  { collection: "products" }
 );
 
-module.exports = mongoose.model('Product', productSchema);
+module.exports = mongoose.model("Product", productSchema);

@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import "./CreateProduct.css"
+"use client"
 
 import TitleHeadings from '@/components/TitleHeading'
 
@@ -6,48 +8,86 @@ import axios from 'axios'
 
 import { format } from 'date-fns' 
 
-import { Button } from '@/components/ui/button'
-import { Plus, XIcon } from 'lucide-react'
-import { DataTable } from '@/components/ui/data-table'
-import { ProductColumns } from "../../components/Tables/columns"
+import * as z from "zod"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+
+import { XIcon } from 'lucide-react'
 import { formatter } from '@/lib/utils'
 import Sidebar from '@/components/Sidebar'
 import { Link } from 'react-router-dom'
+
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { SelectCategory } from '@/components/SelectCategory'
+import { TextareaWithLabel } from '@/components/Textarea'
+import UploadWidget from '@/components/UploadWidget'
+
+const formSchema = z.object({
+  name: z.string().min(3).max(20),
+  images: z.array(z.object({ url: z.string().url() })).min(1),
+  price: z.string().min(1).max(50),
+  quantity: z.string().min(1).max(50),
+  //category: z.string().min(1).max(20),
+  description: z.string().min(0).max(255),
+})
+
  
 const CreateProduct = () => {
-  const [products, setProducts] = useState()
+  const [imageUrl, setImageUrl] = useState();
+  const [textareaValue, setTextareaValue] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-  const addNewProduct = (e) => {
-    e.preventDefault()
+  const form = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+        name: "",
+        images: [],
+        price: "",
+        quantity: "",
+        description: "",
+        //category: "",
+    },
+  })
 
-    window.location.href = "/products/add"
+  const onSubmit = async (values) => {
+    try {
+      const response = await axios.post('http://localhost:3069/product/', {
+        name: values.name,
+        images: values.images[0]["url"],
+        price: parseInt(values.price),
+        quantity: parseInt(values.quantity),
+        category: "Mobiles",
+        description: "sdsdfsdf",
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+
+      console.log('Response from server:', response.data);
+      // Add any further actions or notifications for successful submission here.
+    } catch (error) {
+      console.error('Error while submitting:', error);// Add error handling or notifications for failed submissions here.
+      console.log("PassedData", values)
+    }
+
+    console.log("testData", values)
   }
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-        await axios.get('http://localhost:3069/product', { withCredentials: true })
-          .then((response) => {
-            setProducts(response.data)
-          })
-          .catch((error) => {
-            console.log(error)
-          })
-    }
-    fetchProducts()
-  }, [])
+  const handleTextareaChange = (newValue) => {
+    setTextareaValue(newValue);
+    form.setValue("description",  newValue );
+  };
 
-  const formattedProducts = products?.products?.map((product) => ({
-    id: product._id,
-    name: product.name,
-    price: formatter.format(product.price),
-    category: product.category,
-    quantity: product.quantity,
-    createdAt: format(new Date(product.createdAt), 'dd/MM/yyyy'),
-    updatedAt: format(new Date(product.updatedAt), 'dd/MM/yyyy'),
-  }))
+  const handleImageUpload = async (newImage) => {
+    await setImageUrl(newImage);
+    form.setValue("images", [{ url: newImage }]);
+  };
 
-  console.log("allProducts", products)
 
+ 
   return (
     <div className='products-container'>
       <Sidebar />
@@ -67,8 +107,110 @@ const CreateProduct = () => {
             </Button>
           </Link>
         </div>
-         <div className='mt-10'>
-         </div>
+        <div className='my-10 pl-8'>
+          <div className='flex items-center'>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)}>
+              <div className='flex justify-center items-start'>
+                <div className='inputs-container'> 
+                  <FormField 
+                    control={form.control} 
+                    name="name" 
+                    render={({ field }) => (
+                      <FormItem>
+                          <FormLabel>Name</FormLabel>
+                          <FormControl>
+                            <Input type="text" placeholder="Productname" className="add-product-input" {...field} />
+                          </FormControl>
+                          <FormMessage>
+
+                          </FormMessage>
+                      </FormItem>
+                    )}
+                  />
+                  {/* <FormField 
+                    control={form.control} 
+                    name="category"
+                    render={({ field }) => (
+                      <FormItem className='input-item-container'>
+                          <FormLabel>Category</FormLabel>
+                          <FormControl>
+                            
+                          </FormControl>
+                          <FormMessage>
+
+                          </FormMessage>
+                      </FormItem>
+                    )}
+                  />  */}
+                  <FormField 
+                    control={form.control} 
+                    name="price" 
+                    render={({ field }) => (
+                      <FormItem className='input-item-container'>
+                          <FormLabel>Price</FormLabel>
+                          <FormControl>
+                          <Input type="text" placeholder="Price in $" className="add-product-input"{...field} />
+                          </FormControl>
+                          <FormMessage>
+                          </FormMessage>
+                      </FormItem>
+                    )}
+                  /> 
+                  <FormField 
+                    control={form.control} 
+                    name="quantity" 
+                    render={({ field }) => (
+                      <FormItem className='input-item-container'>
+                          <FormLabel>Quantity</FormLabel>
+                          <FormControl>
+                          <Input type="number" min="0" placeholder="Amount in Stock" className="add-product-input" {...field} />
+                          </FormControl>
+                          <FormMessage>
+                          </FormMessage>
+                      </FormItem>
+                    )}
+                  />
+                  <FormField 
+                    control={form.control} 
+                    name="description" 
+                    render={({ field }) => (
+                      <FormItem className='input-item-container'>
+                          <FormLabel></FormLabel>
+                          <FormControl>
+                             <TextareaWithLabel label={"Description"} className="add-product-input" onChange={handleTextareaChange} />
+                          </FormControl>
+                          <FormMessage>
+                          </FormMessage>
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className='ml-12'>
+                   <FormField 
+                    control={form.control} 
+                    name="images" 
+                    render={({ field }) => (
+                      <FormItem className='input-item-container'>
+                          <FormLabel>Image Upload</FormLabel>
+                          <FormControl>
+                            <UploadWidget onImageUpload={handleImageUpload} {...field} />
+                          </FormControl>
+                          <FormMessage>
+                          </FormMessage>
+                      </FormItem>
+                    )}
+                  /> 
+                 </div>
+              </div>
+                  <div className="space-x-2 flex justify-start items-center w-full">
+                      <Button disabled={imageUrl ? false : true} className="create-product-button" type="submit">Create</Button>
+                  </div>
+              </form>
+            </Form>
+          
+          </div>
+        </div>
       </div>
     </div>
   )

@@ -1,11 +1,9 @@
-/* footer.css */
-
 .footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #f0f0f0;
+    background-color: #f6f6f6;
     padding: 20px 0;
 }
 

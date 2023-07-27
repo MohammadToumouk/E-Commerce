@@ -20,74 +20,73 @@ import { Link } from 'react-router-dom'
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { UploadPicture } from '@/components/UploadPicture'
 import { SelectCategory } from '@/components/SelectCategory'
 import { TextareaWithLabel } from '@/components/Textarea'
 import UploadWidget from '@/components/UploadWidget'
-import ImageUpload from '@/components/ImageUpload'
 
 const formSchema = z.object({
   name: z.string().min(3).max(20),
-  image: z.string().url(),
-  category: z.string().min(0).max(20),
+  images: z.array(z.object({ url: z.string().url() })).min(1),
   price: z.string().min(1).max(50),
   quantity: z.string().min(1).max(50),
+  //category: z.string().min(1).max(20),
   description: z.string().min(0).max(255),
 })
 
  
 const CreateProduct = () => {
-  const [products, setProducts] = useState()
-  const [selectedImage, setSelectedImage] = useState(null);
   const [imageUrl, setImageUrl] = useState();
+  const [textareaValue, setTextareaValue] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
         name: "",
-        image: imageUrl,
-        category: "",
+        images: [],
         price: "",
         quantity: "",
         description: "",
-
+        //category: "",
     },
   })
 
   const onSubmit = async (values) => {
-    console.log(values)
+    try {
+      const response = await axios.post('http://localhost:5173/products', {
+        name: values.name,
+        images: values.images,
+        price: values.price,
+        quantity: values.quantity,
+        description: values.description,
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
+
+      console.log('Response from server:', response.data);
+      // Add any further actions or notifications for successful submission here.
+    } catch (error) {
+      console.error('Error while submitting:', error);
+      // Add error handling or notifications for failed submissions here.
+    }
+
+    console.log("testData", values)
   }
 
-  const handleImageChange = (e) => {
-    setSelectedImage(e.target.files[0]);
+  const handleTextareaChange = (newValue) => {
+    setTextareaValue(newValue);
+    form.setValue("description",  newValue );
   };
 
-  const handleImageUpload = async () => {
-    if (!selectedImage) {
-      alert("Please select an image to upload.");
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("file", selectedImage);
-    formData.append("upload_preset", "your_cloudinary_upload_preset");
-
-    try {
-      const response = await axios.post(
-        "https://api.cloudinary.com/v1_1/your_cloud_name/image/upload",
-        formData
-      );
-
-      console.log("Image uploaded successfully:", response.data.url);
-      // You can now save the URL to your database or display the uploaded image on your website.
-      setImageUrl(response.data.url);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-    }
+  const handleImageUpload = async (newImage) => {
+    await setImageUrl(newImage);
+    form.setValue("images", [{ url: newImage }]);
   };
 
-  console.log("allProducts", products)
 
+ 
   return (
     <div className='products-container'>
       <Sidebar />
@@ -128,21 +127,21 @@ const CreateProduct = () => {
                       </FormItem>
                     )}
                   />
-                  <FormField 
+                  {/* <FormField 
                     control={form.control} 
                     name="category"
                     render={({ field }) => (
                       <FormItem className='input-item-container'>
                           <FormLabel>Category</FormLabel>
                           <FormControl>
-                            {/* <SelectCategory {...field} className="add-product-input"/> */}
+                            
                           </FormControl>
                           <FormMessage>
 
                           </FormMessage>
                       </FormItem>
                     )}
-                  />
+                  />  */}
                   <FormField 
                     control={form.control} 
                     name="price" 
@@ -156,7 +155,7 @@ const CreateProduct = () => {
                           </FormMessage>
                       </FormItem>
                     )}
-                  />
+                  /> 
                   <FormField 
                     control={form.control} 
                     name="quantity" 
@@ -170,7 +169,7 @@ const CreateProduct = () => {
                           </FormMessage>
                       </FormItem>
                     )}
-                  />                  
+                  />
                   <FormField 
                     control={form.control} 
                     name="description" 
@@ -178,7 +177,7 @@ const CreateProduct = () => {
                       <FormItem className='input-item-container'>
                           <FormLabel></FormLabel>
                           <FormControl>
-                            {/* <TextareaWithLabel label={"Description"} className="add-product-input" {...field}/> */}
+                             <TextareaWithLabel label={"Description"} className="add-product-input" onChange={handleTextareaChange} />
                           </FormControl>
                           <FormMessage>
                           </FormMessage>
@@ -187,48 +186,24 @@ const CreateProduct = () => {
                   />
                 </div>
                 <div className='ml-12'>
-                  <div className='product-image-container'>
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Placeholder_view_vector.svg/681px-Placeholder_view_vector.svg.png" alt="product" />
-                  </div>
-                  {/* <FormField 
+                   <FormField 
                     control={form.control} 
-                    name="image" 
-                    render={({ field }) => (
-                      <FormItem className='input-item-container'>
-                          <FormLabel>Select Image</FormLabel>
-                          <FormControl>
-                            <>
-                            <Input id="picture" type="file" onClick={handleImageChange}placeholder="Product Image" className="text-neutral-400" {...field} />
-
-                            <div className="pt-2 space-x-2 flex justify-end items-center w-full">
-                              <Button onClick={handleImageUpload} className="bg-black" type="submit">Upload Image</Button>
-                            </div>
-                            </>
-                          </FormControl>
-                          <FormMessage>
-
-                          </FormMessage>
-                      </FormItem>
-                    )}
-                  /> */}
-                  <FormField 
-                    control={form.control} 
-                    name="imageUrl" 
+                    name="images" 
                     render={({ field }) => (
                       <FormItem className='input-item-container'>
                           <FormLabel>Image Upload</FormLabel>
                           <FormControl>
-                            <UploadWidget /> 
+                            <UploadWidget onImageUpload={handleImageUpload} {...field} />
                           </FormControl>
                           <FormMessage>
                           </FormMessage>
                       </FormItem>
                     )}
-                  />
+                  /> 
                  </div>
               </div>
                   <div className="space-x-2 flex justify-start items-center w-full">
-                      <Button className="create-product-button" type="submit">Create</Button>
+                      <Button disabled={imageUrl ? false : true} className="create-product-button" type="submit">Create</Button>
                   </div>
               </form>
             </Form>

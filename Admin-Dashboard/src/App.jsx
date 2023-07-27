@@ -45,7 +45,6 @@ function App() {
           <Route path="/orders" element={<Orders />} />
           <Route path="/settings//*" element={<Settings />} /> 
         </Routes>
-      </div>
     )
   }
 

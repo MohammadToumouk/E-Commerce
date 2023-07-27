@@ -55,7 +55,7 @@ const logincustomer = async (req, res) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign( {customer} , process.env.JWT_Secret, {expiresIn:'500m'}
+    const token = jwt.sign( { customer } , process.env.JWT_Secret, {expiresIn:'500m'}
     );
 
     // Return the customer information
@@ -63,7 +63,7 @@ const logincustomer = async (req, res) => {
     res.status(200).cookie("access_token", token, {maxAge: 4 * 60 * 60 * 1000,httponly: true,SameSite: 'None'}).json({ customer });
   } catch (error) {
     // Handle any errors
-    
+    console.log(req.body)
     res.status(500).json({ message: 'An error occurred', error });
   }
 };

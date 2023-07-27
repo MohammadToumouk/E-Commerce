@@ -1,27 +1,67 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import '../Login/login.css';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleLogin = () => {
-  
-    console.log('Logged in with username:', username);
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    // Reset any previous error messages and set loading to true
+    setError('');
+    setLoading(true);
+
+    try {
+      await axios.post(
+        'http://localhost:3069/customer/login',
+        {
+          email,
+          password,
+        },
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log('Login successful');
+
+      
+      // window.location.href = "/shop";
+    } catch (error) {
+      if (error.response) {
+        if (error.response.status === 401) {
+          setError('Invalid credentials. Please try again.');
+        } else if (error.response.status === 403) {
+          setError('Forbidden: Access denied');
+        } else {
+          setError('Unknown error occurred');
+        }
+      } else if (error.message === 'Network Error') {
+        setError('Network error: Unable to reach the server');
+      } else {
+        setError('Unknown error occurred');
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <div className="login-container">
       <h2>Login</h2>
-      <form>
+      <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="username">Email:</label>
           <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <div className="form-group">
@@ -33,10 +73,11 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <button type="button" onClick={handleLogin}>
-          Login
+        <button type="submit" disabled={loading}>
+          {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
+      {error && <p className="error-message">{error}</p>}
       <p>
         Don't have an account? <Link to="/signup">Sign up</Link>
       </p>

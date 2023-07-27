@@ -25,6 +25,7 @@ const createProduct = async (req, res) => {
 
     res.status(201).json({ product: savedProduct });
   } catch (error) {
+    console.log(req.body)
     res.status(500).json({ message: "An error occurred", error });
   }
 };

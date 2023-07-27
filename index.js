@@ -8,13 +8,11 @@ const cookieParser = require("cookie-parser");
 const { errorHandler } = require("./middleware/errorhandler");
 
 const port = 3069;
-require("dotenv/config");
-require("./db");
-
 const app = express();
-
 app.use(cookieParser());
 app.use(express.json());
+require("dotenv/config");
+require("./db");
 
 const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
 

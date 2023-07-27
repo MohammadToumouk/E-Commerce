@@ -30,7 +30,6 @@ const Settings = () => {
         </div>
         <Navbar />
           <div className="container">
-            <h1>HI</h1>
           <Routes>
             <Route path="/profile" element={<SettingsProfilePage />} />
             <Route path="/notifications" element={<NotificationsPage />} />

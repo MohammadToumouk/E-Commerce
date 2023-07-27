@@ -16,7 +16,7 @@ userRouter.post('/login', userController.loginUser);
 userRouter.get('/profile',verifyToken,authMiddleware(['admin','manger','employee']), userController.getUserProfile);
 
 // Update user profile
-userRouter.put('/profile',authMiddleware(['admin','manger']), userController.updateUserProfile);
+userRouter.put('/:id'/* ,authMiddleware(['admin','manger']) */, userController.updateUserProfile);
 
 // Get all users
 userRouter.get('/',verifyToken,authMiddleware(['admin']), userController.getAllUsers);

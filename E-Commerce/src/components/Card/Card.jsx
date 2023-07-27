@@ -35,7 +35,7 @@ const Card = ({ available, imageSrc, productName, price, color, currency, produc
       </div>
       <div className="buttons">
         {available && (
-          <Button className="buy-now-button" onClick={handleAddToCart}>
+          <Button onClick={handleAddToCart}>
             Add to Cart
           </Button>
         )}

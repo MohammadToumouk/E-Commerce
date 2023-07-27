@@ -8,7 +8,7 @@
         "E-Commerce/src/lib",
         "E-Commerce/src/components/Button/button.jsx",
         "E-Commerce/src/components/Avatar/avatar.jsx"
-, "src/components/ui/hover-card.jsx"    ],
+, "E-Commerce/src/components/shadcn/hover-card.jsx"    ],
     "baseUrl": ".",
     "paths": {
         "@/*": [

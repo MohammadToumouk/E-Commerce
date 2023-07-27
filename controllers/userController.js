@@ -60,6 +60,7 @@ const loginUser = async (req, res) => {
 
     // Return the user information
     res.status(200).cookie("access_token", token, {maxAge: 4 * 60 * 60 * 1000,httponly: true,SameSite: 'None'}).json({  user });
+    console.log(req.user)
   } catch (error) {
     // Handle any errors
     res.status(500).json({ message: 'An error occurred', error });
@@ -72,7 +73,7 @@ const getUserProfile = async(req, res) => {
     // Get the user ID from the request object
     const id = req.user.user._id;
     //ask besslan why it is double user (only one user get undefined)
-    console.log(req.user.user._id)
+    console.log(req)
     
     // Find the user by ID
     const user = await User.findById(id);

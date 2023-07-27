@@ -6,15 +6,18 @@ const Customer = require('../models/customer');
 const addItemToCart = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
-    const customerId = "64b5081a79aacb0f5fb1f2c8";
- // Will uncomment after registering customers   const customerId = req.user.user._id;
+    const customerId = req.user.customer._id;
+
+
     
     const product = await Product.findById(productId);
     console.log(req.body)
     console.log(product)
     
+    
     if (!product) {
-      return res.status(404).json({ message: 'Product not found' + " " + productId + quantity + product });
+      console.log(req.user)
+      return res.status(404).json({ message: 'Product not found'});
     }
     
     let cart = await Cart.findOne({ customer: customerId });
@@ -37,6 +40,7 @@ const addItemToCart = async (req, res) => {
 
     res.status(200).json({ message: 'Item added to cart successfully', cart });
   } catch (error) {
+    console.log(req);
     res.status(500).json({ message: 'An error occurred', error });
   }
 };
@@ -45,8 +49,7 @@ const addItemToCart = async (req, res) => {
 const removeItemFromCart = async (req, res) => {
   try {
     const { productId } = req.params;
-    const customerId = "64b5081a79aacb0f5fb1f2c8";
-   // req.user.customer._id; 
+    const customerId =  req.user.customer._id; 
 
     // Get the customer's cart
     const cart = await Cart.findOne({ customer: customerId });
@@ -75,8 +78,7 @@ const removeItemFromCart = async (req, res) => {
 // Get customer's cart
 const getCustomerCart = async (req, res) => {
   try {
-    const customerId = "64b5081a79aacb0f5fb1f2c8";
-  //  req.user.customer._id; 
+    const customerId = req.user.customer._id; 
 
     // Get the customer's cart
     const cart = await Cart.findOne({ customer: customerId }).populate('items.product', 'name price');

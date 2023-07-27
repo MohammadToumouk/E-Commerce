@@ -2,6 +2,15 @@ const mongoose = require('mongoose');
 const Address = require('./adress')
 
 const customerSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    select: false
+  },
   firstname: {
     type: String,
     required: true
@@ -20,8 +29,7 @@ const customerSchema = new mongoose.Schema({
     required: true
   },
   address: {
-    type: Address.schema,
-    required: true
+    type: Address.schema
   },
   createdAt: {
     type: Date,

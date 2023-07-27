@@ -59,11 +59,13 @@ const logincustomer = async (req, res) => {
     );
 
     // Return the customer information
-    console.log("Customer ID is : " + req.user.customer._id)
+    // console.log("Customer ID is : " + req.user.customer._id)
     res.status(200).cookie("access_token", token, {maxAge: 4 * 60 * 60 * 1000,httponly: true,SameSite: 'None'}).json({ customer });
   } catch (error) {
     // Handle any errors
+    
     console.log(req.body)
+    console.log(error)
     res.status(500).json({ message: 'An error occurred', error });
   }
 };

@@ -9,7 +9,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const onSubmit = async (e) => {
+  const submit = async (e) => {
     e.preventDefault();
 
     // Reset any previous error messages and set loading to true
@@ -20,8 +20,8 @@ const Login = () => {
       await axios.post(
         'http://localhost:3069/customer/login',
         {
-          email,
-          password,
+          email: email,
+          password: password
         },
         {
           withCredentials: true,
@@ -31,21 +31,9 @@ const Login = () => {
       console.log('Login successful');
 
       
-      // window.location.href = "/shop";
+       window.location.href = "/shop";
     } catch (error) {
-      if (error.response) {
-        if (error.response.status === 401) {
-          setError('Invalid credentials. Please try again.');
-        } else if (error.response.status === 403) {
-          setError('Forbidden: Access denied');
-        } else {
-          setError('Unknown error occurred');
-        }
-      } else if (error.message === 'Network Error') {
-        setError('Network error: Unable to reach the server');
-      } else {
-        setError('Unknown error occurred');
-      }
+      console.log(error)
     } finally {
       setLoading(false);
     }
@@ -54,9 +42,9 @@ const Login = () => {
   return (
     <div className="login-container">
       <h2>Login</h2>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={submit}>
         <div className="form-group">
-          <label htmlFor="username">Email:</label>
+          <label htmlFor="email">Email:</label>
           <input
             type="email"
             id="email"

@@ -8,7 +8,7 @@ const verificationMiddleware = require('../middleware/verfiyToken');
 customerRouter.post('/register', customerController.registercustomer)
 
 // Login 
-customerRouter.post('/login',verificationMiddleware, customerController.logincustomer)
+customerRouter.post('/login', customerController.logincustomer)
 
 // GET all customers
 customerRouter.get('/', customerController.getAllCustomers);

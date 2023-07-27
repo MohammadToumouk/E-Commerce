@@ -5,12 +5,10 @@ import { Button } from '../ui/button';
 import { ImagePlus } from 'lucide-react';
 import { Trash } from 'lucide-react';
 
-
-const UploadWidget = () => {
+const UploadWidget = ({onImageUpload, value}) => {
   const cloudinaryRef = useRef();
   const widgetRef = useRef();
-
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState([])
   
   useEffect(() => {
     cloudinaryRef.current = window.cloudinary;
@@ -25,11 +23,17 @@ const UploadWidget = () => {
       if (!error && result && result.event === "success") {
         console.log("Done! Here is the image info: ", result.info.secure_url);
         console.log(result.info)
+        onImageUpload(result.info.secure_url)
         setImages([result.info.secure_url])
       }
     })
-
   }, [])
+
+  const onRemove = (url) => {
+      setImages(images.filter((image) => image !== url))
+      onImageUpload(null)
+  };
+  
                 
 
   return (
@@ -42,7 +46,7 @@ const UploadWidget = () => {
                     <Trash className='h-4 w-4' />
                 </Button>
             </div>
-            <img fill src={url} alt="Product Images" className="object-cover" />
+            <img src={url} alt="Product Images" className="object-cover" />
           </div>
         ))}
       </div>

@@ -1,4 +1,5 @@
-import * as React from "react"
+import React from "react"
+import { useState } from "react";
 import "./SelectCategory.css"
 
 import {
@@ -11,7 +12,14 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
-export function SelectCategory({ className }) {
+export function SelectCategory({ className, onCategoryChange }) {
+  const handleSelectChange = (event) => {
+    const selectedValue = event.target.value;
+    onCategoryChange(selectedValue); // Call the parent's function with the selected value
+
+    console.log("sadasd")
+  };
+
   return (
     <Select >
       <SelectTrigger className={className}>
@@ -20,7 +28,7 @@ export function SelectCategory({ className }) {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>Categories</SelectLabel>
-          <SelectItem value="clothes">Clothes</SelectItem>
+          <SelectItem onChange={handleSelectChange} value="clothes">Clothes</SelectItem>
           <SelectItem value="electronic">Electronic</SelectItem>
           <SelectItem value="mobiles">Mobiles</SelectItem>
           <SelectItem value="Groceries">Groceries</SelectItem>

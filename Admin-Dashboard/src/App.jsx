@@ -39,10 +39,10 @@ function App() {
   if (user) {
     return (
         <Routes>
-          <Route path="/" element={<Home user={user} />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Home user={user}/>} />
+          <Route path="/dashboard" element={<Dashboard user={user} />} />
           <Route path="/products" element={<Products />} />
-          <Route path="/products/add-new-product" element={<CreateProduct />} />
+          <Route path="/products/add-new-product" element={<CreateProduct  />} />
           <Route path="/products/:id" element={<EditProduct />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/settings//*" element={<Settings />} /> 

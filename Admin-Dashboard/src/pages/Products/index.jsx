@@ -63,7 +63,7 @@ const Products = () => {
             </Button>
           </Link>
         </div>
-        <div className='mt-5'>
+        <div className='mt-10'>
             {formattedProducts && <DataTable columns={ProductColumns} data={formattedProducts} searchKey="name" />}
         </div>
       </div>

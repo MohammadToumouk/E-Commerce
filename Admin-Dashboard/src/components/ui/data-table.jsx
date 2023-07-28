@@ -27,7 +27,7 @@ import { SearchBar } from "../Searchbar/SearchBar"
 export function DataTable({
   columns,
   data,
-  searchKey = ["name", "email", "id"]
+  searchKey = ["name", "products", "total"]
 }) {
   const [columnFilters, setColumnFilters] = useState([]);
 
@@ -50,7 +50,7 @@ export function DataTable({
     <div>
       <div className="flex items-center ml-8 pb-5 space-x-4">
         <SearchBar 
-          value={(table.getColumn(searchKey)?.getFilterValue()) ?? ""} 
+          value={(table.getColumn(searchKey)?.getFilterValue()) ?? ""}
           onChange={(event) => table.getColumn(searchKey)?.setFilterValue(event.target.value)}
         />
       </div>

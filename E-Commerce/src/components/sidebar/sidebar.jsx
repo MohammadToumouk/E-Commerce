@@ -1,66 +1,117 @@
 import React, { useState, useEffect } from 'react';
 import './Sidebar.css';
+import Box from '@mui/material/Box';
+import Slider from '@mui/material/Slider';
 
 const Sidebar = ({ setFilteredProducts, products }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedBrands, setSelectedBrands] = useState([]);
-  const [selectedNames, setSelectedNames] = useState([]);
-  const [selectedSizes, setSelectedSizes] = useState([]);
-  const [selectedColors, setSelectedColors] = useState([]);
-  const [priceRange, setPriceRange] = useState([0, 5000]);
   const [categories, setCategories] = useState([]);
   const [brands, setBrands] = useState([]);
-  const [names, setNames] = useState([]);
-  const [sizes, setSizes] = useState([]);
   const [colors, setColors] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedColors, setSelectedColors] = useState([]);
+  const [priceRange, setPriceRange] = useState([0, 5000]);
+  const [searchQuery, setSearchQuery] = useState('');
 
-  // Fetch data from the API and set filter options
   useEffect(() => {
-    if (products.length > 0) {
-      setCategories([...new Set(products.map((product) => product.category))]);
+    const allCategories = [...new Set(products.map((product) => product.category))];
+    const allBrands = [...new Set(products.map((product) => product.brand))];
 
-      const uniqueBrands = [...new Set(products.map((product) => product.brand))].filter(Boolean);
-      setBrands(uniqueBrands);
+    const colorsSet = new Set();
 
-      const uniqueNames = [...new Set(products.map((product) => product.name))].filter(Boolean);
-      setNames(uniqueNames);
+    products.forEach((product) => {
+      if (product.color) {
+        if (Array.isArray(product.color)) {
+          product.color.forEach((color) => {
+            const trimmedColor = color.trim();
+            colorsSet.add(trimmedColor);
+          });
+        } else {
+          const colors = product.color.split(',').map((color) => color.trim());
+          colors.forEach((color) => {
+            colorsSet.add(color);
+          });
+        }
+      }
+    });
 
-      const uniqueSizes = [...new Set(products.flatMap((product) => product.size))].filter(Boolean);
-      setSizes(uniqueSizes);
-
-      const uniqueColors = [...new Set(products.flatMap((product) => product.color))].filter(Boolean);
-      setColors(uniqueColors);
-
-      // Adjust price range based on the min and max values in the API
-      const minPrice = Math.min(...products.map((product) => product.price));
-      const maxPrice = Math.max(...products.map((product) => product.price));
-      setPriceRange([minPrice, maxPrice]);
-    }
+    setColors([...colorsSet]);
+    setSelectedColors([]);
+    setCategories(allCategories);
+    setBrands(allBrands);
   }, [products]);
 
-  // Filter logic
   useEffect(() => {
+   
     const filteredProducts = products.filter((product) => {
-      const isCategoryMatch = selectedCategories.length === 0 || selectedCategories.includes(product.category);
+      const isCategoryMatch =
+        selectedCategories.length === 0 || selectedCategories.includes(product.category);
       const isBrandMatch = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
-      const isNameMatch = selectedNames.length === 0 || selectedNames.includes(product.name);
-      const isSizeMatch = selectedSizes.length === 0 || selectedSizes.some((size) => product.size.includes(size));
-      const isColorMatch = selectedColors.length === 0 || selectedColors.some((color) => product.color.includes(color));
+
+      const isColorMatch =
+        selectedColors.length === 0 ||
+        (!product.color ||
+          (Array.isArray(product.color)
+            ? product.color.some((colors) =>
+                colors.split(',').map((color) => color.trim()).some((color) => selectedColors.includes(color))
+              )
+            : selectedColors.includes(product.color.trim())));
+
       const isPriceMatch = product.price >= priceRange[0] && product.price <= priceRange[1];
 
-      return isCategoryMatch && isBrandMatch && isNameMatch && isSizeMatch && isColorMatch && isPriceMatch;
+      const isSearchMatch =
+        searchQuery === '' ||
+        product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (product.color &&
+          (Array.isArray(product.color)
+            ? product.color.some((colors) =>
+                colors.split(',').map((color) => color.trim()).some((color) => color.toLowerCase().includes(searchQuery.toLowerCase()))
+              )
+            : product.color.toLowerCase().includes(searchQuery.toLowerCase()))) ||
+        product.brand.toLowerCase().includes(searchQuery.toLowerCase());
+
+      return isCategoryMatch && isBrandMatch && isColorMatch && isPriceMatch && isSearchMatch;
     });
 
     setFilteredProducts(filteredProducts);
-  }, [products, selectedCategories, selectedBrands, selectedNames, selectedSizes, selectedColors, priceRange, setFilteredProducts]);
+  }, [
+    products,
+    selectedCategories,
+    selectedBrands,
+    selectedColors,
+    priceRange,
+    searchQuery,
+    setFilteredProducts,
+  ]);
 
   const handleToggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const handleToggleColorCheckbox = (color) => {
+    setSelectedColors((prevColors) =>
+      prevColors.includes(color) ? prevColors.filter((c) => c !== color) : [...prevColors, color]
+    );
+  };
+
+  const handlePriceChange = (event, newValue) => {
+    setPriceRange(newValue);
+  };
+
   return (
     <div className={`sidebar ${sidebarOpen ? 'active' : ''}`}>
+      <div>
+        <h3>Search</h3>
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Search products..."
+        />
+      </div>
+
       {categories.length > 0 && (
         <div>
           <h3>Categories</h3>
@@ -93,91 +144,57 @@ const Sidebar = ({ setFilteredProducts, products }) => {
                 checked={selectedBrands.includes(brand)}
                 onChange={() =>
                   setSelectedBrands((prevBrands) =>
-                    prevBrands.includes(brand) ? prevBrands.filter((b) => b !== brand) : [...prevBrands, brand]
-                  )
-                }
-              />
-              {brand}
-            </label>
-          ))}
-        </div>
-      )}
+                    prevBrands.includes(brand)
+                    ? prevBrands.filter((b) => b !== brand)
+                    : [...prevBrands, brand]
+                )
+              }
+            />
+            {brand}
+          </label>
+        ))}
+      </div>
+    )}
 
-      {names.length > 0 && (
-        <div>
-          <h3>Names</h3>
-          {names.map((name, index) => (
-            <label key={index}>
-              <input
-                type="checkbox"
-                checked={selectedNames.includes(name)}
-                onChange={() =>
-                  setSelectedNames((prevNames) =>
-                    prevNames.includes(name) ? prevNames.filter((n) => n !== name) : [...prevNames, name]
-                  )
-                }
-              />
-              {name}
-            </label>
-          ))}
-        </div>
-      )}
-
-      {sizes.length > 0 && (
-        <div>
-          <h3>Sizes</h3>
-          {sizes.map((size, index) => (
-            <label key={index}>
-              <input
-                type="checkbox"
-                checked={selectedSizes.includes(size)}
-                onChange={() =>
-                  setSelectedSizes((prevSizes) =>
-                    prevSizes.includes(size) ? prevSizes.filter((s) => s !== size) : [...prevSizes, size]
-                  )
-                }
-              />
-              {size}
-            </label>
-          ))}
-        </div>
-      )}
-
-      {colors.length > 0 && (
-        <div>
-          <h3>Colors</h3>
+    {colors.length > 0 && (
+      <div>
+        <h3>Colors</h3>
+        <div className="color-picker">
           {colors.map((color, index) => (
-            <label key={index}>
-              <input
-                type="checkbox"
-                checked={selectedColors.includes(color)}
-                onChange={() =>
-                  setSelectedColors((prevColors) =>
-                    prevColors.includes(color) ? prevColors.filter((c) => c !== color) : [...prevColors, color]
-                  )
-                }
-              />
-              {color}
-            </label>
+            <div
+              key={index}
+              className={`color-option ${selectedColors.includes(color) ? 'selected' : ''}`}
+              style={{ backgroundColor: color }}
+              onClick={() => handleToggleColorCheckbox(color)}
+            ></div>
           ))}
         </div>
-      )}
+      </div>
+    )}
 
-      {priceRange.length > 0 && (
-        <div>
-          <h3>Price Range</h3>
-          <input
-            type="range"
-            min={0}
-            max={5000}
-            value={priceRange[0]}
-            onChange={(e) => setPriceRange([parseInt(e.target.value), priceRange[1]])}
-          />
-          <span>{`€${priceRange[0]} - €${priceRange[1]}`}</span>
+    <div>
+      <h3>Price Range</h3>
+      <div className="ml-2">
+      <Box sx={{ width: 170 }}>
+        <Slider
+          size="large"
+          max={5000}
+          value={priceRange}
+          onChange={handlePriceChange}
+          valueLabelDisplay="auto"
+          getAriaValueText={(value) => console.log(`${value}$`) }
+        />
+      </Box>
+      </div>
+      <div className="slider-handles">
+        <span>€{priceRange[0]}</span>
+        <span>€{priceRange[1]}</span>
         </div>
-      )}
+
     </div>
+  </div>
   );
 };
 
 export default Sidebar;
+

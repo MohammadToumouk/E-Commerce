@@ -8,7 +8,7 @@ const ShopPage = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [products, setProducts] = useState([]);
 
-  // Fetch data from the API
+
   useEffect(() => {
     fetch('http://localhost:3069/product/')
       .then((response) => response.json())
@@ -29,10 +29,10 @@ const ShopPage = () => {
           <Card
             key={product._id}
             available={product.quantity > 0}
-            imageSrc={product.images[0]} // Use the first image URL from the 'images' array if available
+            imageSrc={product.images[0]} 
             productName={product.name}
             price={product.price}
-            color="black"
+            color={product.color}
             currency="€"
             productId={product._id}
           />

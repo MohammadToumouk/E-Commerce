@@ -4,7 +4,6 @@ import "./data-table.css"
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 
 import {
   flexRender,
@@ -41,6 +40,9 @@ export function DataTable({
     getFilteredRowModel: getFilteredRowModel(),
     state: {
       columnFilters,
+      // This is a hack to make the table think it's paginated
+      pageSize: data.length,
+      pageIndex: 0,
     }, 
   })
 

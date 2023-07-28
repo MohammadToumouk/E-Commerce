@@ -40,7 +40,7 @@ const UploadWidget = ({onImageUpload, value}) => {
     <div>      
       <div className="flex items-center">
         {images && images.map((url) => (
-          <div key={url} className="relative w-[400px] h-[225px] rounded-md overflow-hidden">
+          <div key={url} className="relative w-[580px] h-[330px] rounded-md overflow-hidden">
             <div className='z-10 absolute top-2 right-2'>
                 <Button type="button" onClick={() => onRemove(url)} variant="destructive" size="icon"> 
                     <Trash className='h-4 w-4' />

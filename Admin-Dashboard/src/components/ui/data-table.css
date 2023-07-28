@@ -8,6 +8,7 @@
   color: #eee !important;
   font-size: small;
   font-weight: 600 !important; 
+
 }
 
 .data-table-body {
@@ -23,7 +24,7 @@
 .data-table-cell {
    padding-top: 10px;
    padding-bottom: 10px;
-  font-size: small;
+  font-size: small; 
 }
 
 .data-table-paginationButton {

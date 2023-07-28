@@ -2,24 +2,16 @@ import React, { useState } from 'react';
 import './ProductDescription.css';
 
 const ProductDescription = ({ product }) => {
-  const { name, description, price, image, additionalImages, quantity } = product;
+  const { name, description, price, image, additionalImages, quantity, color } = product;
 
   const [selectedColor, setSelectedColor] = useState('');
-  const [selectedSize, setSelectedSize] = useState('');
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
   };
 
-  const handleSizeChange = (size) => {
-    setSelectedSize(size);
-  };
-
-  // Replace this with the correct data from 'availableColors' when available
-  const filteredAvailableColors = [];
-
-  // Replace this with the correct data from 'availableSizes' when available
-  const filteredAvailableSizes = [];
+  // Convert the color array to a set to remove duplicates
+  const uniqueColors = new Set(color);
 
   return (
     <div className="product-description">
@@ -29,36 +21,17 @@ const ProductDescription = ({ product }) => {
       <div className="divider"></div>
 
       {/* Color Options */}
-      {filteredAvailableColors.length > 0 && (
+      {Array.isArray(color) && color.length > 0 && (
         <div className="color-picker">
           <p>Choose Color:</p>
           <div className="color-options">
-            {filteredAvailableColors.map((color, index) => (
+            {[...uniqueColors].map((colorOption, index) => (
               <div
                 key={index}
-                className={`color-option ${selectedColor === color ? 'selected' : ''}`}
-                style={{ backgroundColor: color }}
-                onClick={() => handleColorChange(color)}
+                className={`color-option ${selectedColor === colorOption ? 'selected' : ''}`}
+                style={{ backgroundColor: colorOption }}
+                onClick={() => handleColorChange(colorOption)}
               ></div>
-            ))}
-          </div>
-        </div>
-      )}
-      <div className="divider"></div>
-
-      {/* Size Options */}
-      {filteredAvailableSizes.length > 0 && (
-        <div className="size-picker">
-          <p>Choose Size:</p>
-          <div className="size-options">
-            {filteredAvailableSizes.map((size, index) => (
-              <div
-                key={index}
-                className={`size-option ${selectedSize === size ? 'selected' : ''}`}
-                onClick={() => handleSizeChange(size)}
-              >
-                {size}
-              </div>
             ))}
           </div>
         </div>

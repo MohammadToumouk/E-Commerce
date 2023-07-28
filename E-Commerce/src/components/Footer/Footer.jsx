@@ -5,6 +5,7 @@ import '../Footer/footer.css';
 const Footer = () => {
     
     return (
+      
         <footer className="footer">
         <div className="footer-content">
           <p>&copy; 2023 EMAzing Shopping. All rights reserved.</p>

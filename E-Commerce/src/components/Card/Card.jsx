@@ -8,7 +8,7 @@ const Card = ({ available, imageSrc, productName, price, color, currency, produc
   const [selectedColor, setSelectedColor] = useState(color);
 
   const handleAddToCart = () => {
-    // Implement your add to cart logic here
+  
     alert('Added to Cart!');
   };
 
@@ -26,22 +26,20 @@ const Card = ({ available, imageSrc, productName, price, color, currency, produc
       <div className="image-wrapper">
         <img src={imageSrc} alt="Product" className="product-image" />
       </div>
-      <div className="color-text" style={{ color: 'black' }}>
-        {selectedColor}
-      </div>
+ 
       <div className="details">
         <div className="product-name">{productName}</div>
         <div className="product-price">{currency}{price}</div>
       </div>
       <div className="buttons">
+        <Link to={`/shop/${productId}`} className="details-button">
+          Details
+        </Link>
         {available && (
           <Button className="buy-now-button" onClick={handleAddToCart}>
             Add to Cart
           </Button>
         )}
-        <Link to={`/shop/${productId}`} className="details-button">
-          Details
-        </Link>
       </div>
     </div>
   );

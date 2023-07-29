@@ -3,13 +3,32 @@ import React, { useState } from 'react';
 import './Card.css';
 import { Link } from 'react-router-dom';
 import { Button } from '../Button/button';
+import axios from 'axios';
 
 const Card = ({ available, imageSrc, productName, price, color, currency, productId }) => {
   const [selectedColor, setSelectedColor] = useState(color);
 
-  const handleAddToCart = () => {
-  
-    alert('Added to Cart!');
+  const handleAddToCart = (values) => {
+    // try {
+    //   const response = await axios.post('http://localhost:3069/cart/add', {
+    //     customerId: values.customerId,
+    //     productId: values.productId,
+    //   }, {
+    //     headers: {
+    //       'Content-Type': 'application/json'
+    //     },
+    //   });
+
+    //     console.log('Response from server:', response.data);
+    //     // Add any further actions or notifications for successful submission here.
+    //   } catch (error) {
+    //     console.error('Error while submitting:', error);// Add error handling or notifications for failed submissions here.
+    //     console.log("DataWithError", values)
+    //     console.log("Error", error)
+    //   }
+
+    //   console.log("testData", values)
+    // }
   };
 
   return (
@@ -36,7 +55,7 @@ const Card = ({ available, imageSrc, productName, price, color, currency, produc
           Details
         </Link>
         {available && (
-          <Button onClick={handleAddToCart}>
+          <Button onClick={(e) => handleAddToCart(e)}>
             Add to Cart
           </Button>
         )}

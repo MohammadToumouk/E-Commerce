@@ -6,7 +6,7 @@ export const CardDashboard = ({title,avatarUrl,content,details}) => {
     
   return (
     
-                <Card className= "bg-midnight">
+                <Card className= "bg-midnight border-neutral-700 shadow-2xl">
                   <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 text-white">
                     <CardTitle className="text-base font-medium">
                       {title}

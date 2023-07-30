@@ -18,12 +18,6 @@ import { Link } from 'react-router-dom'
 const Products = () => {
   const [products, setProducts] = useState()
 
-  const addNewProduct = (e) => {
-    e.preventDefault()
-
-    window.location.href = "/products/add"
-  }
-
   useEffect(() => {
     const fetchProducts = async () => {
         await axios.get('http://localhost:3069/product', { withCredentials: true })

@@ -31,15 +31,21 @@ const ProductPage = () => {
     return <Redirect to="/shop" />;
   }
 
+  // Ensure that the properties exist in the product object
+  const { images, color, price, sizes } = product;
+  const additionalImages = product.additionalImages || [];
+
   return (
     <div className="content">
       <div className="product-page">
         <div className="product-image-container">
           <div className="product-card main-image">
-            <ProductCard imageSrc={product.images} color={product.color} price={product.price} currency="€" />
+            <ProductCard imageSrc={images} color={color} price={price} currency="€" />
           </div>
           <div className="additional-images">
+
             {product?.additionalImages?.map((imgSrc, index) => (
+
               <div className="product-card" key={index}>
                 <ProductCard imageSrc={imgSrc} />
               </div>
@@ -47,7 +53,7 @@ const ProductPage = () => {
           </div>
         </div>
         <div className="product-description-container">
-          <ProductDescription product={product} />
+          <ProductDescription product={product} sizes={sizes} />
         </div>
       </div>
     </div>

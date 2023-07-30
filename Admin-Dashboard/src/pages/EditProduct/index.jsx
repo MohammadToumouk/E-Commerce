@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import "./CreateProduct.css"
+import {useEffect, useState } from 'react'
+import "./Edit.Product.css"
 "use client"
 
 import TitleHeadings from '@/components/TitleHeading'
@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 
 import { XIcon } from 'lucide-react'
 import Sidebar from '@/components/Sidebar'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 
@@ -24,7 +24,6 @@ import UploadWidget from '@/components/UploadWidget'
 
 const formSchema = z.object({
   name: z.string().min(3).max(20),
-  brand: z.string().min(3).max(20),
   images: z.array(z.object({ url: z.string().url() })).min(1),
   price: z.string().min(1).max(50),
   quantity: z.string().min(1).max(50),
@@ -35,25 +34,52 @@ const formSchema = z.object({
 });
 
  
-const CreateProduct = () => {
+const EditProduct = () => {
   const [imageUrl, setImageUrl] = useState();
   const [textareaValue, setTextareaValue] = useState("");
   const [textareaSizesValue, setTextareaSizesValue] = useState("");
   const [textareaColorValue, setTextareaColorValue] = useState("");
 
+  const [brand , setBrand] = useState();
+  const [name, setName] = useState();
+
+  const productId = useParams();
+  const [product, setProduct] = useState()
+
+  console.log("brand", brand)
+  console.log("name", name)
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+        await axios.get( `http://localhost:3069/product/${productId.id}`, { withCredentials: true })
+          .then((response) => {
+            setProduct(response.data)
+            setName(response.data.product.name)
+            setBrand(response.data.product.brand)
+          })
+          .catch((error) => {
+            console.log(error)
+          })
+    }
+    fetchProduct()
+  }, [])
+
+  console.log("product", product)
+ 
+
   const form = useForm({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-        name: "",
-        brand: "",
-        images: [],
-        price: "",
-        quantity: "",
-        category: "",
-        sizes: [],
-        color: [],
-        description: "",
-    },
+    // defaultValues: {
+    //     name: product.name,
+    //     brand: brand,
+    //     images: [],
+    //     price: "",
+    //     quantity: "",
+    //     category: "",
+    //     sizes: [],
+    //     color: [],
+    //     description: "",
+    // },
   })
 
   const onSubmit = async (values) => {
@@ -61,7 +87,6 @@ const CreateProduct = () => {
 
       const response = await axios.post('http://localhost:3069/product/', {
         name: values.name,
-        brand: values.brand,
         images: values.images[0]["url"],
         price: parseInt(values.price),
         quantity: parseInt(values.quantity),
@@ -80,7 +105,6 @@ const CreateProduct = () => {
     } catch (error) {
       console.error('Error while submitting:', error);// Add error handling or notifications for failed submissions here.
       console.log("DataWithError", values)
-      console.log("Error", error)
     }
 
     console.log("testData", values)
@@ -98,7 +122,7 @@ const CreateProduct = () => {
   };
 
   const handleColorChange = (newValue) => {
-    const colorArray = newValue.split('\n').map((size) => size.trim().toLowerCase());
+    const colorArray = newValue.split('\n').map((size) => size.trim());
     setTextareaColorValue(colorArray);
     form.setValue("color", colorArray);
   };
@@ -116,7 +140,7 @@ const CreateProduct = () => {
       <div className='products-content'>
         <div className='products-header'>
           <TitleHeadings 
-            title='Create Product'
+            title='Edit Product'
             subtitle="Add a new product to your store"
           />
           <Link to='/products'>
@@ -142,7 +166,9 @@ const CreateProduct = () => {
                       <FormItem>
                           <FormLabel>Name*</FormLabel>
                           <FormControl>
-                            <Input type="text" placeholder="Productname" className="add-product-input" {...field} />
+                            <>
+                            <Input type="text" value={"asdasd"} className="add-product-input" {...field} />
+                            </>
                           </FormControl>
                           <FormMessage>
 
@@ -157,7 +183,7 @@ const CreateProduct = () => {
                       <FormItem className='input-item-container'>
                           <FormLabel>Brand*</FormLabel>
                           <FormControl>
-                            <Input type="text" placeholder="Brandname" className="add-product-input" {...field} />
+                            <Input type="text" placeholder={brand} className="add-product-input" {...field} />
                           </FormControl>
                           <FormMessage>
 
@@ -201,7 +227,7 @@ const CreateProduct = () => {
                         <FormLabel>Category*</FormLabel>
                           <FormControl>
                             <select id="mySelect" name="category" className='category-container' {...field}>
-                              <option selected hidden className='category-placeholder'>Select a category</option>
+                              <option hidden className='category-placeholder'>Select a category</option>
                               <option value="accessories">Accessories</option>
                               <option value="bags">Bags</option>
                               <option value="clothes">Clothes</option>
@@ -309,4 +335,4 @@ const CreateProduct = () => {
   )
 }
 
-export default CreateProduct
+export default EditProduct

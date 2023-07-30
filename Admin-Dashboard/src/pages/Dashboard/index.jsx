@@ -9,7 +9,7 @@ import axios from "axios";
 import Sidebar from "@/components/Sidebar";
 
 
-const Dashboard = () => {
+const Dashboard = ({user}) => {
 
   const [customers, setCustomers] = useState([])
   const [sales, setSales] = useState([])
@@ -57,15 +57,15 @@ const Dashboard = () => {
   
   return (
     <div className="dashboard-container">
-      <Sidebar />
+      <Sidebar user={user}/>
       <div className="dashboard-content">
         <div className="dashboard-header">
           <TitleHeadings
             title="Dashboard"
             subtitle="Welcome to the Dashboard"
           />
-          <div className="ml-8 flex items-center space-x-4 mt-10"  >
-          <SearchBar />
+          <div className="ml-8 flex items-center space-x-4 mt-10">
+          {/* <SearchBar /> */}
           </div>
         </div>
         <div className="mt-5 space-y-16">

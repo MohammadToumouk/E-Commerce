@@ -16,6 +16,7 @@ import Stripe from './components/stripe';
 import { SuccessPayment } from './pages/PaymentPages/SuccessPayment';
 import { ErrorPayment } from './pages/PaymentPages/ErrorPayment';
 import axios from 'axios';
+import Blog from './pages/Blog/Blog';
 
 
 const App = () => {
@@ -52,6 +53,7 @@ const App = () => {
         <Route path="/signup" component={Signup}/>
         <Route path="/myprofile" component={MyProfile}/>
         <Route path="/login" component={Login}/> 
+        <Route path="/blog" component={Blog}/>
         <Route path="/successpayment" component={SuccessPayment}/>  
         <Route path="*" component={ErrorPayment}/>
        </Switch>

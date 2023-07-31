@@ -6,6 +6,7 @@ const ProductDescription = ({ product }) => {
 
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
+  const [selectedQuantity, setSelectedQuantity] = useState(1); // Default quantity is set to 1
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
@@ -13,6 +14,10 @@ const ProductDescription = ({ product }) => {
 
   const handleSizeChange = (size) => {
     setSelectedSize(size);
+  };
+
+  const handleQuantityChange = (event) => {
+    setSelectedQuantity(parseInt(event.target.value));
   };
 
   const uniqueColors = new Set(color);
@@ -60,6 +65,19 @@ const ProductDescription = ({ product }) => {
           </div>
         </div>
       )}
+      <div className="divider"></div>
+
+      {/* Quantity Picker */}
+      <div className="quantity-picker">
+        <p>Choose Quantity:</p>
+        <input
+          type="number"
+          min="1"
+          max={quantity}
+          value={selectedQuantity}
+          onChange={handleQuantityChange}
+        />
+      </div>
       <div className="divider"></div>
 
       <p>Price: {price} EUR</p>

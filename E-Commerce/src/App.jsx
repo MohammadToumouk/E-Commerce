@@ -39,7 +39,6 @@ const App = () => {
   return (
     <Router>
       <ToastProvider />
-      <Navbar />
       <Navbar customer={customer} />
       <Stripe />
       {/* <Sidebar /> */}
@@ -52,7 +51,6 @@ const App = () => {
         <Route path="/login" component={Login}/>
         <Route path="/signup" component={Signup}/>
         <Route path="/myprofile" component={MyProfile}/>
-      </Switch>
         <Route path="/login" component={Login}/> 
         <Route path="/successpayment" component={SuccessPayment}/>  
         <Route path="*" component={ErrorPayment}/>

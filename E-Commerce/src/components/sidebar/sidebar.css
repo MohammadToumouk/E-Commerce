@@ -4,12 +4,12 @@
     margin-top: 50px;
     width: 250px;
     padding: 20px;
-    background-color: #f6f6f6;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 600px;
     overflow-y: auto;
     border-radius: 20px;
 }
@@ -45,57 +45,116 @@
     margin-bottom: 0;
 }
 
-.sidebar .price-range-label {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.9rem;
-    color: #666;
-}
 
-/* Active state for checkboxes */
+
 .sidebar input[type="checkbox"]:checked+span {
     color: #007bff;
     font-weight: bold;
 }
 
-/* Styling for the sliders */
-.sidebar .price-range-slider {
-    margin-bottom: 15px;
+/* .custom-slider {
+    margin-top: 8px;
+    width: 200px;
+} */
+
+.slider-bar {
+    height: 6px;
+    border-radius: 3px;
+    width: 200px;
+
 }
 
-.sidebar .price-range-label {
+.slider-handles {
     display: flex;
     justify-content: space-between;
+    margin-top: -5px;
+    margin-right: 12px;
 }
 
-.sidebar .price-range-value {
-    font-size: 0.9rem;
-    color: #666;
+.slider-handles span {
+    font-size: 14px;
+    color: #333;
 }
 
-.sidebar .price-range-track {
-    width: 100%;
-    height: 6px;
+
+.MuiSlider-rail {
     background-color: #ccc;
+    height: 6px;
     border-radius: 3px;
+    width: 200px;
 }
 
-.sidebar .price-range-thumb {
-    width: 14px;
-    height: 14px;
-    background-color: #007bff;
-    border-radius: 50%;
+
+
+.sidebar input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    box-shadow: none;
+    transition: border-color 0.3s;
+}
+
+.sidebar input[type="text"]:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+
+.sidebar select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    background-color: #fff;
     cursor: pointer;
-    position: relative;
-    top: -4px;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23666" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    transition: border-color 0.3s;
 }
 
-/* Hover state for sliders */
-.sidebar .price-range-thumb:hover {
-    background-color: #0056b3;
+.sidebar select:focus {
+    outline: none;
+    border-color: #007bff;
 }
 
-/* Active state for sliders */
-.sidebar .price-range-thumb:active {
-    background-color: #003d80;
+
+.sidebar select option {
+    background-color: #fff;
+    color: #333;
+}
+
+
+.sidebar select option:checked {
+    font-weight: bold;
+}
+
+
+.sidebar select:hover {
+    border-color: #007bff;
+}
+
+.color-picker {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 130px;
+    overflow-y: auto;
+    padding-top: 5px;
+
+}
+
+.color-option {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    border-radius: 50%;
+    margin-right: 8px;
+    margin-bottom: 8px;
 }

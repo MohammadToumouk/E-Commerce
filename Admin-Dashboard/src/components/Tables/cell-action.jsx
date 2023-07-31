@@ -4,6 +4,7 @@ import "./cell-action.css"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "../ui/dropdown-menu"
 import { Button } from "../ui/button"
 import { Edit, MoreHorizontal, Trash } from "lucide-react"
+import { Link, NavLink } from "react-router-dom"
 
 export const CellAction = ({data}) => {
     return (
@@ -18,10 +19,12 @@ export const CellAction = ({data}) => {
                 <DropdownMenuLabel>
                     Update
                 </DropdownMenuLabel>
-                <DropdownMenuItem>
-                    <Edit className="h-4 w-4 mr-2" />
-                    Edit
-                </DropdownMenuItem>
+                <NavLink to={`/products/${data.id}`}>
+                    <DropdownMenuItem>
+                        <Edit className="h-4 w-4 mr-2" />
+                        Edit
+                    </DropdownMenuItem>
+                </NavLink>
                 <DropdownMenuItem>
                     <Trash className="h-4 w-4 mr-2 text-red-600" />
                     <span className="text-red-600">Delete</span>

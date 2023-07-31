@@ -4,7 +4,6 @@ import "./data-table.css"
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
 
 import {
   flexRender,
@@ -28,7 +27,7 @@ import { SearchBar } from "../Searchbar/SearchBar"
 export function DataTable({
   columns,
   data,
-  searchKey = ["name", "email", "id"]
+  searchKey = ["name", "products", "total"]
 }) {
   const [columnFilters, setColumnFilters] = useState([]);
 
@@ -41,6 +40,9 @@ export function DataTable({
     getFilteredRowModel: getFilteredRowModel(),
     state: {
       columnFilters,
+      // This is a hack to make the table think it's paginated
+      pageSize: data.length,
+      pageIndex: 0,
     }, 
   })
 
@@ -48,7 +50,7 @@ export function DataTable({
     <div>
       <div className="flex items-center ml-8 pb-5 space-x-4">
         <SearchBar 
-          value={(table.getColumn(searchKey)?.getFilterValue()) ?? ""} 
+          value={(table.getColumn(searchKey)?.getFilterValue()) ?? ""}
           onChange={(event) => table.getColumn(searchKey)?.setFilterValue(event.target.value)}
         />
       </div>

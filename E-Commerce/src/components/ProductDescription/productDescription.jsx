@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './ProductDescription.css';
 
 const ProductDescription = ({ product }) => {
-  const { name, description, price, image, additionalImages, quantity } = product;
+  const { name, description, price, image, additionalImages, quantity, color, sizes } = product;
 
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
@@ -15,50 +15,47 @@ const ProductDescription = ({ product }) => {
     setSelectedSize(size);
   };
 
-  // Replace this with the correct data from 'availableColors' when available
-  const filteredAvailableColors = [];
-
-  // Replace this with the correct data from 'availableSizes' when available
-  const filteredAvailableSizes = [];
+  const uniqueColors = new Set(color);
 
   return (
     <div className="product-description">
       <h2>{name}</h2>
       <div className="divider"></div>
-      <p>{description}</p>
-      <div className="divider"></div>
 
-      {/* Color Options */}
-      {filteredAvailableColors.length > 0 && (
-        <div className="color-picker">
-          <p>Choose Color:</p>
-          <div className="color-options">
-            {filteredAvailableColors.map((color, index) => (
-              <div
-                key={index}
-                className={`color-option ${selectedColor === color ? 'selected' : ''}`}
-                style={{ backgroundColor: color }}
-                onClick={() => handleColorChange(color)}
-              ></div>
-            ))}
-          </div>
-        </div>
-      )}
-      <div className="divider"></div>
-
-      {/* Size Options */}
-      {filteredAvailableSizes.length > 0 && (
-        <div className="size-picker">
-          <p>Choose Size:</p>
+      {/* Sizes */}
+      {Array.isArray(sizes) && sizes.length > 0 && (
+        <div className="product-sizes">
+          <p>Sizes:</p>
           <div className="size-options">
-            {filteredAvailableSizes.map((size, index) => (
-              <div
+            {sizes.map((size, index) => (
+              <button
                 key={index}
                 className={`size-option ${selectedSize === size ? 'selected' : ''}`}
                 onClick={() => handleSizeChange(size)}
               >
                 {size}
-              </div>
+              </button>
+            ))}
+          </div>
+          <div className="divider"></div>
+        </div>
+      )}
+
+      <p>{description}</p>
+      <div className="divider"></div>
+
+      {/* Color Options */}
+      {Array.isArray(color) && color.length > 0 && (
+        <div className="color-picker">
+          <p>Choose Color:</p>
+          <div className="color-options">
+            {[...uniqueColors].map((colorOption, index) => (
+              <div
+                key={index}
+                className={`color-option ${selectedColor === colorOption ? 'selected' : ''}`}
+                style={{ backgroundColor: colorOption }}
+                onClick={() => handleColorChange(colorOption)}
+              ></div>
             ))}
           </div>
         </div>
@@ -87,8 +84,10 @@ const ProductDescription = ({ product }) => {
       </div>
 
       <div className="delivery-info">
-        <span className="delivery-symbol">🚚</span> 
-        <span className="delivery-text">{quantity > 0 ? 'Free Delivery' : 'No Delivery Available'}</span>
+        <span className="delivery-symbol">🚚</span>
+        <span className="delivery-text">
+          {quantity > 0 ? 'Free Delivery' : 'No Delivery Available'}
+        </span>
       </div>
     </div>
   );

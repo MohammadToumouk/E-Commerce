@@ -7,7 +7,9 @@ import StoreCombobox from '../StoreCombobox'
 import { LogOut, LogOutIcon, PowerIcon, ActivityIcon } from 'lucide-react'
 
 
-const Sidebar = () => {
+const Sidebar = ({user}) => {
+
+  console.log("currentUser:", user)
 
   const handleLogout = async () => {
     await axios.post('http://localhost:3069/user/logout',{headers: {"Cookie": ""}}, {withCredentials: true })
@@ -35,7 +37,7 @@ const Sidebar = () => {
         <img className="sidebar-profileImage" src={userprofile} alt="Profile Image" />
       </div>
 
-      <p className='sidebar-username'>Username</p>
+      <p className='sidebar-username'>{user?.user?.name}</p>
 
       <ul className='sidebar-menu'>
         <li className='sidebar-listItem'>

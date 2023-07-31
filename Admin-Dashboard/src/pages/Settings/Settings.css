@@ -10,8 +10,7 @@
     
 }
 .settings-content {
-    
-    background-color:#2D2D2D;
+    background-color:#1e1e1e; /*#2D2D2D;*/
     width: 100%;
     color: #eee;
     display: flex;

@@ -191,3 +191,67 @@
 .availability {
     margin-top: 20px;
 }
+
+.size-picker,
+.color-picker {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.size-picker p,
+.color-picker p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.size-options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.size-option,
+.color-option {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    pointer-events: fill;
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ccc;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.size-option.selected {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.color-picker {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.color-options {
+    display: flex;
+    gap: 10px;
+}
+
+.color-option {
+    cursor: pointer;
+}
+
+.color-option.selected {
+    /* border: 2px solid #000; */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+}

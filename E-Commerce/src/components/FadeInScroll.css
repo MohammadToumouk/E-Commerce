@@ -1,0 +1,10 @@
+/* In your FadeInOnScroll.css */
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease; /* Adjust the duration and easing as desired */
+  }
+  
+  .visible {
+    opacity: 1;
+  }
+  

@@ -47,7 +47,16 @@ const createProduct = async (req, res) => {
 // Get all products
 const getAllProducts = async (req, res) => {
   try {
-    const products = await Product.find();
+    const limit = parseInt(req.query.limit); // Get the limit from the query parameter as an integer
+
+    let products;
+    if (!Number.isNaN(limit) && limit > 0) {
+      // If a valid limit is provided, use the limit option in the Product.find() method
+      products = await Product.find().limit(limit);
+    } else {
+      // If limit is not provided or is invalid, return all products
+      products = await Product.find();
+    }
 
     res.status(200).json({ products });
   } catch (error) {

@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom';
 import { Button } from '../Button/button';
 import axios from 'axios';
 
-const Card = ({ available, imageSrc, productName, price, color, currency, productId }) => {
+const Card = ({ available, imageSrc, productName, price, color, currency, productId, style }) => {
   const [selectedColor, setSelectedColor] = useState(color);
   const [product, setPruduct] = useState("62b9b6b9e6b0e0a9b8f0e0a9");
   const [quantity, setQuantity] = useState(1);
+
+  
 
   // const cartItem = {
   //   productId: "64b534db6c1263f6e04686b7",
@@ -44,7 +46,7 @@ const Card = ({ available, imageSrc, productName, price, color, currency, produc
   
 
   return (
-    <div className="card">
+    <div className="card" style={style}>
       {available ? (
         <div className="badge" style={{ backgroundColor: 'green' }}>
           Available

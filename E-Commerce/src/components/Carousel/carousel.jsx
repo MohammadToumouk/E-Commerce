@@ -1,54 +1,74 @@
-import React from 'react'
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { Button } from "@mui/material";
+import { useInView } from 'react-intersection-observer';
+import '../FadeInScroll.css'
 
- const carousel = () => {
+const Carousel = ({ images }) => {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+  };
+
+  const carouselStyle = {
+    width: "65%",
+    margin: "auto",
+    borderRadius: "35px",
+    position: "relative",
+  };
+
+  const overlayStyle = {
+    position: "absolute",
+    bottom: "20px",
+    left: "20px",
+    color: "#fff",
+  };
+
+  const [ref, inView] = useInView({
+    triggerOnce: true, // The fade-in animation will be triggered only once when the component enters the viewport
+    threshold: 0.1, // Percentage of component visibility required to trigger the animation
+  });
+
   return (
-    <div>
-        
-<div id="animation-carousel" class="relative w-full" data-carousel="static">
-    
-    <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-         
-        <div class="hidden duration-200 ease-linear" data-carousel-item>
-            <img src="/docs/images/carousel/carousel-1.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
+    <div ref={ref} className={`fade-in ${inView ? 'visible' : ''}`}>
+    <div style={carouselStyle} className=" justify-center">
+      <Slider {...settings}>
+        <div>
+          <div className="relative">
+            <img
+              src="https://cdn.thewirecutter.com/wp-content/media/2023/06/appleevent-2048px-2283-3x2-1.jpg?auto=webp&quality=75&crop=1.91:1&width=1200"
+              className="rounded-3xl max-h-[39rem] w-[75rem]"
+            />
+            <div style={overlayStyle}>
+              <p className="text-3xl w-1/2">Step into the future with the all-new Apple Vision Goggles! Experience cutting-edge technology and explore the limitless possibilities of augmented reality with this revolutionary device.</p>
+              <button type="button" className="bg-black text-white hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Go to Shop</button>
+            </div>
+          </div>
         </div>
-      
-        <div class="hidden duration-200 ease-linear" data-carousel-item>
-            <img src="/docs/images/carousel/carousel-2.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
+        <div>
+          <div className="relative">
+            <img
+              src="https://s31092.pcdn.co/wp-content/uploads/2020/06/PlayStation-5-reveal.jpg"
+              className="rounded-3xl max-h-[39rem] w-[75rem]"
+            />
+            <div style={overlayStyle}>
+            <p className="text-3xl w-1/2">Level up your gaming experience with our unbeatable deals on gaming PCs and custom-built rigs! Unlock your gaming potential and dominate the virtual world like never before.</p>
+              <button type="button" className="bg-black text-white hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Go to Shop</button>
+            </div>
+          </div>
         </div>
-      
-        <div class="hidden duration-200 ease-linear" data-carousel-item="active">
-            <img src="/docs/images/carousel/carousel-3.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
-        </div>
-        
-        <div class="hidden duration-200 ease-linear" data-carousel-item>
-            <img src="/docs/images/carousel/carousel-4.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
-        </div>
-        
-        <div class="hidden duration-200 ease-linear" data-carousel-item>
-            <img src="/docs/images/carousel/carousel-5.svg" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="..."/>
-        </div>
+      </Slider>
     </div>
-    
-    <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
-            </svg>
-            <span class="sr-only">Previous</span>
-        </span>
-    </button>
-    <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-        <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-            <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-            </svg>
-            <span class="sr-only">Next</span>
-        </span>
-    </button>
-</div>
-
-
     </div>
-  )
-}
-export default carousel
+  );
+};
+
+export default Carousel;

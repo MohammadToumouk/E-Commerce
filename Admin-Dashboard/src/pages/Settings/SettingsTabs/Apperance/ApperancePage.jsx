@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 const UsersTable = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage, setUsersPerPage] = useState(7);
+  const [usersPerPage, setUsersPerPage] = useState(10);
   const [totalUsers, setTotalUsers] = useState(0);
   const [role, setRole] = useState("");
   const [selectedUser, setSelectedUser] = useState();
@@ -120,12 +120,12 @@ const UsersTable = () => {
         <TableBody>
           {users.map((user) => (
             <TableRow key={user._id}>
-              <TableCell>{user.name}</TableCell>
-              <TableCell>{user.email}</TableCell>
-              <TableCell>
+              <TableCell class = "uppercase">{user.name}</TableCell>
+              <TableCell class = "uppercase">{user.email}</TableCell>
+              <TableCell class = "uppercase">
                 {selectedUser && selectedUser.userId === user._id ? (
                   <>
-                     <Select
+                     {/* <Select
                         value={selectedRoles[user._id] || user.role}
                         onChange={(e) =>
                           setSelectedUser({
@@ -142,9 +142,11 @@ const UsersTable = () => {
                         <SelectItem value="manager">manager</SelectItem>
                         <SelectItem value="employee">employee</SelectItem>
                       </SelectContent>
-                    </Select>
-                   {/*  <Select
+                    </Select> */}
+                    <label for="Roles" class="block mb-2 text-sm font-medium text-white dark:text-white">Select a Role</label>
+                     <select
                       value={selectedUser.newRole}
+                      class="bg-gray-800 border mb-4 text-white border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-48 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       onChange={(e) =>
                         setSelectedUser({
                           userId: selectedUser.userId,
@@ -152,23 +154,25 @@ const UsersTable = () => {
                         })
                       }
                     >
-                      <SelectContent>
-                        <SelectItem value="admin">admin</SelectItem>
-                        <SelectItem value="manager">manager</SelectItem>
-                        <SelectItem value="employee">employee</SelectItem>
-                      </SelectContent>
-                    </Select> */}
-                    <button onClick={confirmRoleChange}>Confirm</button>
-                    <button onClick={cancelRoleChange}>Cancel</button>
+                      
+                        <option value="admin">Admin</option>
+                        <option value="manager">Manager</option>
+                        <option value="employee">Employee</option>
+                      
+                    </select>
+                   
+                    <button class = "text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" onClick={confirmRoleChange}>Confirm</button>
+                    <button  class = "text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700" onClick={cancelRoleChange}>Cancel</button>
                   </>
                 ) : (
                   <div>
                     {user.role}{" "}
-                    <Button
+                    <button
+                    className = " text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 ml-2 "
                       onClick={() => handleRoleChange(user._id, user.role)}
                     >
-                      Edit Role
-                    </Button>
+                      Edit
+                    </button>
                   </div>
                 )}
               </TableCell>
@@ -180,6 +184,7 @@ const UsersTable = () => {
         <p className="mr-4">Items per page:</p>
         <select
           value={usersPerPage}
+          class="bg-gray-800 border mb-4 text-white border-gray-300  text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-16 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           onChange={(e) => handlePerPageChange(e.target.value)}
         >
           <option value="10">10</option>
@@ -190,14 +195,14 @@ const UsersTable = () => {
           Page {currentPage} of {totalPages}
         </p>
         <button
-          className="px-4 py-2 bg-cyan-400 text-white rounded hover:bg-cyan-600"
+          class = "text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
           disabled={currentPage === 1}
           onClick={() => handlePageChange(currentPage - 1)}
         >
           Previous
         </button>
         <button
-          className="px-4 py-2 bg-cyan-400 text-white rounded hover:bg-cyan-600 ml-4"
+          class = "text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700"
           disabled={currentPage === totalPages}
           onClick={() => handlePageChange(currentPage + 1)}
         >

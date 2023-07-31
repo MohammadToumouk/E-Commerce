@@ -14,7 +14,7 @@ customerRouter.post('/login', customerController.logincustomer)
 customerRouter.get('/', customerController.getAllCustomers);
 
 // GET a specific customer by ID
-customerRouter.get('/:id', customerController.getCustomerById);
+customerRouter.get('/profile',verificationMiddleware, customerController.getCustomerProfile);
 
 // POST a new customer
 customerRouter.post('/', customerController.createCustomer);

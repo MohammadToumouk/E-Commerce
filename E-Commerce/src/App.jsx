@@ -11,6 +11,7 @@ import './app.css';
 import Login from './components/Login/login';
 import ToastProvider from './components/toast-provider.jsx';
 import Signup from './components/Signup/signup';
+import MyProfile from './pages/MyProfile/MyProfile';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/About" component={AboutUs} />
         <Route path="/login" component={Login}/>
         <Route path="/signup" component={Signup}/>
+        <Route path="/myprofile" component={MyProfile}/>
       </Switch>
       <Footer />
     </Router>

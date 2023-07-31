@@ -1,14 +1,61 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './HomePage.css';
-import '../../components/Navbar/navbar'
-import Privacy from '../Privacy/Privacy';
-import Carousel from '../../components/Carousel/carousel';
+import React, { useState,useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./HomePage.css";
+import "../../components/Navbar/navbar";
+import Privacy from "../Privacy/Privacy";
+import Carousel from "../../components/Carousel/carousel";
+import { Featured } from "../../components/FeaturedProducts/Featured";
+import { ContactUsSection } from "../../components/ContactUs/ContactUsSection";
+import { Banner } from "../../components/Banner/Banner";
+import Banner2 from "../../components/Banner/Banner2";
+import { Plus, PlusCircle, XIcon } from 'lucide-react'
 
 const HomePage = () => {
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalScroll = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = window.scrollY;
+      const progress = (scrolled / totalScroll) * 100;
+      setScrollProgress(progress);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+  
   return (
-    <div>      
-      <div className="image-container">
+    
+     
+      <div style={{width: "100%",display:"flex", flexDirection:"column", gap:"0px"}} >
+        <br/><br/><br/><br/>
+        <Carousel />
+        <hr className="w-9/12 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+        <br/><br/>
+        <Featured />
+        <hr className="w-9/12 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+        <br/><br/>
+        <Banner2 />
+        <hr className="w-9/12 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+        <br/><br/>
+        <Banner />
+        <hr className="w-9/12 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+        <br/><br/>
+        <ContactUsSection />
+        
+        <div className="scroll-progress-container">
+        <div className="scroll-progress" style={{ width: `${scrollProgress}%` }} />
+      </div>
+    </div>
+  );
+};
+
+export default HomePage;
+ {/* <div className="image-container">
         <div className="image-text">
           <p>FASHION LIKE NEVER BEFORE</p>
           <h1>We bring premium goods for you</h1>
@@ -28,12 +75,4 @@ const HomePage = () => {
       alt="OverlayImage"
       className="overlay-image"
       style={{ width: '500px', height: 'auto', borderRadius: '8px' }}/>
-</div>
-
-    <Carousel />
-
-    </div>
-  );
-};
-
-export default HomePage;
+</div> */}

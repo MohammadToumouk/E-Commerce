@@ -4,7 +4,25 @@ body {
     margin: 0;
     padding: 0;
 }
+/* HomePage.css */
+.scroll-progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: auto;
+  width: 100%; /* Adjust the width as per your design preference */
+  background-color: transparent; /* Replace with your desired background color */
+  
+}
 
+.scroll-progress {
+  height: 0.5vh;
+  background-color: #f70000; /* Replace with your desired progress bar color */
+  transition: width 0.3s ease-in-out;
+  border-radius: 0 0 15px 0;
+  opacity: 0.9;
+}
+  
 .image-container {
     position: relative;
     display: flex;
@@ -76,11 +94,4 @@ body {
 
 .arrow-icon {
     border-color: grey;
-}
-
-.page-wrapper {
-    position: relative;
-    min-height: 100%;
-    padding-bottom: 50px;
-    box-sizing: border-box;
 }

@@ -31,7 +31,7 @@ const Navbar = ({customer}) => {
   console.log("shoppingList:", shoppingList?.cart?.items?.length )
 
   return (
-    <nav className="navigation-bar">
+    <nav className="navigation-bar" style={{ fontFamily: 'Varela, sans-serif' }}>
       <ul className="navigation-links">
         <li className="navigation-item">
           <Link to="/" className="navigation-link">

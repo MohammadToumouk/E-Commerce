@@ -14,6 +14,7 @@ import Stripe from './components/stripe';
 import { SuccessPayment } from './pages/PaymentPages/SuccessPayment';
 import { ErrorPayment } from './pages/PaymentPages/ErrorPayment';
 import axios from 'axios';
+import SecondFooter from './components/Footer/SecondFooter';
 
 const App = () => {
   const [customer, setCustomer] = useState()
@@ -37,7 +38,7 @@ const App = () => {
     <Router>
       <ToastProvider />
       <Navbar customer={customer} />
-      <Stripe />
+      {/* <Stripe /> */}
       {/* <Sidebar /> */}
       <Switch>
         <Route path="/" exact component={HomePage} />
@@ -49,7 +50,7 @@ const App = () => {
         <Route path="/successpayment" component={SuccessPayment}/>  
         <Route path="*" component={ErrorPayment}/>
        </Switch>
-      <Footer />
+      <SecondFooter />
     </Router>
   );
 };

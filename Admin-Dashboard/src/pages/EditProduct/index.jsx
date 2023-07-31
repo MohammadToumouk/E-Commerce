@@ -10,7 +10,7 @@ import * as z from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 
-import { XIcon } from 'lucide-react'
+import { PlusCircle, XIcon } from 'lucide-react'
 import Sidebar from '@/components/Sidebar'
 import { Link, useParams } from 'react-router-dom'
 
@@ -191,6 +191,7 @@ const EditProduct = () => {
                       </FormItem>
                     )}
                   />
+                  <PlusCircle />
                   <FormField 
                     control={form.control} 
                     name="price" 

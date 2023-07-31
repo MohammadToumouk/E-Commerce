@@ -45,6 +45,8 @@
 
 .size-options {
     display: flex;
+    font-size: small;
+    font-weight: 700;
 }
 
 .size-option,

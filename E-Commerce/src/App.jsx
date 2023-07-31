@@ -10,11 +10,15 @@ import ProductPage from './pages/ProductPage/ProductPage';
 import './app.css';
 import Login from './components/Login/login';
 import ToastProvider from './components/toast-provider.jsx';
+import Signup from './components/Signup/signup';
+import MyProfile from './pages/MyProfile/MyProfile';
 import Stripe from './components/stripe';
 import { SuccessPayment } from './pages/PaymentPages/SuccessPayment';
 import { ErrorPayment } from './pages/PaymentPages/ErrorPayment';
 import axios from 'axios';
+
 import SecondFooter from './components/Footer/SecondFooter';
+
 
 const App = () => {
   const [customer, setCustomer] = useState()
@@ -46,7 +50,11 @@ const App = () => {
         <Route path="/shop" component={ShopPage} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/About" component={AboutUs} />
+        <Route path="/login" component={Login}/>
+        <Route path="/signup" component={Signup}/>
+        <Route path="/myprofile" component={MyProfile}/>
         <Route path="/login" component={Login}/> 
+        <Route path="/blog" component={Blog}/>
         <Route path="/successpayment" component={SuccessPayment}/>  
         <Route path="*" component={ErrorPayment}/>
        </Switch>

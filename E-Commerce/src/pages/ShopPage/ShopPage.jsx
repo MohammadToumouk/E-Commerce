@@ -1,4 +1,4 @@
-// ShopPage.jsx
+
 import React, { useState, useEffect } from 'react';
 import './ShopPage.css';
 import Sidebar from '../../components/sidebar/sidebar';

@@ -1,14 +1,22 @@
 .privacy-container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: justify;
 }
 
 .privacy-title {
-    font-size: 24px;
+    font-size: 60px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.privacy-container h3 {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.privacy-container p {
+    font-size: 15px;
 }

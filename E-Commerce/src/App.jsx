@@ -10,13 +10,13 @@ import ProductPage from './pages/ProductPage/ProductPage';
 import './app.css';
 import Login from './components/Login/login';
 import ToastProvider from './components/toast-provider.jsx';
+import Signup from './components/Signup/signup';
 
 const App = () => {
   return (
     <Router>
       <ToastProvider />
       <Navbar />
-      {/* <Sidebar /> */}
       <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/shop/:id" component={ProductPage} />
@@ -24,6 +24,7 @@ const App = () => {
         <Route path="/privacy" component={Privacy} />
         <Route path="/About" component={AboutUs} />
         <Route path="/login" component={Login}/>
+        <Route path="/signup" component={Signup}/>
       </Switch>
       <Footer />
     </Router>

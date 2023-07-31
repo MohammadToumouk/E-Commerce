@@ -58,7 +58,6 @@ const CreateProduct = () => {
 
   const onSubmit = async (values) => {
     try {
-
       const response = await axios.post('http://localhost:3069/product/', {
         name: values.name,
         brand: values.brand,

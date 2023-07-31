@@ -39,7 +39,7 @@ const ProductPage = () => {
             <ProductCard imageSrc={product.images} color={product.color} price={product.price} currency="€" />
           </div>
           <div className="additional-images">
-            {product.additionalImages.map((imgSrc, index) => (
+            {product?.additionalImages?.map((imgSrc, index) => (
               <div className="product-card" key={index}>
                 <ProductCard imageSrc={imgSrc} />
               </div>

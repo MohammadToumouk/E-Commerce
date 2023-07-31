@@ -15,7 +15,11 @@ app.use(express.json());
 require("dotenv/config");
 require("./db");
 
-const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+  "http://localhost:5175",
+];
 
 const corsOptions = {
   origin: (origin, callback) => {
@@ -33,7 +37,7 @@ app.use("/user", userRouter);
 app.use("/product", productRouter);
 app.use("/order", orderRouter);
 app.use("/customer", customerRoutes);
-app.use("/cart", cartRouter)
+app.use("/cart", cartRouter);
 app.use(errorHandler);
 
 app.listen(port, () => {

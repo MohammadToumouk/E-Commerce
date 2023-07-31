@@ -41,6 +41,8 @@ const addItemToCart = async (req, res) => {
   } catch (error) {
     console.log(req);
     res.status(500).json({ message: "An error occurred", error });
+    res.status(401).json({ message: "An 401 error occurred", error });
+    console.log("401", error);
   }
 };
 

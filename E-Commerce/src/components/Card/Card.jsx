@@ -7,22 +7,22 @@ import axios from 'axios';
 
 const Card = ({ available, imageSrc, productName, price, color, currency, productId }) => {
   const [selectedColor, setSelectedColor] = useState(color);
-  const [pruduct, setPruduct] = useState("");
+  const [product, setPruduct] = useState("62b9b6b9e6b0e0a9b8f0e0a9");
   const [quantity, setQuantity] = useState(1);
 
-  const cartItem = {
-    productId: pruduct,
-    quantity: quantity,
-  }
+  // const cartItem = {
+  //   productId: "64b534db6c1263f6e04686b7",
+  //   quantity: 23,
+  // }
 
   const handleAddToCart = async () => {
     try {
-      const response = await axios.post('http://localhost:3069/carts/add', {
-        custumer: {_id: "60b9b6b9e6b0e0a9b8f0e0a9"},
-        items: [cartItem],
+      const response = await axios.post('http://localhost:3069/cart/add', {
+        productId: "64b534db6c1263f6e04686b7",
+        quantity: 10,
       }, {
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
       });
 

@@ -215,7 +215,7 @@ const Sidebar = ({ setFilteredProducts, products }) => {
               value={priceRange}
               onChange={handlePriceChange}
               valueLabelDisplay="auto"
-              getAriaValueText={(value) => console.log(`${value}$`)}
+              //getAriaValueText={(value) => console.log(`${value}$`)}
             />
           </Box>
         </div>

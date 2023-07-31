@@ -71,15 +71,22 @@ const logincustomer = async (req, res) => {
     // Return the customer information
     // console.log("Customer ID is : " + req.user.customer._id)
 
-    res.status(200).cookie("access_token", token, {maxAge: 4 * 60 * 60 * 1000,httponly: true,SameSite: 'None'}).json({ customer });
-    console.log(customer)
+    res
+      .status(200)
+      .cookie("access_token", token, {
+        maxAge: 4 * 60 * 60 * 1000,
+        httponly: true,
+        SameSite: "None",
+      })
+      .json({ customer });
+    console.log(customer);
   } catch (error) {
     // Handle any errors
-    
-    console.log(req.body)
-    console.log(error)
-    res.status(500).json({ message: 'An error occurred', error });
-    console.log(error)
+
+    console.log(req.body);
+    console.log(error);
+    res.status(500).json({ message: "An error occurred", error });
+    console.log(error);
   }
 };
 
@@ -93,16 +100,23 @@ const getAllCustomers = async (req, res) => {
   }
 };
 
-// Get a specific customer by ID
-const getCustomerById = async (req, res) => {
+// Get customer profile
+const getCustomerProfile = async (req, res) => {
   try {
-    const customer = await Customer.findById(req.params.id);
-    if (!customer) {
-      return res.status(404).json({ error: "Customer not found" });
-    }
-    res.json(customer);
-  } catch (err) {
-    res.status(500).json({ error: "Internal server error" });
+    // Get the user ID from the request object
+    const id = req.user.customer._id;
+    //ask besslan why it is double user (only one user get undefined)
+    console.log(req);
+
+    // Find the user by ID
+    const customer = await Customer.findById(id);
+
+    // Return the user profile
+    res.status(200).json({ customer });
+  } catch (error) {
+    // Handle any errors
+    res.status(500).json({ message: "An error occurred", error });
+    console.log("cID", req.customer);
   }
 };
 
@@ -165,7 +179,7 @@ module.exports = {
   registercustomer,
   logincustomer,
   getAllCustomers,
-  getCustomerById,
+  getCustomerProfile,
   createCustomer,
   updateCustomer,
   deleteCustomer,

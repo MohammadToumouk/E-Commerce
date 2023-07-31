@@ -18,7 +18,7 @@ const Settings = () => {
       <Sidebar />
       <div className='settings-content'>
         <div className='settings-header'>
-          <TitleHeadings title='Settings' subtitle='Manage User and Store' />
+          <TitleHeadings title='Settings' subtitle='' />
           <Button 
             variant="destructive" 
             className="deleteSettings-button" 
@@ -35,6 +35,7 @@ const Settings = () => {
             <Route path="/notifications" element={<NotificationsPage />} />
             <Route path="/apperance" element={<ApperancePage />} />
             <Route path="/display" element={<DisplayPage />} />
+            
             
             {/* <Route path="/pricing" element={<Pricing />} />
             <Route path="/about" element={<About />} /> */}

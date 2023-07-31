@@ -70,23 +70,15 @@ const logincustomer = async (req, res) => {
 
     // Return the customer information
     // console.log("Customer ID is : " + req.user.customer._id)
-
-    res
-      .status(200)
-      .cookie("access_token", token, {
-        maxAge: 4 * 60 * 60 * 1000,
-        httponly: true,
-        SameSite: "None",
-      })
-      .json({ customer });
-    console.log(customer);
+    res.status(200).cookie("access_token", token, {maxAge: 4 * 60 * 60 * 1000,httponly: true,SameSite: 'None'}).json({ customer });
+    console.log(customer)
   } catch (error) {
     // Handle any errors
-
-    console.log(req.body);
-    console.log(error);
-    res.status(500).json({ message: "An error occurred", error });
-    console.log(error);
+    
+    console.log(req.body)
+    console.log(error)
+    res.status(500).json({ message: 'An error occurred', error });
+    console.log(error)
   }
 };
 
@@ -99,6 +91,8 @@ const getAllCustomers = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
+
 
 // Get customer profile
 const getCustomerProfile = async (req, res) => {
@@ -116,7 +110,8 @@ const getCustomerProfile = async (req, res) => {
   } catch (error) {
     // Handle any errors
     res.status(500).json({ message: "An error occurred", error });
-    console.log("cID", req.customer);
+    console.log(error)
+    
   }
 };
 
@@ -182,5 +177,5 @@ module.exports = {
   getCustomerProfile,
   createCustomer,
   updateCustomer,
-  deleteCustomer,
+  deleteCustomer
 };

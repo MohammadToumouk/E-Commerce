@@ -5,7 +5,7 @@ const authMiddleware = require("../middleware/authMiddleware");
 const verificationMiddleware = require("../middleware/verfiyToken");
 
 // Add item to the cart
-cartRouter.post("/add", verificationMiddleware, cartController.addItemToCart);
+cartRouter.post("/add",verificationMiddleware, cartController.addItemToCart);
 
 // Remove item from the cart
 cartRouter.delete(

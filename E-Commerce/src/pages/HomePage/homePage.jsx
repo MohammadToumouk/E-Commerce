@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import './HomePage.css';
 import '../../components/Navbar/navbar'
 import Privacy from '../Privacy/Privacy';
+import Carousel from '../../components/Carousel/carousel';
 
 const HomePage = () => {
   return (
@@ -29,6 +30,7 @@ const HomePage = () => {
       style={{ width: '500px', height: 'auto', borderRadius: '8px' }}/>
 </div>
 
+    <Carousel />
 
     </div>
   );

@@ -18,9 +18,14 @@ const Card = ({ available, imageSrc, productName, price, color, currency, produc
   const handleAddToCart = async () => {
     try {
       const response = await axios.post('http://localhost:3069/cart/add', {
+        
         productId: "64b534db6c1263f6e04686b7",
         quantity: 10,
-      }, {
+      },
+      {
+        withCredentials: true,
+      },
+       {
         headers: {
           'Content-Type': 'application/json',
         },

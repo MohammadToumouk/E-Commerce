@@ -1,6 +1,7 @@
 const Cart = require("../models/cart");
 const Product = require("../models/product");
 const Customer = require("../models/customer");
+const customerRouter = require("../routes/customerRoutes");
 
 // Add item to the cart
 const addItemToCart = async (req, res) => {
@@ -9,15 +10,14 @@ const addItemToCart = async (req, res) => {
     const customerId = req.user.customer._id;
 
     const product = await Product.findById(productId);
-    console.log(req.body);
-    console.log(product);
+    
 
     if (!product) {
-      console.log(req.user);
+      
       return res.status(404).json({ message: "Product not found" });
     }
 
-    let cart = await Cart.findOne({ customer: customerId });
+    let cart = await Cart.findOne({ Customer: customerId });
     if (!cart) {
       cart = new Cart({ customer: customerId, items: [] });
     }
@@ -39,10 +39,9 @@ const addItemToCart = async (req, res) => {
 
     res.status(200).json({ message: "Item added to cart successfully", cart });
   } catch (error) {
-    console.log(req);
+    
     res.status(500).json({ message: "An error occurred", error });
-    res.status(401).json({ message: "An 401 error occurred", error });
-    console.log("401", error);
+    console.log(error)
   }
 };
 
@@ -79,6 +78,7 @@ const removeItemFromCart = async (req, res) => {
       .json({ message: "Item removed from cart successfully", cart });
   } catch (error) {
     res.status(500).json({ message: "An error occurred", error });
+    
   }
 };
 

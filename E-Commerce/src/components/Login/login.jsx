@@ -12,7 +12,7 @@ const Login = () => {
   const submit = async (e) => {
     e.preventDefault();
 
-    // Reset any previous error messages and set loading to true
+
     setError('');
     setLoading(true);
 

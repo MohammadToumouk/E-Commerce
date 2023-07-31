@@ -2,21 +2,45 @@ import React, { useState } from 'react';
 import './ProductDescription.css';
 
 const ProductDescription = ({ product }) => {
-  const { name, description, price, image, additionalImages, quantity, color } = product;
+  const { name, description, price, image, additionalImages, quantity, color, sizes } = product;
 
   const [selectedColor, setSelectedColor] = useState('');
+  const [selectedSize, setSelectedSize] = useState('');
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
   };
 
-  // Convert the color array to a set to remove duplicates
+  const handleSizeChange = (size) => {
+    setSelectedSize(size);
+  };
+
   const uniqueColors = new Set(color);
 
   return (
     <div className="product-description">
       <h2>{name}</h2>
       <div className="divider"></div>
+
+      {/* Sizes */}
+      {Array.isArray(sizes) && sizes.length > 0 && (
+        <div className="product-sizes">
+          <p>Sizes:</p>
+          <div className="size-options">
+            {sizes.map((size, index) => (
+              <button
+                key={index}
+                className={`size-option ${selectedSize === size ? 'selected' : ''}`}
+                onClick={() => handleSizeChange(size)}
+              >
+                {size}
+              </button>
+            ))}
+          </div>
+          <div className="divider"></div>
+        </div>
+      )}
+
       <p>{description}</p>
       <div className="divider"></div>
 
@@ -60,8 +84,10 @@ const ProductDescription = ({ product }) => {
       </div>
 
       <div className="delivery-info">
-        <span className="delivery-symbol">🚚</span> 
-        <span className="delivery-text">{quantity > 0 ? 'Free Delivery' : 'No Delivery Available'}</span>
+        <span className="delivery-symbol">🚚</span>
+        <span className="delivery-text">
+          {quantity > 0 ? 'Free Delivery' : 'No Delivery Available'}
+        </span>
       </div>
     </div>
   );

@@ -10,12 +10,16 @@ import ProductPage from './pages/ProductPage/ProductPage';
 import './app.css';
 import Login from './components/Login/login';
 import ToastProvider from './components/toast-provider.jsx';
+import Stripe from './components/stripe';
+import { SuccessPayment } from './pages/PaymentPages/SuccessPayment';
+import { ErrorPayment } from './pages/PaymentPages/ErrorPayment';
 
 const App = () => {
   return (
     <Router>
       <ToastProvider />
       <Navbar />
+      <Stripe />
       {/* <Sidebar /> */}
       <Switch>
         <Route path="/" exact component={HomePage} />
@@ -23,8 +27,10 @@ const App = () => {
         <Route path="/shop" component={ShopPage} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/About" component={AboutUs} />
-        <Route path="/login" component={Login}/>
-      </Switch>
+        <Route path="/login" component={Login}/> 
+        <Route path="/successpayment" component={SuccessPayment}/>
+        <Route path="*" component={ErrorPayment}/>
+       </Switch>
       <Footer />
     </Router>
   );

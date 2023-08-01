@@ -130,46 +130,51 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
                 </div>
             </HoverCardTrigger>
           )}
-          <HoverCardContent className="w-full">
+                    <HoverCardContent className="w-full h-full">
             <h1 className="shopping-cart" >Shopping Cart</h1>
-            {shoppingList?.cart?.items?.length >= 1 ? (
+            {shoppingList?.cart?.items?.length === 0 ? (
               <div className="shopping-cart-empty">Your cart is empty</div> ) : (
                 <>
               {shoppingList?.cart?.items?.map((item) => (
-                <div className="" key={item.product}>
+                
+                <div className="shopping-cart-item-container" key={item._id}>
                   <div className="shopping-cart-item" >
                     <img 
-                      src={"https://www.pngmart.com/files/15/Apple-iPhone-12-PNG-Picture.png"}
+                      src={item.images}
                       alt="Product"
                       className='shopping-cart-product-image'
                     />
                     <div>
-                    <div className="shopping-cart-product-name">{"Product Name"}</div>
-                  <div className="shopping-cart-product-price">{"$"}{"1500"}</div>
+                    <div className="shopping-cart-product-name">{item.product.name}</div>
+                  <div className="shopping-cart-product-price">{item.color}{"   $"}{item.price * item.quantity}</div>
                     </div>
-                    
-                    <div className="shopping-cart-quantity"> 
-                    <input 
+                    <div className="shopping-cart-quantity">
+                      {item.quantity} 
+                    {/* <input 
                       type="number"
                       className='shopping-cart-quantity-input'
-                      min={1}
-                      placeholder='1'
-                    />
+                      min="1"
+                      placeholder={item.quantity}
+                      onChange={(event) => handleQuantityChange(event, item.product._id)}
+                    /> */}
                   </div>
-                  
+                   <XIcon 
+                      className="shopping-cart-trash-icon text-red-600 cursor-pointer"
+                      style={{ width: '15px', height: '15px' }}
+                      onClick={() => handleRemoveFromCart( item.product._id, item.product.name)}
+                   />
                   </div>
-
                 </div>
                 ))
               }
               <div className="shopping-cart-total">
                 <div className="shopping-cart-total-price">Total: </div>
-                <div className="shopping-cart-total-price">{"$"}{"1500"}</div>
+                <div className="shopping-cart-total-price">{"$ "}{calculateTotalBalance()}</div>
               </div>
             <Button variant="ghost" className="w-full">View Cart</Button>
             </>
             )}
-           <Button className="w-full">Checkout</Button>
+            <Button className="w-full">Checkout</Button>
           </HoverCardContent>
         </HoverCard>
         )}
@@ -197,8 +202,6 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
             </Link>
           </DropdownMenuContent>
         </DropdownMenu>
-
-       
         </div>
         )}
       

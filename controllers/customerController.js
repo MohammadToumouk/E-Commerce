@@ -169,6 +169,15 @@ const deleteCustomer = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+// Logout 
+const logoutCustomer = (req, res) => {
+  try {
+    res.cookie("access_token", "",{maxAge: 0 }).end();
+  } catch (error) {
+    next(error)
+  }
+  res.status(200).json({ message: 'User logged out successfully' });
+};
 
 module.exports = {
   registercustomer,
@@ -177,5 +186,6 @@ module.exports = {
   getCustomerProfile,
   createCustomer,
   updateCustomer,
-  deleteCustomer
+  deleteCustomer,
+  logoutCustomer
 };

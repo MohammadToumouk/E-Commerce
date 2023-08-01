@@ -20,7 +20,7 @@ import { Button } from "@/components/ui/button";
 const UsersTable = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [usersPerPage, setUsersPerPage] = useState(10);
+  const [usersPerPage, setUsersPerPage] = useState(8);
   const [totalUsers, setTotalUsers] = useState(0);
   const [role, setRole] = useState("");
   const [selectedUser, setSelectedUser] = useState();

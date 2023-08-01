@@ -6,18 +6,27 @@ const customerRouter = require("../routes/customerRoutes");
 // Add item to the cart
 const addItemToCart = async (req, res) => {
   try {
-    const { productId, quantity } = req.body;
+    const {
+      productId,
+      quantity,
+      brand,
+      name,
+      images,
+      price,
+      category,
+      description,
+      size,
+      color,
+    } = req.body;
     const customerId = req.user.customer._id;
 
     const product = await Product.findById(productId);
-    
 
     if (!product) {
-      
       return res.status(404).json({ message: "Product not found" });
     }
 
-    let cart = await Cart.findOne({ Customer: customerId });
+    let cart = await Cart.findOne({ customer: customerId });
     if (!cart) {
       cart = new Cart({ customer: customerId, items: [] });
     }
@@ -31,17 +40,27 @@ const addItemToCart = async (req, res) => {
       existingItem.quantity += quantity;
     } else {
       // If it doesn't exist, add a new item to the cart
-      cart.items.push({ product: productId, quantity });
+      cart.items.push({
+        product: productId,
+        brand,
+        name,
+        images,
+        quantity,
+        price,
+        category,
+        description,
+        size,
+        color,
+      });
     }
 
-    // Save the cart to the database
+    // Save the updated cart to the database
     await cart.save();
 
     res.status(200).json({ message: "Item added to cart successfully", cart });
   } catch (error) {
-    
     res.status(500).json({ message: "An error occurred", error });
-    console.log(error)
+    console.log(error);
   }
 };
 
@@ -78,7 +97,6 @@ const removeItemFromCart = async (req, res) => {
       .json({ message: "Item removed from cart successfully", cart });
   } catch (error) {
     res.status(500).json({ message: "An error occurred", error });
-    
   }
 };
 

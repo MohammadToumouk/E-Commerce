@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage/homePage';
 import Privacy from '../src/pages/Privacy/Privacy';
 import AboutUs from '../src/pages/AboutUs/AboutUs';
@@ -9,19 +9,33 @@ import Footer from './components/Footer/Footer';
 import ProductPage from './pages/ProductPage/ProductPage';
 import './app.css';
 import Login from './components/Login/login';
-import ToastProvider from './components/toast-provider.jsx';
 import Signup from './components/Signup/signup';
 import MyProfile from './pages/MyProfile/MyProfile';
 import Stripe from './components/stripe';
 import { SuccessPayment } from './pages/PaymentPages/SuccessPayment';
 import { ErrorPayment } from './pages/PaymentPages/ErrorPayment';
 import axios from 'axios';
+import { Toaster } from "../src/components/shadcn/toaster"
 
 import SecondFooter from './components/Footer/SecondFooter';
 
 
 const App = () => {
   const [customer, setCustomer] = useState()
+  const [shoppingList, setShoppingList] = useState()
+   
+  useEffect(() => {
+    const fetchShoppingCart = async () => {
+      await axios.get('http://localhost:3069/cart', { withCredentials: true })
+        .then((response) => {
+          setShoppingList(response.data)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+    fetchShoppingCart()
+  }, [])  
 
   useEffect(() => {
     const fetchCustomer = async () => {
@@ -39,27 +53,27 @@ const App = () => {
   console.log("currentUser:", customer)
 
   return (
-    <Router>
-      <ToastProvider />
-      <Navbar customer={customer} />
-      {/* <Stripe /> */}
-      {/* <Sidebar /> */}
-      <Switch>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/shop/:id" component={ProductPage} />
-        <Route path="/shop" component={ShopPage} />
-        <Route path="/privacy" component={Privacy} />
-        <Route path="/About" component={AboutUs} />
-        <Route path="/login" component={Login}/>
-        <Route path="/signup" component={Signup}/>
-        <Route path="/myprofile" component={MyProfile}/>
-        <Route path="/login" component={Login}/> 
-        <Route path="/blog" component={Blog}/>
-        <Route path="/successpayment" component={SuccessPayment}/>  
-        <Route path="*" component={ErrorPayment}/>
-       </Switch>
+    <BrowserRouter>
+      <Toaster />
+      <Navbar customer={customer} shoppingList={shoppingList} />
+      <Routes>
+        {/* <Stripe /> */}
+        {/* <Sidebar /> */}
+        <Route path="/" exact element={<HomePage />} />
+        <Route path="/shop/:id" element={<ProductPage setShoppingList={setShoppingList} shoppingList={shoppingList}/>} />
+        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/About" element={<AboutUs />} />
+        <Route path="/login" element={<Login />}/>
+        <Route path="/signup" element={<Signup />}/>
+        <Route path="/myprofile" element={<MyProfile />}/>
+        <Route path="/login" element={<Login />}/>  
+        {/* <Route path="/blog" component={Blog}/> */}
+        <Route path="/successpayment" element={<SuccessPayment />}/>  
+        <Route path="*" element={<ErrorPayment />}/>
+      </Routes>
       <SecondFooter />
-    </Router>
+    </BrowserRouter>
   );
 };
 

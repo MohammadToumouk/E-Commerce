@@ -145,7 +145,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
                       className='shopping-cart-product-image'
                     />
                     <div>
-                    <div className="shopping-cart-product-name">{item.product.name}</div>
+                    <div className="shopping-cart-product-name">{item.name}</div>
                   <div className="shopping-cart-product-price">{item.color}{"   $"}{item.price * item.quantity}</div>
                     </div>
                     <div className="shopping-cart-quantity">
@@ -161,7 +161,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
                    <XIcon 
                       className="shopping-cart-trash-icon text-red-600 cursor-pointer"
                       style={{ width: '15px', height: '15px' }}
-                      onClick={() => handleRemoveFromCart( item.product._id, item.product.name)}
+                      onClick={() => handleRemoveFromCart( item._id, item.name)}
                    />
                   </div>
                 </div>

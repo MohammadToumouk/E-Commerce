@@ -1,8 +1,10 @@
 import React from 'react';
 import './Blog.css';
-
+import { useInView } from 'react-intersection-observer';
 
 const blogPosts = [
+
+  
   {
     id: 1,
     title: "Top 10 Must-Have Mobile Accessories for Every Tech Enthusiast",
@@ -28,8 +30,12 @@ const blogPosts = [
 ];
 
 const Blog = () => {
+  const [ref, inView] = useInView({
+    triggerOnce: true, // The fade-in animation will be triggered only once when the component enters the viewport
+    threshold: 0.1, // Percentage of component visibility required to trigger the animation
+  });
   return (
-    <div className="blog-container">
+    <div ref={ref} className={`blog-container fade-in ${inView ? 'visible' : ''}`}>
       {blogPosts.map((post) => (
         <>
         <div className="blog-post" key={post.id}>

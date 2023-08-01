@@ -26,11 +26,13 @@ import { useState,useEffect,useRef } from 'react';
 
 
 const Navbar = ({customer, shoppingList, setShoppingList}) => {
+
   const { toast } = useToast()
   
   
   const targetElRef = useRef(null);
   const triggerElRef = useRef(null);
+
        
     const calculateTotalBalance = () => {
       let totalBalance = 0;
@@ -40,24 +42,24 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
       return totalBalance;
     };
 
-    const handleRemoveFromCart = async (productId) => {
+    const handleRemoveFromCart = async (productId, name) => {
       try {
         const response = await axios.delete(`http://localhost:3069/cart/remove/${productId}`,
         {
           withCredentials: true,
         },
       );
-      
+
         console.log('Response from server:', response.data);
         //Add any further actions or notifications for successful submission here.
+
         setShoppingList({cart: response.data.cart})
 
         toast({
-          title: `${product.name} added successfully to cart`,
-          description: "Friday, February 10, 2023 at 5:57 PM",
-          action: (
-            <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
-          ),
+          title: `${name} successfully removed from cart`,
+          // action: (
+          //   <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+          // ),
 
         })
 
@@ -163,7 +165,9 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
                    <XIcon 
                       className="shopping-cart-trash-icon text-red-600 cursor-pointer"
                       style={{ width: '15px', height: '15px' }}
+
                       onClick={() => handleRemoveFromCart( item.product._id, item.name)}
+
                    />
                   </div>
                 </div>
@@ -211,10 +215,8 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
     </div>
   </div>
 </nav>
-
 );
 }
-
 
 export default Navbar;
 

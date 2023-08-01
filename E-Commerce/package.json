@@ -23,6 +23,7 @@
     "@stripe/stripe-js": "^1.54.1",
     "class-variance-authority": "^0.6.1",
     "clsx": "^1.2.1",
+    "flowbite": "^1.8.0",
     "jsconfig.json": "^2.3.3",
     "lucide-react": "^0.259.0",
     "mdb-react-ui-kit": "^6.1.0",

@@ -5,6 +5,8 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import './SecondFooter.css'
 import { useInView } from 'react-intersection-observer';
 import '../FadeInScroll.css'
+import { NavLink } from 'react-router-dom';
+
 
 
 export default function SecondFooter() {
@@ -32,7 +34,7 @@ export default function SecondFooter() {
             <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Company</h2>
             <ul class="text-white dark:text-gray-400 font-medium">
                 <li class="mb-4">
-                    <a href="#" class=" hover:underline">About</a>
+                    <NavLink to="/about" className=" hover:underline">About</NavLink>
                 </li>
                 <li class="mb-4">
                     <a href="#" class="hover:underline">Careers</a>
@@ -41,7 +43,7 @@ export default function SecondFooter() {
                     <a href="#" class="hover:underline">Brand Center</a>
                 </li>
                 <li class="mb-4">
-                    <a href="#" class="hover:underline">Blog</a>
+                    <NavLink to="/blog" className="hover:underline">Blog</NavLink>
                 </li>
             </ul>
         </div>
@@ -58,7 +60,7 @@ export default function SecondFooter() {
                     <a href="#" class="hover:underline">Facebook</a>
                 </li>
                 <li class="mb-4">
-                    <a href="#" class="hover:underline">Contact Us</a>
+                    <NavLink to="/contact" className="hover:underline">Contact Us</NavLink>
                 </li>
             </ul>
         </div>
@@ -66,7 +68,7 @@ export default function SecondFooter() {
             <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Legal</h2>
             <ul class="text-white dark:text-gray-400 font-medium">
                 <li class="mb-4">
-                    <a href="#" class="hover:underline">Privacy Policy</a>
+                    <NavLink to="/privacy" className="hover:underline">Privacy Policy</NavLink>
                 </li>
                 <li class="mb-4">
                     <a href="#" class="hover:underline">Licensing</a>
@@ -100,8 +102,8 @@ export default function SecondFooter() {
     class="h-[250px] min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-20 dark:opacity-100">
     </div>
     
-    <img src="https://i.ibb.co/vm8jcj2/Download-on-the-App-Store-Get-it-on-Google-Play-Button.png" alt="Download-on-the-App-Store-Get-it-on-Google-Play-Button"
-     border="0"  width={"350px"} style={{cursor:"pointer"}}   />
+   {/*  <img src="https://i.ibb.co/vm8jcj2/Download-on-the-App-Store-Get-it-on-Google-Play-Button.png" alt="Download-on-the-App-Store-Get-it-on-Google-Play-Button"
+     border="0"  width={"250px"} style={{cursor:"pointer"}}   /> */}
 
     </div>
 

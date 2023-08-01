@@ -64,6 +64,7 @@ const addItemToCart = async (req, res) => {
   }
 };
 
+
 // Remove item from the cart
 const removeItemFromCart = async (req, res) => {
   try {

@@ -31,11 +31,15 @@ const Blog = () => {
   return (
     <div className="blog-container">
       {blogPosts.map((post) => (
+        <>
         <div className="blog-post" key={post.id}>
           <h2 className="blog-title">{post.title}</h2>
           <img src={post.image} alt={post.title} className="blog-image" />
           <p className="blog-content">{post.content}</p>
         </div>
+         <hr className="w-9/12 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+         <br/><br/>
+         </>
       ))}
     </div>
   );

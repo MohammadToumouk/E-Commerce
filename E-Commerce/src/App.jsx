@@ -17,7 +17,10 @@ import { ErrorPayment } from './pages/PaymentPages/ErrorPayment';
 import axios from 'axios';
 import { Toaster } from "../src/components/shadcn/toaster"
 
+import Blog from './pages/Blog/Blog';
+
 import SecondFooter from './components/Footer/SecondFooter';
+import Contact from './pages/ContactUs/Contact';
 
 
 const App = () => {
@@ -48,11 +51,12 @@ const App = () => {
         })
     }
     fetchCustomer()
-  }, [])
+  }, []);
 
-  console.log("currentUser:", customer)
+  
 
   return (
+
     <BrowserRouter>
       <Toaster />
       <Navbar customer={customer} shoppingList={shoppingList} />

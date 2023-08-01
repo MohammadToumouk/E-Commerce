@@ -9,6 +9,7 @@ import { ContactUsSection } from "../../components/ContactUs/ContactUsSection";
 import { Banner } from "../../components/Banner/Banner";
 import Banner2 from "../../components/Banner/Banner2";
 import { Plus, PlusCircle, XIcon } from 'lucide-react'
+import Stripe from "stripe";
 
 const HomePage = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -44,6 +45,7 @@ const HomePage = () => {
         <br/><br/>
         <Banner />
         <hr className="w-9/12 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700"></hr>
+        
         <br/><br/>
         <ContactUsSection />
         

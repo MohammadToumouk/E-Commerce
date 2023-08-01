@@ -1,6 +1,6 @@
 .about-us-container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 100px auto;
     padding: 20px;
     /* background-color: #f9f9f9; */
     /* border-radius: 8px; */
@@ -23,21 +23,20 @@
 
 .team-member-cards {
     display: flex;
-    /* Display the cards in a row */
     justify-content: space-between;
-    /* Spread the cards evenly */
     flex-wrap: wrap;
-    /* Wrap the cards to the next row if needed */
     margin-top: 20px;
 }
 
 .team-member-card {
-    flex: 0 1 calc(33.33% - 20px);
-    /* Each card occupies one-third of the width with 20px spacing */
-    max-width: calc(33.33% - 20px);
-    /* Each card's maximum width is one-third of the container with spacing */
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    flex: 0 1 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    padding: 10px;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);

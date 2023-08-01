@@ -59,7 +59,7 @@ const App = () => {
 
     <BrowserRouter>
       <Toaster />
-      <Navbar customer={customer} shoppingList={shoppingList} />
+      <Navbar customer={customer} shoppingList={shoppingList} setShoppingList={setShoppingList} />
       <Routes>
         {/* <Stripe /> */}
         {/* <Sidebar /> */}
@@ -72,7 +72,9 @@ const App = () => {
         <Route path="/signup" element={<Signup />}/>
         <Route path="/myprofile" element={<MyProfile />}/>
         <Route path="/login" element={<Login />}/>  
+
         <Route path="/blog" element={<Blog />}/>
+
         <Route path="/successpayment" element={<SuccessPayment />}/>  
         <Route path="*" element={<ErrorPayment />}/>
       </Routes>

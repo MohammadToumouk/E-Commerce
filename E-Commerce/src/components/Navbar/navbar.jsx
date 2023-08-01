@@ -26,11 +26,13 @@ import { useState,useEffect,useRef } from 'react';
 
 
 const Navbar = ({customer, shoppingList, setShoppingList}) => {
-    const { toast } = useToast()
-    const [productId, setProductId] = useState()
-    
-    const targetElRef = useRef(null);
-    const triggerElRef = useRef(null);
+
+  const { toast } = useToast()
+  
+  
+  const targetElRef = useRef(null);
+  const triggerElRef = useRef(null);
+
        
     const calculateTotalBalance = () => {
       let totalBalance = 0;
@@ -163,7 +165,9 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
                    <XIcon 
                       className="shopping-cart-trash-icon text-red-600 cursor-pointer"
                       style={{ width: '15px', height: '15px' }}
-                      onClick={() => handleRemoveFromCart( item._id, item.name)}
+
+                      onClick={() => handleRemoveFromCart( item.product._id, item.name)}
+
                    />
                   </div>
                 </div>

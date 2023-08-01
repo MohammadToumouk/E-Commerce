@@ -29,7 +29,7 @@ export default function SecondFooter() {
     <div class="mx-auto w-full max-w-screen-xl">
     <div class='flex'>
            
-      <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4 flex-auto w-64">
+      <div class="grid grid-cols-2 gap-8 px-4 py-6 lg:py-8 md:grid-cols-4 flex-auto ">
         <div>
             <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Company</h2>
             <ul class="text-white dark:text-gray-400 font-medium">
@@ -96,12 +96,15 @@ export default function SecondFooter() {
             </ul>
         </div>
     </div>
-
-    <div class='flex flex-row    '>
     <div
-    class="h-[250px] min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-20 dark:opacity-100">
+    class="h-[250px] min-h-[1em] mr-16  w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-20 dark:opacity-100">
     </div>
+    <div class='flex flex-row  w-32 '>
     
+    <div className='flex flex-col w-full gap-14 mt-16 '>
+    <img src="https://i.ibb.co/cY78wPJ/App-Sore-v1-inverted-eng.png" alt="App-Sore-v1-inverted-eng" border="0" className='logo invert hover:scale-110 cursor-pointer ease-in duration-300'/>
+    <img src="https://i.ibb.co/QkZWL3t/Google-Play-v1-inverted-eng.png" alt="Google-Play-v1-inverted-eng" border="0" className='logo invert hover:scale-110 cursor-pointer ease-in duration-300'/>
+</div>
    {/*  <img src="https://i.ibb.co/vm8jcj2/Download-on-the-App-Store-Get-it-on-Google-Play-Button.png" alt="Download-on-the-App-Store-Get-it-on-Google-Play-Button"
      border="0"  width={"250px"} style={{cursor:"pointer"}}   /> */}
 

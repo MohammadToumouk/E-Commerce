@@ -10,6 +10,9 @@ customerRouter.post("/register", customerController.registercustomer);
 // Login
 customerRouter.post("/login", customerController.logincustomer);
 
+// Logout
+customerRouter.post("/logout", customerController.logoutCustomer)
+
 // GET all customers
 customerRouter.get("/", customerController.getAllCustomers);
 

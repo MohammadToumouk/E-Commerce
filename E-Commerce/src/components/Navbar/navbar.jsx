@@ -42,6 +42,19 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
       return totalBalance;
     };
 
+    const handleLogout = async () => {
+      await axios.post('http://localhost:3069/customer/logout',{headers: {"Cookie": ""}}, {withCredentials: true })
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+  
+      window.location.href = "/shop"
+    }
+  
+
     const handleRemoveFromCart = async (productId, name) => {
       try {
         const response = await axios.delete(`http://localhost:3069/cart/remove/${productId}`,
@@ -201,10 +214,12 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
               </DropdownMenuItem>
             </Link>
             <Link to="/login" className="login">
+            <div onClick={handleLogout}>
             <DropdownMenuItem>
-              <LogOutIcon className="mr-2" />
+              <LogOutIcon className="mr-2"  />
               Logout
             </DropdownMenuItem>
+            </div>
             </Link>
           </DropdownMenuContent>
         </DropdownMenu>

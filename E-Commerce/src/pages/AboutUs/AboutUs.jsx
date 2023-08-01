@@ -1,9 +1,17 @@
 import React from 'react';
 import './AboutUs.css';
+import { useInView } from 'react-intersection-observer';
+import '../../components/FadeInScroll.css'
 
 const AboutUs = () => {
+
+  const [ref, inView] = useInView({
+    triggerOnce: true, // The fade-in animation will be triggered only once when the component enters the viewport
+    threshold: 0.1, // Percentage of component visibility required to trigger the animation
+  });
+
   return (
-    <div className="about-us-container">
+    <div ref={ref} className={`about-us-container fade-in  ${inView ? 'visible' : ''}`}>
       <h2 className="about-us-title">ABOUT US</h2>
       <p className="about-us-text">
         Welcome to our online store! We are a team of three dedicated individuals: Mohammad, Ermias, and Aleksandar. We are thrilled to present our final project as part of our bootcamp journey.

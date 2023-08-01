@@ -4,12 +4,22 @@ import './Card.css';
 import { Link } from 'react-router-dom';
 import { Button } from '../Button/button';
 import axios from 'axios';
+import { useInView } from 'react-intersection-observer';
+import '../FadeInScroll.css'
+
 import { NavLink } from 'react-router-dom';
+
 
 const Card = ({ available, imageSrc, productName, price, color, currency, productId, style }) => {
   const [selectedColor, setSelectedColor] = useState(color);
   const [product, setPruduct] = useState("62b9b6b9e6b0e0a9b8f0e0a9");
   const [quantity, setQuantity] = useState(1);
+  const [isHovered, setIsHovered] = useState(false);
+
+  const [ref, inView] = useInView({
+    triggerOnce: true, // The fade-in animation will be triggered only once when the component enters the viewport
+    threshold: 0.1, // Percentage of component visibility required to trigger the animation
+  });
 
   // console.log("productId", imageSrc)
 
@@ -50,7 +60,8 @@ const Card = ({ available, imageSrc, productName, price, color, currency, produc
   
 
   return (
-    <div className="card" style={style}>
+    <div >
+    <div ref={ref} className={`card fade-in ${inView ? 'visible' : ''}`} style={style} >
       {available ? (
         <div className="badge" style={{ backgroundColor: 'green' }}>
           Available
@@ -73,13 +84,15 @@ const Card = ({ available, imageSrc, productName, price, color, currency, produc
           Details
         </Link>
         {available && (
-          <NavLink to={`/shop/${productId}`} className="add-to-cart" >
+          <
+          to={`/shop/${productId}`} className="add-to-cart" >
             <Button>
               Buy
             </Button>
           </NavLink>
         )}
       </div>
+    </div>
     </div>
   );
 };

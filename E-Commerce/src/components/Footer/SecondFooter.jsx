@@ -24,7 +24,7 @@ export default function SecondFooter() {
     
 
     
-    <div ref={ref} className={`fade-in ${inView ? 'visible' : ''}`}>
+    <div >
 <footer class="bg-black dark:bg-gray-900">
     <div class="mx-auto w-full max-w-screen-xl">
     <div class='flex'>

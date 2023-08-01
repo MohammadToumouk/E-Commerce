@@ -8,7 +8,7 @@ const blogPosts = [
     title: "Top 10 Must-Have Mobile Accessories for Every Tech Enthusiast",
     content:
       "Mobile accessories play a crucial role in enhancing the overall tech experience. Whether you're a seasoned tech enthusiast or a casual user, having the right accessories can elevate your smartphone usage to the next level. Here's a list of the top 10 must-have mobile accessories:\n\n1. Portable Power Banks: Stay charged on the go with a reliable power bank.\n2. Protective Phone Cases: Keep your device safe from drops and scratches with a sturdy phone case.\n3. Wireless Earbuds/Headphones: Enjoy a wire-free audio experience with Bluetooth earbuds or headphones.\n4. Screen Protectors: Shield your smartphone's screen from scratches and cracks with a quality screen protector.\n5. Fast Chargers: Charge your device quickly with a high-speed charging adapter.\n6. Popsockets and Phone Grips: Add convenience and comfort to your smartphone handling.\n7. Fitness Bands: Monitor your health and fitness with a smart fitness band.\n8. Camera Lenses and Accessories: Enhance your smartphone photography with external lenses and accessories.\n9. Wireless Chargers: Simplify charging with a wireless charging pad.\n10. Smartphone Holders for Cars: Stay safe on the road with a sturdy phone holder for your car.\n\nThese accessories can greatly improve your smartphone experience, making them essential additions to any tech enthusiast's collection.",
-      image: "https://mobilemall.co/blog/wp-content/uploads/2023/05/Essential-Mobile-Accessories-Accessories-Power-Bank-and-Earbuds.jpg",
+      image: "https://5.imimg.com/data5/YT/RA/MY-36315460/mobile-accessories-all-types-mobile-accessories-available.jpg",
     },
   {
     id: 2,

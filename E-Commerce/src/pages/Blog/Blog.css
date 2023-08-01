@@ -34,6 +34,7 @@
 }
 
 .blog-image {
+    border-radius: 12px;
     margin-bottom: 30px;
     object-fit: cover;
 

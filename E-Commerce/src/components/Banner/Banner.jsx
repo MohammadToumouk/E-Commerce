@@ -31,11 +31,13 @@ export const Banner = () => {
             <p className={`lg:text-4xl md:text-3xl text-2xl text-white mb-10 transition-all duration-500 ${isHovered ? 'opacity-75' : ''}`}>
               Explore Allienware's Hottest Deals
             </p>
+            <a href="/shop">
             <button
               className={`text-black bg-white px-6 py-3 font-bold rounded-lg transition-all duration-500 ${isHovered ? 'opacity-90' : ''}`}
             >
               Shop Now
             </button>
+            </a>
           </div>
         </div>
       </div>

@@ -7,8 +7,12 @@
         "E-Commerce/src/components/Navigation-menu/navigation-menu.jsx",
         "E-Commerce/src/lib",
         "E-Commerce/src/components/Button/button.jsx",
-        "E-Commerce/src/components/Avatar/avatar.jsx"
-, "E-Commerce/src/components/shadcn/hover-card.jsx"    ],
+        "E-Commerce/src/components/Avatar/avatar.jsx", 
+        "E-Commerce/src/components/shadcn/hover-card.jsx", 
+        "E-Commerce/src/components/shadcn/use-toast.ts", 
+        "E-Commerce/src/components/shadcn/toaster.jsx",
+        "E-Commerce/src/components/shadcn/toast.jsx"
+, "E-Commerce/src/components/shadcn/dropdown-menu.jsx"    ],
     "baseUrl": ".",
     "paths": {
         "@/*": [

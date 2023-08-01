@@ -16,8 +16,6 @@ export function SelectCategory({ className, onCategoryChange }) {
   const handleSelectChange = (event) => {
     const selectedValue = event.target.value;
     onCategoryChange(selectedValue); // Call the parent's function with the selected value
-
-    console.log("sadasd")
   };
 
   return (

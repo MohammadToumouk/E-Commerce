@@ -52,7 +52,7 @@ const UploadWidget = ({onImageUpload, value}) => {
       </div>
       <Button type="Button" variant="secondary" onClick={() => widgetRef.current.open()}>
         <ImagePlus className='h-4 w-4 mr-2' />
-        Add Product Image
+        Add Image
       </Button>
     </div>
   )

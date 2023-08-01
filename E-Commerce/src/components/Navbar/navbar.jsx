@@ -1,4 +1,3 @@
-import React, { useEffect, useState,useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../Navbar/navbar.css';
 import Collapse from 'flowbite/lib/esm/components/collapse';
@@ -11,47 +10,56 @@ import {
 } from "../shadcn/hover-card";
 
 import { Button } from "../Button/button";
+import { LogOutIcon, UserIcon, XIcon } from 'lucide-react';
 
-const Navbar = ({customer}) => {
-  const [shoppingList, setShoppingList] = useState()
-  const targetElRef = useRef(null);
-  const triggerElRef = useRef(null);
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "../shadcn/dropdown-menu";
 
-  useEffect(() => {
-    const fetchShoppingCart = async () => {
-      await axios.get('http://localhost:3069/cart', { withCredentials: true })
-        .then((response) => {
-          setShoppingList(response.data)
+
+const Navbar = ({customer, shoppingList}) => {
+       
+    const calculateTotalBalance = () => {
+      let totalBalance = 0;
+      shoppingList?.cart?.items?.forEach((item) => {
+        totalBalance += item.price * item.quantity;
+      });
+      return totalBalance;
+    };
+
+    const handleRemoveFromCart = async (productId) => {
+      try {
+        const response = await axios.post(`http://localhost:3069/cart/remove/${productId}`,
+        {
+          withCredentials: true,
+        },
+      );
+      
+        console.log('Response from server:', response.data);
+        //Add any further actions or notifications for successful submission here.
+        toast({
+          title: `${product.name} added successfully to cart`,
+          description: "Friday, February 10, 2023 at 5:57 PM",
+          action: (
+            <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+          ),
+
         })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
-    fetchShoppingCart()
-  }, [])
-  useEffect(() => {
-    const options = {
-      onCollapse: () => {
-        console.log('element has been collapsed');
-      },
-      onExpand: () => {
-        console.log('element has been expanded');
-      },
-      onToggle: () => {
-        console.log('element has been toggled');
+
+        fetchShoppingCart()
+      } catch (error) {
+        // console.error('Error while submitting:', error);// Add error handling or notifications for failed submissions here.
+        // console.log("DataWithError", values)
+        console.log("Error", error)
       }
-    };
-  
-    const collapse = new Collapse(targetElRef.current, triggerElRef.current, options);
+      // console.log("testData", values)
+    }
 
-  
-    // Clean up the event listeners when the component is unmounted
-    return () => {
-      /* collapse.destroy(); */
-    };
-  }, []);
-
-  console.log("shoppingList:", shoppingList?.cart?.items?.length )
 
   return (
     
@@ -232,41 +240,46 @@ const Navbar = ({customer}) => {
                 </div>
             </HoverCardTrigger>
           )}
-          <HoverCardContent className="w-full">
+          <HoverCardContent className="w-full h-full">
             <h1 className="shopping-cart" >Shopping Cart</h1>
-            {shoppingList?.cart?.items?.length >= 1 ? (
+            {shoppingList?.cart?.items?.length === 0 ? (
               <div className="shopping-cart-empty">Your cart is empty</div> ) : (
                 <>
               {shoppingList?.cart?.items?.map((item) => (
-                <div className="" key={item.product}>
+                
+                <div className="shopping-cart-item-container" key={item._id}>
                   <div className="shopping-cart-item" >
                     <img 
-                      src={"https://www.pngmart.com/files/15/Apple-iPhone-12-PNG-Picture.png"}
+                      src={item.images}
                       alt="Product"
                       className='shopping-cart-product-image'
                     />
                     <div>
-                    <div className="shopping-cart-product-name">{"Product Name"}</div>
-                  <div className="shopping-cart-product-price">{"$"}{"1500"}</div>
+                    <div className="shopping-cart-product-name">{item.product.name}</div>
+                  <div className="shopping-cart-product-price">{item.color}{"   $"}{item.price * item.quantity}</div>
                     </div>
-                    
-                    <div className="shopping-cart-quantity"> 
-                    <input 
+                    <div className="shopping-cart-quantity">
+                      {item.quantity} 
+                    {/* <input 
                       type="number"
                       className='shopping-cart-quantity-input'
-                      min={1}
-                      placeholder='1'
-                    />
+                      min="1"
+                      placeholder={item.quantity}
+                      onChange={(event) => handleQuantityChange(event, item.product._id)}
+                    /> */}
                   </div>
-                  
+                   <XIcon 
+                      className="shopping-cart-trash-icon text-red-600 cursor-pointer"
+                      style={{ width: '15px', height: '15px' }}
+                      onClick={() => handleRemoveFromCart( item.product._id)}
+                   />
                   </div>
-
                 </div>
                 ))
               }
               <div className="shopping-cart-total">
                 <div className="shopping-cart-total-price">Total: </div>
-                <div className="shopping-cart-total-price">{"$"}{"1500"}</div>
+                <div className="shopping-cart-total-price">{"$ "}{calculateTotalBalance()}</div>
               </div>
             <Button variant="ghost" className="w-full">View Cart</Button>
             </>
@@ -275,13 +288,32 @@ const Navbar = ({customer}) => {
           </HoverCardContent>
         </HoverCard>
         )}
+        <DropdownMenu>
+          <DropdownMenuTrigger className="login ml-5">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQCX5_wYEa6hyWoqSBOaPbaHw5Ff8Ljp0WcA&usqp=CAU"
+              alt="Login"
+            />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <Link to="/login" className="login">
+              <DropdownMenuItem>
+                <UserIcon className="mr-2" />
+                Profile
+              </DropdownMenuItem>
+            </Link>
+            <Link to="/login" className="login">
+            <DropdownMenuItem>
+              <LogOutIcon className="mr-2" />
+              Logout
+            </DropdownMenuItem>
+            </Link>
+          </DropdownMenuContent>
+        </DropdownMenu>
+        
 
-        <Link to="/login" className="login ml-5">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQCX5_wYEa6hyWoqSBOaPbaHw5Ff8Ljp0WcA&usqp=CAU"
-            alt="Login"
-          />
-        </Link>
         </div>
         )}
       </ul>

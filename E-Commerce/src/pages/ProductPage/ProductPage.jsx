@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Redirect } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import ProductCard from '../../components/ProductCard/productCard';
 import ProductDescription from '../../components/ProductDescription/productDescription';
 import './ProductPage.css';
 
-const ProductPage = () => {
+const ProductPage = ({setShoppingList, shoppingList}) => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -28,12 +28,13 @@ const ProductPage = () => {
   }
 
   if (!product) {
-    return <Redirect to="/shop" />;
+    return <Navigate to="/shop" />;
+  
   }
 
   // Ensure that the properties exist in the product object
   const { images, color, price, sizes } = product;
-  const additionalImages = product.additionalImages || [];
+  //const additionalImages = product.additionalImages || [];
 
   return (
     <div className="content">
@@ -51,7 +52,7 @@ const ProductPage = () => {
           </div>
         </div>
         <div className="product-description-container">
-          <ProductDescription product={product} sizes={sizes} />
+          <ProductDescription product={product} sizes={sizes} setShoppingList={setShoppingList} shoppingList={shoppingList} />
         </div>
       </div>
     </div>

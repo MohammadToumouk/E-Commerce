@@ -1,10 +1,12 @@
-/* In your FadeInOnScroll.css */
+/* Card.css */
 .fade-in {
-    opacity: 0;
-    transition: opacity 1s ease; /* Adjust the duration and easing as desired */
-  }
-  
-  .visible {
-    opacity: 1;
-  }
-  
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 1.5s ease, transform 1.5s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+

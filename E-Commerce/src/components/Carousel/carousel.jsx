@@ -49,9 +49,11 @@ const Carousel = ({ images }) => {
             />
             <div style={overlayStyle}>
               <p className="lg:text-3xl md:text-2xl text-xs w-1/2">Step into the future with the all-new Apple Vision Goggles! Experience cutting-edge technology and explore the limitless possibilities of augmented reality with this revolutionary device.</p>
+
               <a href="/shop">
               <button type="button" className="bg-black text-white hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Go to Shop</button> 
             </a>
+
             </div>
           </div>
         </div>

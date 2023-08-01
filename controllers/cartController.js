@@ -6,7 +6,18 @@ const customerRouter = require("../routes/customerRoutes");
 // Add item to the cart
 const addItemToCart = async (req, res) => {
   try {
-    const { productId, quantity } = req.body;
+    const {
+      productId,
+      quantity,
+      brand,
+      name,
+      images,
+      price,
+      category,
+      description,
+      size,
+      color,
+    } = req.body;
     const customerId = req.user.customer._id;
 
     const product = await Product.findById(productId);
@@ -29,7 +40,18 @@ const addItemToCart = async (req, res) => {
       existingItem.quantity += quantity;
     } else {
       // If it doesn't exist, add a new item to the cart
-      cart.items.push({ product: productId, quantity });
+      cart.items.push({
+        product: productId,
+        brand,
+        name,
+        images,
+        quantity,
+        price,
+        category,
+        description,
+        size,
+        color,
+      });
     }
 
     // Save the updated cart to the database
@@ -76,7 +98,6 @@ const removeItemFromCart = async (req, res) => {
       .json({ message: "Item removed from cart successfully", cart });
   } catch (error) {
     res.status(500).json({ message: "An error occurred", error });
-    
   }
 };
 

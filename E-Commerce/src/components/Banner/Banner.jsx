@@ -20,7 +20,7 @@ export const Banner = () => {
 
   return (
     <FadeInOnScroll>
-      <div className="w-10/12 md:w-10/12 lg:w-8/12 min-w-[360px] min-h-[20vh] border-lg flex flex-col items-center justify-center m-auto rounded-[35px] relative overflow-hidden">
+      <div className=" shadow-md shadow-black w-10/12 md:w-10/12 lg:w-8/12 min-w-[360px] min-h-[20vh] border-lg flex flex-col items-center justify-center m-auto rounded-[35px] relative overflow-hidden ">
         <div className="relative">
           <img
             src='https://wallpaperaccess.com/full/745776.jpg'

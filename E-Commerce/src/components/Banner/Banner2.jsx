@@ -12,7 +12,7 @@ export const Banner2 = () => {
 
   return (
     <div ref={ref} className={`fade-in ${inView ? 'visible' : ''}`}>
-      <div className="w-4/12 md:w-6/12 lg:w-8/12 border-lg min-w-[360px] min-h-[15vh]  flex flex-col gap-10  lg:flex-row   items-center justify-center m-auto  relative overflow-hidden">
+      <div className=" w-4/12 md:w-6/12 lg:w-8/12  border-lg min-w-[360px] min-h-[15vh]  flex flex-col gap-10  lg:flex-row   items-center justify-center m-auto  relative overflow-hidden">
         {/* First Banner */}
         <div
           className="relative flex flex-col items-center  justify-center max-w-2xl max-h-80 hover:scale-105 transition duration-150 ease-in-out"

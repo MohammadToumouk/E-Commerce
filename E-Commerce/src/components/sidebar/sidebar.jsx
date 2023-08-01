@@ -190,7 +190,7 @@ const Sidebar = ({ setFilteredProducts, products }) => {
         </div>
       )}
 
-      {sizes.length > 0 && (
+      {/* {sizes.length > 0 && (
         <div>
           <h3>Sizes</h3>
           {sizes.map((size, index) => (
@@ -204,7 +204,7 @@ const Sidebar = ({ setFilteredProducts, products }) => {
             </label>
           ))}
         </div>
-      )}
+      )} */}
       <div>
         <h3>Price Range</h3>
         <div className="ml-2">

@@ -4,7 +4,7 @@ import './Privacy.css';
 const Privacy = () => {
   return (
     <div className="privacy-container">
-      <h2 className="privacy-title">Privacy Policy</h2>
+      <h2 className="privacy-title">PRIVACY POLICY</h2>
 
       <p>
         [EMAzing Online Store] ("we" or "us") is committed to protecting the privacy and security of your personal information. This Privacy Policy explains how we collect, use, disclose, and protect your personal information when you use our online shopping store (the "Site").

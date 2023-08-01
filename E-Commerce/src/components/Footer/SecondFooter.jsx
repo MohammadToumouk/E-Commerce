@@ -32,7 +32,7 @@ export default function SecondFooter() {
             <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Company</h2>
             <ul class="text-white dark:text-gray-400 font-medium">
                 <li class="mb-4">
-                    <a href="#" class=" hover:underline">About</a>
+                    <a href="/about" class=" hover:underline">About</a>
                 </li>
                 <li class="mb-4">
                     <a href="#" class="hover:underline">Careers</a>
@@ -41,7 +41,7 @@ export default function SecondFooter() {
                     <a href="#" class="hover:underline">Brand Center</a>
                 </li>
                 <li class="mb-4">
-                    <a href="#" class="hover:underline">Blog</a>
+                    <a href="/blog" class="hover:underline">Blog</a>
                 </li>
             </ul>
         </div>
@@ -58,7 +58,7 @@ export default function SecondFooter() {
                     <a href="#" class="hover:underline">Facebook</a>
                 </li>
                 <li class="mb-4">
-                    <a href="#" class="hover:underline">Contact Us</a>
+                    <a href="/contact" class="hover:underline">Contact Us</a>
                 </li>
             </ul>
         </div>
@@ -66,7 +66,7 @@ export default function SecondFooter() {
             <h2 class="mb-6 text-sm font-semibold text-white uppercase dark:text-white">Legal</h2>
             <ul class="text-white dark:text-gray-400 font-medium">
                 <li class="mb-4">
-                    <a href="#" class="hover:underline">Privacy Policy</a>
+                    <a href="/privacy" class="hover:underline">Privacy Policy</a>
                 </li>
                 <li class="mb-4">
                     <a href="#" class="hover:underline">Licensing</a>
@@ -100,8 +100,8 @@ export default function SecondFooter() {
     class="h-[250px] min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-20 dark:opacity-100">
     </div>
     
-    <img src="https://i.ibb.co/vm8jcj2/Download-on-the-App-Store-Get-it-on-Google-Play-Button.png" alt="Download-on-the-App-Store-Get-it-on-Google-Play-Button"
-     border="0"  width={"350px"} style={{cursor:"pointer"}}   />
+   {/*  <img src="https://i.ibb.co/vm8jcj2/Download-on-the-App-Store-Get-it-on-Google-Play-Button.png" alt="Download-on-the-App-Store-Get-it-on-Google-Play-Button"
+     border="0"  width={"250px"} style={{cursor:"pointer"}}   /> */}
 
     </div>
 

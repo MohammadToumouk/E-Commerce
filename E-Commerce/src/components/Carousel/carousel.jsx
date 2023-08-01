@@ -38,8 +38,8 @@ const Carousel = ({ images }) => {
   });
 
   return (
-    <div ref={ref} className={`fade-in ${inView ? 'visible' : ''}` }>
-    <div style={carouselStyle} className=" justify-center container mx-auto w-10/12 md:w-10/12 lg:w-8/12 min-w-[390px] min-h-[20vh]">
+    <div ref={ref} className={`fade-in ${inView ? 'visible' : ''} ` }>
+    <div style={carouselStyle} className=" justify-center  mx-auto w-10/12 md:w-10/12 lg:w-8/12 min-w-[350px] min-h-[20vh]">
       <Slider {...settings}>
         <div>
           <div className="relative">

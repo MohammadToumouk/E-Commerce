@@ -1,20 +1,63 @@
 .about-us-container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 100px auto;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* background-color: #f9f9f9; */
+    /* border-radius: 8px; */
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
 }
 
 .about-us-title {
-    font-size: 24px;
+    font-size: 60px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .about-us-text {
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 2;
     color: #555;
+    text-align: justify;
+    margin-bottom: 80px;
+}
+
+.team-member-cards {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.team-member-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex: 0 1 calc(33.33% - 20px);
+    max-width: calc(33.33% - 20px);
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.team-member-card img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.team-member-card h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.team-member-card p {
+    font-size: 14px;
+    color: #777;
 }

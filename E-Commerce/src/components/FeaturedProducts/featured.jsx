@@ -56,9 +56,9 @@ export const Featured = () => {
       }, []);
 
   return (
-    <div ref={ref} className={`fade-in ${inView ? 'visible' : ''}`}>
-    <div  style={{margin: "0 0 0 15%", width:"70%"}}
-    className='w-4/12 md:w-6/12 lg:w-8/12 border-lg min-w-[450px] min-h-[15vh]  flex flex-col gap-10 md:flex-col lg:flex-row'>
+    <div ref={ref} className={`fade-in ${inView ? 'visible' : ''} flex lg:justify-center md:justify-center justify-start w-6/12 m-0 p-0 `}>
+    <div 
+    className='w-4/12 md:w-6/12 lg:w-8/12 border-lg min-w-[250px] min-h-[15vh] ml-8 flex flex-col gap-5 md:flex-col lg:flex-row'>
         
         {/* {products.map((product) => (
           <Card
@@ -74,7 +74,7 @@ export const Featured = () => {
           />
         ))} */}
 {products.map((product) => (
-<div class="group my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-[25px] border ml-2 gap-5 border-gray-100 bg-white shadow-md" key={product._id}>
+<div class="group my-10 flex w-full max-w-xs min-w-[250px] flex-col overflow-hidden rounded-[25px] border ml-2 gap-5 border-gray-100 bg-white shadow-md" key={product._id}>
   <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
     <img class="peer absolute top-0 right-0 h-full w-fit object-cover" src={product.images[0]}  alt="product image" />
     <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="product image" />

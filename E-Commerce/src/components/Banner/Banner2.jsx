@@ -32,6 +32,7 @@ export const Banner2 = () => {
             >
               Explore MSI's Hottest Deals
             </p>
+            <a href="/shop">
             <button
               className={`text-black bg-white px-6 py-3 font-bold rounded-lg transition-all duration-500 ${
                 isHovered1 ? 'opacity-90' : ''
@@ -39,6 +40,7 @@ export const Banner2 = () => {
             >
               Shop Now
             </button>
+            </a>
           </div>
         </div>
 
@@ -61,6 +63,7 @@ export const Banner2 = () => {
             >
               Explore Razor's Hottest Deals
             </p>
+            <a href="/shop">
             <button
               className={`text-black bg-white px-6 py-3 font-bold rounded-lg transition-all duration-500 ${
                 isHovered2 ? 'opacity-90' : ''
@@ -68,6 +71,7 @@ export const Banner2 = () => {
             >
               Shop Now
             </button>
+            </a>
           </div>
         </div>
       </div>

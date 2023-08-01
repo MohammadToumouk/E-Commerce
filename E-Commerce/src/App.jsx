@@ -59,7 +59,7 @@ const App = () => {
 
     <BrowserRouter>
       <Toaster />
-      <Navbar customer={customer} shoppingList={shoppingList} />
+      <Navbar customer={customer} shoppingList={shoppingList} setShoppingList={setShoppingList} />
       <Routes>
         {/* <Stripe /> */}
         {/* <Sidebar /> */}

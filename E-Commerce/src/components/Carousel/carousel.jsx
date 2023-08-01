@@ -38,8 +38,8 @@ const Carousel = ({ images }) => {
   });
 
   return (
-    <div ref={ref} className={`fade-in ${inView ? 'visible' : ''}`}>
-    <div style={carouselStyle} className=" justify-center">
+    <div ref={ref} className={`fade-in ${inView ? 'visible' : ''}` }>
+    <div style={carouselStyle} className=" justify-center container mx-auto w-10/12 md:w-10/12 lg:w-8/12 min-w-[390px] min-h-[20vh]">
       <Slider {...settings}>
         <div>
           <div className="relative">
@@ -48,7 +48,7 @@ const Carousel = ({ images }) => {
               className="rounded-3xl max-h-[39rem] w-[75rem]"
             />
             <div style={overlayStyle}>
-              <p className="text-3xl w-1/2">Step into the future with the all-new Apple Vision Goggles! Experience cutting-edge technology and explore the limitless possibilities of augmented reality with this revolutionary device.</p>
+              <p className="lg:text-3xl md:text-2xl text-xs w-1/2">Step into the future with the all-new Apple Vision Goggles! Experience cutting-edge technology and explore the limitless possibilities of augmented reality with this revolutionary device.</p>
               <button type="button" className="bg-black text-white hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Go to Shop</button>
             </div>
           </div>
@@ -60,7 +60,7 @@ const Carousel = ({ images }) => {
               className="rounded-3xl max-h-[39rem] w-[75rem]"
             />
             <div style={overlayStyle}>
-            <p className="text-3xl w-1/2">Level up your gaming experience with our unbeatable deals on gaming PCs and custom-built rigs! Unlock your gaming potential and dominate the virtual world like never before.</p>
+            <p className="lg:text-3xl md:text-2xl text-xs w-1/2">Level up your gaming experience with our unbeatable deals on gaming PCs and custom-built rigs! Unlock your gaming potential and dominate the virtual world like never before.</p>
               <button type="button" className="bg-black text-white hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800">Go to Shop</button>
             </div>
           </div>

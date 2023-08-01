@@ -57,7 +57,8 @@ export const Featured = () => {
 
   return (
     <div ref={ref} className={`fade-in ${inView ? 'visible' : ''}`}>
-    <div  style={{margin: "0 0 0 15%", width:"70%",  display:"flex", flexDirection:"row"}}>
+    <div  style={{margin: "0 0 0 15%", width:"70%"}}
+    className='w-4/12 md:w-6/12 lg:w-8/12 border-lg min-w-[450px] min-h-[15vh]  flex flex-col gap-10 md:flex-col lg:flex-row'>
         
         {/* {products.map((product) => (
           <Card
@@ -73,7 +74,7 @@ export const Featured = () => {
           />
         ))} */}
 {products.map((product) => (
-<div class="group my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-[35px] border ml-2 gap-5 border-gray-100 bg-white shadow-md" key={product._id}>
+<div class="group my-10 flex w-full max-w-xs flex-col overflow-hidden rounded-[25px] border ml-2 gap-5 border-gray-100 bg-white shadow-md" key={product._id}>
   <a class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
     <img class="peer absolute top-0 right-0 h-full w-fit object-cover" src={product.images[0]}  alt="product image" />
     <img class="peer absolute top-0 -right-96 h-full w-full object-cover transition-all delay-100 duration-1000 hover:right-0 peer-hover:right-0" src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8c25lYWtlcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="product image" />
@@ -99,7 +100,7 @@ export const Featured = () => {
       <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
       </svg>
-      Add to cart</a
+      Buy</a
     >
   </div>
 </div>

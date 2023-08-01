@@ -16,8 +16,9 @@ import Stripe from './components/stripe';
 import { SuccessPayment } from './pages/PaymentPages/SuccessPayment';
 import { ErrorPayment } from './pages/PaymentPages/ErrorPayment';
 import axios from 'axios';
-
+import Blog from './pages/Blog/Blog';
 import SecondFooter from './components/Footer/SecondFooter';
+import Contact from './pages/ContactUs/Contact';
 
 
 const App = () => {
@@ -34,9 +35,9 @@ const App = () => {
         })
     }
     fetchCustomer()
-  }, [])
+  }, []);
 
-  console.log("currentUser:", customer)
+  
 
   return (
     <Router>
@@ -55,6 +56,7 @@ const App = () => {
         <Route path="/myprofile" component={MyProfile}/>
         <Route path="/login" component={Login}/> 
         <Route path="/blog" component={Blog}/>
+        <Route path="/contact" component={Contact}/>
         <Route path="/successpayment" component={SuccessPayment}/>  
         <Route path="*" component={ErrorPayment}/>
        </Switch>

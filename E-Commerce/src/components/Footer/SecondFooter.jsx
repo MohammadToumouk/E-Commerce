@@ -102,8 +102,8 @@ export default function SecondFooter() {
     class="h-[250px] min-h-[1em] w-px self-stretch bg-gradient-to-tr from-transparent via-neutral-500 to-transparent opacity-20 dark:opacity-100">
     </div>
     
-    <img src="https://i.ibb.co/vm8jcj2/Download-on-the-App-Store-Get-it-on-Google-Play-Button.png" alt="Download-on-the-App-Store-Get-it-on-Google-Play-Button"
-     border="0"  width={"350px"} style={{cursor:"pointer"}}   />
+   {/*  <img src="https://i.ibb.co/vm8jcj2/Download-on-the-App-Store-Get-it-on-Google-Play-Button.png" alt="Download-on-the-App-Store-Get-it-on-Google-Play-Button"
+     border="0"  width={"250px"} style={{cursor:"pointer"}}   /> */}
 
     </div>
 

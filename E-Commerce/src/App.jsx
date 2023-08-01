@@ -60,6 +60,7 @@ const App = () => {
         <Route path="/successpayment" component={SuccessPayment}/>  
         <Route path="*" component={ErrorPayment}/>
        </Switch>
+
       <SecondFooter />
     </Router>
   );

@@ -20,7 +20,7 @@ export const Banner = () => {
 
   return (
     <FadeInOnScroll>
-      <div className="w-8/12 border-lg flex flex-col items-center justify-center m-auto rounded-[35px] relative overflow-hidden">
+      <div className="w-10/12 md:w-10/12 lg:w-8/12 min-w-[360px] min-h-[20vh] border-lg flex flex-col items-center justify-center m-auto rounded-[35px] relative overflow-hidden">
         <div className="relative">
           <img
             src='https://wallpaperaccess.com/full/745776.jpg'
@@ -28,7 +28,7 @@ export const Banner = () => {
             alt="Banner"
           />
           <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center">
-            <p className={`text-6xl text-white mb-10 transition-all duration-500 ${isHovered ? 'opacity-75' : ''}`}>
+            <p className={`lg:text-4xl md:text-3xl text-2xl text-white mb-10 transition-all duration-500 ${isHovered ? 'opacity-75' : ''}`}>
               Explore Allienware's Hottest Deals
             </p>
             <button

@@ -53,3 +53,20 @@
 .signup-form button[type='submit']:hover {
     background-color: #0056b3;
 }
+
+.signup-container p {
+    text-align: center;
+    margin-top: 20px;
+    color: #666666;
+}
+
+.signup-container a {
+    margin-top: 30px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.signup-container a:hover {
+    margin-top: 20px;
+    text-decoration: underline;
+}

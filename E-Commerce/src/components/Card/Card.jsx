@@ -84,7 +84,7 @@ const Card = ({ available, imageSrc, productName, price, color, currency, produc
           Details
         </Link>
         {available && (
-          <
+          <NavLink
           to={`/shop/${productId}`} className="add-to-cart" >
             <Button>
               Buy

@@ -12,6 +12,8 @@ import {
 import { Button } from "../Button/button";
 import { LogOutIcon, UserIcon, XIcon } from 'lucide-react';
 
+import { useToast } from "../shadcn/use-toast"
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,9 +22,15 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../shadcn/dropdown-menu";
+import { useState,useEffect,useRef } from 'react';
 
 
-const Navbar = ({customer, shoppingList}) => {
+const Navbar = ({customer, shoppingList, setShoppingList}) => {
+  const { toast } = useToast()
+  const [productId, setProductId] = useState()
+  
+  const targetElRef = useRef(null);
+  const triggerElRef = useRef(null);
        
     const calculateTotalBalance = () => {
       let totalBalance = 0;
@@ -161,130 +169,7 @@ const Navbar = ({customer, shoppingList}) => {
             <Button variant="ghost" className="w-full">View Cart</Button>
             </>
             )}
-            <Button className="w-full">Checkout</Button>
-          </HoverCardContent>
-        </HoverCard>
-        )}
-
-        <Link to="/login" className="login ml-5">
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQCX5_wYEa6hyWoqSBOaPbaHw5Ff8Ljp0WcA&usqp=CAU"
-            alt="Login"
-          />
-        </Link>
-        </div>
-        )}
-      
-      </ul>
-    </div>
-  </div>
-</nav>
-
-
-
-    /* <nav className="navigation-bar" style={{ fontFamily: 'Varela, sans-serif' }}>
-      <ul className="navigation-links">
-        <li className="navigation-item">
-          <Link to="/" className="navigation-link">
-            Home
-          </Link>
-        </li>
-        <li className="navigation-item">
-          <Link to="/blog" className="navigation-link">
-            Blog
-          </Link>
-        </li>
-        <li className="navigation-item-center">
-          EMAzing Online Store
-        </li>
-        <li className="navigation-item">
-          <Link to="/shop" className="navigation-link">
-            Shop
-          </Link>
-        </li>
-        <li className="navigation-item">
-          <Link to="/about" className="navigation-link">
-            About
-          </Link>
-        </li>
-        {!customer ? (
-        <Button className="navigation-login-button">
-          <Link to="/login" className="login">
-            Login
-          </Link>
-        </Button>
-        ) : (
-          
-        <div className="shopping-and-login">
-        {customer?.customer?._id === shoppingList?.cart?.customer && (
-        <HoverCard>
-          {!shoppingList?.cart?.items?.length < 1 ? ( 
-          <HoverCardTrigger className="shopping-cart-container">
-            <div className="shopping-bag-image cursor-pointer">
-              <img 
-                src="https://cdn-icons-png.flaticon.com/512/7596/7596622.png"
-                alt="ShoppingCart"
-              />
-            </div>
-            <div>
-                {shoppingList?.cart?.items?.length}
-            </div>
-            </HoverCardTrigger>
-          ) : (
-            <HoverCardTrigger>
-              <div className="shopping-bag-image cursor-pointer">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/7596/7596622.png"
-                    alt="ShoppingCart"
-                  />
-                </div>
-            </HoverCardTrigger>
-          )}
-          <HoverCardContent className="w-full h-full">
-            <h1 className="shopping-cart" >Shopping Cart</h1>
-            {shoppingList?.cart?.items?.length === 0 ? (
-              <div className="shopping-cart-empty">Your cart is empty</div> ) : (
-                <>
-              {shoppingList?.cart?.items?.map((item) => (
-                
-                <div className="shopping-cart-item-container" key={item._id}>
-                  <div className="shopping-cart-item" >
-                    <img 
-                      src={item.images}
-                      alt="Product"
-                      className='shopping-cart-product-image'
-                    />
-                    <div>
-                    <div className="shopping-cart-product-name">{item.product.name}</div>
-                  <div className="shopping-cart-product-price">{item.color}{"   $"}{item.price * item.quantity}</div>
-                    </div>
-                    <div className="shopping-cart-quantity">
-                      {item.quantity} 
-                    {/* <input 
-                      type="number"
-                      className='shopping-cart-quantity-input'
-                      min="1"
-                      placeholder={item.quantity}
-                      onChange={(event) => handleQuantityChange(event, item.product._id)}
-                    /> */}
-                  </div>
-                   <XIcon 
-                      className="shopping-cart-trash-icon text-red-600 cursor-pointer"
-                      style={{ width: '15px', height: '15px' }}
-                      onClick={() => handleRemoveFromCart( item.product._id)}
-                   />
-                  </div>
-                </div>
-                ))
-              }
-              <div className="shopping-cart-total">
-                <div className="shopping-cart-total-price">Total: </div>
-                <div className="shopping-cart-total-price">{"$ "}{calculateTotalBalance()}</div>
-              </div>
-            <Button variant="ghost" className="w-full">View Cart</Button>
-            </>
-            )}
-            <Button className="w-full">Checkout</Button>
+           <Button className="w-full">Checkout</Button>
           </HoverCardContent>
         </HoverCard>
         )}
@@ -298,7 +183,7 @@ const Navbar = ({customer, shoppingList}) => {
           <DropdownMenuContent>
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <Link to="/login" className="login">
+            <Link to="/myprofile" className="login">
               <DropdownMenuItem>
                 <UserIcon className="mr-2" />
                 Profile
@@ -312,13 +197,20 @@ const Navbar = ({customer, shoppingList}) => {
             </Link>
           </DropdownMenuContent>
         </DropdownMenu>
-        
 
+       
         </div>
         )}
+      
       </ul>
-    </nav> */
-  );
+    </div>
+  </div>
+</nav>
+
+);
 }
 
+
 export default Navbar;
+
+

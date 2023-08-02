@@ -12,8 +12,6 @@ const {
 stripeRouter.use(express.static("public"));
 stripeRouter.use(bodyParser.json());
 
-const stripeURL = import.meta.env.VITE_STRIPE_URL;
-
 async function createStripePrice(productID, price, currency) {
   try {
     const priceObj = await stripe.prices.create({

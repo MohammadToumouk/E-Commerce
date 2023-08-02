@@ -4,21 +4,42 @@ import './ShopPage.css';
 import Sidebar from '../../components/sidebar/sidebar';
 import Card from '../../components/Card/Card';
 
+import axios from 'axios';
+
+const baseUrl = import.meta.env.VITE_BACKEND_URL
+
 const ShopPage = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [products, setProducts] = useState([]);
 
 
   useEffect(() => {
-    fetch('http://localhost:3069/product/')
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data.products);
-      })
-      .catch((error) => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get((baseUrl || "") + '/api/product/');
+        setProducts(response.data.products);
+      } catch (error) {
         console.error('Error fetching data:', error);
-      });
+      }
+    };
+
+    fetchProducts();
+
+        // fetch((baseUrl || "") + '/api/product/')
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     setProducts(data.products);
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error fetching data:', error);
+    //   });
   }, []);
+
+
+
+
+
+ 
 
   return (
     <div className="shop-page">

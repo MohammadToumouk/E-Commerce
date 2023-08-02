@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import axios from "axios";
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
+
   export function Recentorders() {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
       const fetchOrders = async () => {
         await axios
-          .get("http://localhost:3069/order")
+          .get(baseUrl + "/api/order")
           .then((Response) => {
             setOrders(Response.data.orders);
             console.log(Response.data.orders[0]);

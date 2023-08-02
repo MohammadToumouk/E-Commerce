@@ -9,6 +9,8 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
+  const baseUrl = import.meta.env.VITE_BACKEND_URL
+
   const submit = async (e) => {
     e.preventDefault();
 
@@ -18,7 +20,7 @@ const Login = () => {
 
     try {
       await axios.post(
-        'http://localhost:3069/customer/login',
+        (baseUrl || "") + '/api/customer/login',
         {
           email: email,
           password: password

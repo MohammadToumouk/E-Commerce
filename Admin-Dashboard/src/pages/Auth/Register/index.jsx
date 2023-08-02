@@ -11,6 +11,8 @@ import { Button } from '@/components/ui/button';
 
 import { NavLink } from 'react-router-dom';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
+
 const formSchema = z.object({
     name: z.string().min(2).max(100),
     email: z.string().email(),
@@ -49,7 +51,7 @@ const Register = () => {
         }
             
         try {
-            await axios.post('http://localhost:3069/user/register',{
+            await axios.post(baseUrl + '/api/user/register',{
                 name: data.name,
                 email: data.email,
                 password: data.password

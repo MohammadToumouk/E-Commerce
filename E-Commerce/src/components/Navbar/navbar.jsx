@@ -24,7 +24,7 @@ import {
 } from "../shadcn/dropdown-menu";
 import { useState,useEffect,useRef } from 'react';
 
-
+const baseUrl = import.meta.env.VITE_BACKEND_URL
 
 
 const stripePromise = loadStripe('pk_test_51N2Y22KydIDbyPlEkUYJimKUkEtYf7AJD0ef5XZ5JPRbdJjsrFnKTcgDK0rw3yIT2LJK4LnLzhNXz6NF9VNwGyTn00GEMHCqtJ');
@@ -47,7 +47,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
     };
 
     const handleLogout = async () => {
-      await axios.post( 'http://localhost:3069/customer/logout',{headers: {"Cookie": ""}}, {withCredentials: true })
+      await axios.post((baseUrl || "")  + '/api/customer/logout',{headers: {"Cookie": ""}}, {withCredentials: true })
         .then((response) => {
           console.log(response)
         })
@@ -60,18 +60,19 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
 
     const [shoppingCart, setShoppingCart] = useState();
 
+    const fetchShoppingCart = async () => {
+      await axios
+        .get((baseUrl || "") + "/api/cart", { withCredentials: true })
+        .then((response) => {
+          setShoppingCart(response.data);
+          console.log(shoppingCart?.cart?.items);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
     useEffect(() => {
-      const fetchShoppingCart = async () => {
-        await axios
-          .get("http://localhost:3069/cart", { withCredentials: true })
-          .then((response) => {
-            setShoppingCart(response.data);
-            console.log(shoppingCart?.cart?.items);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      };
+      
       fetchShoppingCart();
     }, []);
   
@@ -79,7 +80,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
 
     const handleRemoveFromCart = async (productId, name) => {
       try {
-        const response = await axios.delete(`http://localhost:3069/cart/remove/${productId}`,
+        const response = await axios.delete((baseUrl || "") + `/api/cart/remove/${productId}`,
         {
           withCredentials: true,
         },
@@ -109,8 +110,8 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
 
     const handleCheckOut = async () => {
       try {
-        const response = await axios.post(
-          "http://localhost:3069/stripe/checkout/create-checkout-session",
+        const response = await axios.post((baseUrl || "") +
+          "/api/stripe/checkout/create-checkout-session",
           {
             shoppingCart: {
               cart: { items: shoppingCart?.cart?.items, _id: shoppingCart?.cart?._id },
@@ -127,10 +128,12 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
     
         const data = response.data;
         const stripeSessionUrl = data.url;
+        await  fetchShoppingCart();
     
         // Redirect the user to the Stripe Checkout page
       //  window.location.reload();
         window.location.href = stripeSessionUrl;
+       
       } catch (err) {
         console.error(err.message);
       }
@@ -142,7 +145,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
     
 <nav className="bg-white border-gray-200 dark:bg-gray-900">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="http://localhost:5173" className="flex items-center">
+    <a href="http://localhost:5174" className="flex items-center">
         <img src="https://i.ibb.co/2h36knH/logo.jpg" className="h-16 mr-3" alt="Emazing Logo" />
         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
     </a>

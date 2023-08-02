@@ -6,13 +6,14 @@ import axios from 'axios'
 import StoreCombobox from '../StoreCombobox'
 import { LogOut, LogOutIcon, PowerIcon, ActivityIcon } from 'lucide-react'
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
 
 const Sidebar = ({user}) => {
 
   console.log("currentUser:", user)
 
   const handleLogout = async () => {
-    await axios.post('http://localhost:3069/user/logout',{headers: {"Cookie": ""}}, {withCredentials: true })
+    await axios.post(baseUrl + '/api/user/logout',{headers: {"Cookie": ""}}, {withCredentials: true })
       .then((response) => {
         console.log(response)
       })

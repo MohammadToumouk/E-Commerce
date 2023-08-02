@@ -13,13 +13,15 @@ import { DataTable } from '@/components/ui/data-table'
 import { OrderColumns } from "../../components/Tables/columns"
 import { formatter } from '@/lib/utils'
 import Sidebar from '@/components/Sidebar'
+
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
  
-const Orders = () => {
+const Orders = ({user}) => {
   const [orders, setOrders] = useState()
 
   useEffect(() => {
     const fetchOrders = async () => {
-        await axios.get('http://localhost:3069/order', { withCredentials: true })
+        await axios.get(baseUrl + '/api/order', { withCredentials: true })
           .then((response) => {
             setOrders(response.data)
           })
@@ -48,7 +50,7 @@ const Orders = () => {
 
   return (
     <div className='orders-container'>
-      <Sidebar />
+      <Sidebar user={user}/>
       <div className='orders-content'>
         <div className='orders-header'>
           <TitleHeadings 

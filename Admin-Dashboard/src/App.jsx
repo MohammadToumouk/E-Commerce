@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 import Auth from './pages/Auth'
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import Dashboard from './pages/Dashboard'
 import Products from './pages/Products'
 import Orders from './pages/Orders'
@@ -16,13 +16,14 @@ import EditProduct from './pages/EditProduct'
 import { Toaster } from './components/ui/toaster'
 import EditOrder from './pages/EditProduct copy'
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
 
 function App() {
   const [user, setUser] = useState()
 
   useEffect(() => {
     const fetchUser = async () => {
-      await axios.get('http://localhost:3069/user/profile', { withCredentials: true })
+      await axios.get(baseUrl + '/api/user/profile', { withCredentials: true })
         .then((response) => {
           setUser(response.data)
         })
@@ -32,7 +33,8 @@ function App() {
     }
     fetchUser()
     if (user) {
-      window.location.href = "/dashboard"
+      <Navigate to="/dashboard" />
+      //window.location.href = "/dashboard"
     }
   }, [])
 
@@ -45,12 +47,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home user={user}/>} />
         <Route path="/dashboard" element={<Dashboard user={user} />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/products" element={<Products user={user} />} />
         <Route path="/products/add-new-product" element={<CreateProduct  />} />
         <Route path="/products/:id" element={<EditProduct />} />
         <Route path="/orders/:id" element={<EditOrder />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/settings//*" element={<Settings />} /> 
+        <Route path="/orders" element={<Orders user={user} />} />
+        <Route path="/settings//*" element={<Settings user={user} />} /> 
       </Routes>
       </>
     )

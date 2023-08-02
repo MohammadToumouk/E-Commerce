@@ -5,13 +5,13 @@ import Privacy from '../src/pages/Privacy/Privacy';
 import AboutUs from '../src/pages/AboutUs/AboutUs';
 import ShopPage from '../src/pages/ShopPage/ShopPage';
 import Navbar from './components/Navbar/navbar';
-import Footer from './components/Footer/Footer';
+//import Footer from './components/Footer/Footer';
 import ProductPage from './pages/ProductPage/ProductPage';
-import './app.css';
+//import './app.css';
 import Login from './components/Login/login';
 import Signup from './components/Signup/signup';
-import MyProfile from './pages/MyProfile/MyProfile';
-import Stripe from './components/stripe';
+import MyProfile from './pages/MyProfile/myprofile';
+//import Stripe from './components/stripe';
 import { SuccessPayment } from './pages/PaymentPages/SuccessPayment';
 import { ErrorPayment } from './pages/PaymentPages/ErrorPayment';
 import axios from 'axios';
@@ -22,14 +22,16 @@ import Blog from './pages/Blog/Blog';
 import SecondFooter from './components/Footer/SecondFooter';
 import Contact from './pages/ContactUs/Contact';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
 
 const App = () => {
   const [customer, setCustomer] = useState()
   const [shoppingList, setShoppingList] = useState()
-   
+     
   useEffect(() => {
     const fetchShoppingCart = async () => {
-      await axios.get('http://localhost:3069/cart', { withCredentials: true })
+      
+      await axios.get((baseUrl || "") + '/api/cart', { withCredentials: true })
         .then((response) => {
           setShoppingList(response.data)
          // console.log(shoppingList.cart)
@@ -43,7 +45,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchCustomer = async () => {
-      await axios.get('http://localhost:3069/customer/profile', { withCredentials: true })
+      await axios.get((baseUrl || "") + '/api/customer/profile', { withCredentials: true })
         .then((response) => {
           setCustomer(response.data)
         })

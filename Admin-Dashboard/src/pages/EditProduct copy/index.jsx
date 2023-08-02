@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button"
 import { TextareaWithLabel } from '@/components/Textarea'
 import UploadWidget from '@/components/UploadWidget'
 
-
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
  
 const EditOrder = () => {
   const orderId = useParams();
@@ -35,7 +35,7 @@ const EditOrder = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-        await axios.get( `http://localhost:3069/orders/${orderId.id}`, { withCredentials: true })
+        await axios.get(baseUrl + `/api/orders/${orderId.id}`, { withCredentials: true })
           .then((response) => {
             setProduct(response.data)
             setBrand(response.data.product.brand)
@@ -61,7 +61,7 @@ const EditOrder = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.put(`http://localhost:3069/product/${productId.id}`, {
+      const response = await axios.put(baseUrl + `/api/product/${productId.id}`, {
         name: name,
         images: [imageUrl],
         price: parseInt(price),

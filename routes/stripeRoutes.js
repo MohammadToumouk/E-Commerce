@@ -59,8 +59,9 @@ stripeRouter.post(
     if (lineItems.length === 0) {
       // Handle empty cart here (send an error response or redirect to cart page)
       return res.status(400).json({ error: "The shopping cart is empty." });
+      
     }
-        
+    
   
         // Create the Stripe Checkout session with the cart items
         const session = await stripe.checkout.sessions.create({
@@ -72,21 +73,21 @@ stripeRouter.post(
           
           
           mode: "payment",
-          success_url: `${"http://localhost:5173/successpayment"}?success=true`,
-          cancel_url: `${"http://localhost:5173/failed"}?canceled=true`,
+          success_url: `${"http://localhost:5174/successpayment"}?success=true`,
+          cancel_url: `${"http://localhost:5174/failed"}?canceled=true`,
         });
        res.json({url: session.url}) 
        // res.redirect( session.url);
         console.log(session.url)
       } catch (error) {
-        
+        console.log(error)
         // Pass the error to the error handling middleware
         next(error);
-        console.log(error)
+        
       //  console.log(req.body.shoppingList.cart._id);
       //  console.log(req.body.shoppingCart.cart)
    //   console.log(req.body.shoppingCart.cart?.items[0].quantity)
-        console.log(error)
+        
       
       }
     }

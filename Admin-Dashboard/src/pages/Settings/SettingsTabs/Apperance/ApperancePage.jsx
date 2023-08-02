@@ -28,11 +28,13 @@ const UsersTable = () => {
 
   const totalPages = Math.ceil(totalUsers / usersPerPage);
 
+  const baseUrl = import.meta.env.VITE_BACKEND_URL;
+
   // Fetch users from the backend API
   const fetchUsers = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:3069/user?page=${currentPage}&perPage=${usersPerPage}`,
+      const response = await axios.get(baesUrl +
+        `/api/user?page=${currentPage}&perPage=${usersPerPage}`,
         {
           withCredentials: true,
         }
@@ -81,7 +83,7 @@ const UsersTable = () => {
     // Send the role update request to the server
     axios
       .put(
-        `http://localhost:3069/user/${userId}`,
+        baseUrl + `/api/user/${userId}`,
         { role: newRole },
         { withCredentials: true }
       )

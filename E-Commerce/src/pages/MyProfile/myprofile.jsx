@@ -1,5 +1,20 @@
+
 import React, { useState, useEffect } from 'react';
-import './Myprofile.css';
+import './myprofile.css'
+
+
+const initialProfileItems = [
+  { label: 'Name', value: 'John', isEditing: false },
+  { label: 'Last Name', value: 'Doe', isEditing: false },
+  { label: 'Email', value: 'john.doe@example.com', isEditing: false },
+  { label: 'Phone', value: '123-456-7890', isEditing: false },
+  {
+    label: 'Address',
+    value: { street: '123 Main Street', city: 'Detroit', state: 'USA', postalCode: '' },
+    isEditing: false,
+  },
+];
+
 
 const formatAddress = (address) => {
   const { street, city, state, postalCode } = address;

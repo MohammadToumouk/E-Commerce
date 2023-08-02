@@ -4,13 +4,15 @@ import './ShopPage.css';
 import Sidebar from '../../components/sidebar/sidebar';
 import Card from '../../components/Card/Card';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
+
 const ShopPage = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [products, setProducts] = useState([]);
 
 
   useEffect(() => {
-    fetch('http://localhost:3069/product/')
+    fetch(baseUrl + '/api/product/')
       .then((response) => response.json())
       .then((data) => {
         setProducts(data.products);

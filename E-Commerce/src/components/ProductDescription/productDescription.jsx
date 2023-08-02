@@ -7,6 +7,8 @@ import { Button } from '../Button/button';
 import { ToastAction } from "../shadcn/toast"
 import { useToast } from "../shadcn/use-toast"
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
+
 const ProductDescription = ({ product, setShoppingList, shoppingList }) => {
   const { toast } = useToast()
 
@@ -38,7 +40,7 @@ const ProductDescription = ({ product, setShoppingList, shoppingList }) => {
 
   const handleAddToCart = async () => {
     try {
-      const response = await axios.post('http://localhost:3069/cart/add', {
+      const response = await axios.post(baseUrl + '/api/cart/add', {
         productId: product._id,
         brand: product.brand,
         name: product.name,

@@ -9,6 +9,7 @@ import '../FadeInScroll.css'
 
 import { NavLink } from 'react-router-dom';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Card = ({ available, imageSrc, productName, price, color, currency, productId, style }) => {
   const [selectedColor, setSelectedColor] = useState(color);
@@ -30,7 +31,7 @@ const Card = ({ available, imageSrc, productName, price, color, currency, produc
 
   // const handleAddToCart = async () => {
   //   try {
-  //     const response = await axios.post('http://localhost:3069/cart/add', {
+  //     const response = await axios.post(baseUrl + '/api/cart/add', {
         
   //       productId: productId,
   //       productName: productName,

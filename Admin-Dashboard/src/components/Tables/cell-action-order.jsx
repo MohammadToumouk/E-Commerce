@@ -7,13 +7,15 @@ import { Edit, MoreHorizontal, Trash } from "lucide-react"
 import { Link, NavLink } from "react-router-dom"
 import axios from "axios"
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
+
 export const CellActionOrder = ({data, setProducts}) => {
     
     console.log("data:", data)
 
     const handleRemoveFromCart = async () => {
         try {
-            const response = await axios.delete(`http://localhost:3069/orders/${data.id}`,
+            const response = await axios.delete(baseUrl + `/api/orders/${data.id}`,
                 { withCredentials: true },
             )
             console.log("responseRemove", response)

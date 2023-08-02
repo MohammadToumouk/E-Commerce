@@ -24,6 +24,7 @@ import {
 } from "../shadcn/dropdown-menu";
 import { useState,useEffect,useRef } from 'react';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
 
 const Navbar = ({customer, shoppingList, setShoppingList}) => {
   const { toast } = useToast()
@@ -41,7 +42,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
     };
 
     const handleLogout = async () => {
-      await axios.post('http://localhost:3069/customer/logout',{headers: {"Cookie": ""}}, {withCredentials: true })
+      await axios.post(baseUrl + '/api/customer/logout',{headers: {"Cookie": ""}}, {withCredentials: true })
         .then((response) => {
           console.log(response)
         })
@@ -55,7 +56,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
 
     const handleRemoveFromCart = async (productId, name) => {
       try {
-        const response = await axios.delete(`http://localhost:3069/cart/remove/${productId}`,
+        const response = await axios.delete(baseUrl + `/api/cart/remove/${productId}`,
         {
           withCredentials: true,
         },

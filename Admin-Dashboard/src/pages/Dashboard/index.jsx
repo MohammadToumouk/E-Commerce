@@ -8,6 +8,7 @@ import { SearchBar } from "@/components/Searchbar/SearchBar";
 import axios from "axios";
 import Sidebar from "@/components/Sidebar";
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Dashboard = ({user}) => {
 
@@ -18,7 +19,7 @@ const Dashboard = ({user}) => {
 
   useEffect(() => {
     const fetchCustomers = async () => {
-      await axios.get('http://localhost:3069/customer', {withCredentials : true})
+      await axios.get(baseUrl + '/api/customer', {withCredentials : true})
       .then((response) => {
         setCustomers(response.data)
         console.log(response.data)
@@ -29,7 +30,7 @@ const Dashboard = ({user}) => {
   }, [])
   useEffect(() => {
     const fetchSales = async () => {
-      await axios.get('http://localhost:3069/order', {withCredentials : true})
+      await axios.get(baseUrl + '/api/order', {withCredentials : true})
       .then((response) => {
         setSales(response.data.orders)
         console.log(response.data)

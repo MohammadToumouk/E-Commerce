@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Bar, BarChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import axios from "axios";
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
+
 export function Overview() {
   const [ordersPipeline, setOrdersPipeline] = useState([]);
   const [monthName, setMonthName] = useState();
@@ -10,7 +12,7 @@ export function Overview() {
   useEffect(() => {
     const fetchOrdersByMonth = async () => {
       await axios
-        .get("http://localhost:3069/order/sort", { withCredentials: true })
+        .get(baseUrl + "/api/order/sort", { withCredentials: true })
         .then((response) => {
           setOrdersPipeline(response.data);
           for (let i = 0; i < ordersPipeline.length; i++) {

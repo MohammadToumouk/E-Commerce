@@ -22,6 +22,8 @@ import { Button } from "@/components/ui/button"
 import { TextareaWithLabel } from '@/components/Textarea'
 import UploadWidget from '@/components/UploadWidget'
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
+
 const formSchema = z.object({
   name: z.string().min(3).max(20),
   brand: z.string().min(3).max(20),
@@ -58,7 +60,7 @@ const CreateProduct = () => {
 
   const onSubmit = async (values) => {
     try {
-      const response = await axios.post('http://localhost:3069/product/', {
+      const response = await axios.post(baseUrl + '/api/product/', {
         name: values.name,
         brand: values.brand,
         images: values.images[0]["url"],

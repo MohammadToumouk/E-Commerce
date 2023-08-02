@@ -15,12 +15,14 @@ import { formatter } from '@/lib/utils'
 import Sidebar from '@/components/Sidebar'
 import { Link } from 'react-router-dom'
  
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
+
 const Products = () => {
   const [products, setProducts] = useState()
 
   useEffect(() => {
     const fetchProducts = async () => {
-        await axios.get('http://localhost:3069/product', { withCredentials: true })
+        await axios.get(baseUrl + '/api/product', { withCredentials: true })
           .then((response) => {
             setProducts(response.data)
           })

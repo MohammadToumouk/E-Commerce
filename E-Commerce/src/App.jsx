@@ -32,7 +32,7 @@ const App = () => {
       await axios.get('http://localhost:3069/cart', { withCredentials: true })
         .then((response) => {
           setShoppingList(response.data)
-          console.log(shoppingList.cart)
+         // console.log(shoppingList.cart)
         })
         .catch((error) => {
           console.log(error)

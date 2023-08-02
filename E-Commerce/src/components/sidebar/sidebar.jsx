@@ -137,6 +137,7 @@ const Sidebar = ({ setFilteredProducts, products }) => {
             <label key={index}>
               <input
                 type="checkbox"
+                className='w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
                 checked={selectedCategories.includes(category)}
                 onChange={() =>
                   setSelectedCategories((prevCategories) =>
@@ -159,6 +160,7 @@ const Sidebar = ({ setFilteredProducts, products }) => {
             <label key={index}>
               <input
                 type="checkbox"
+                className='w-4 h-4 text-teal-600 bg-gray-100 border-gray-300 rounded focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600'
                 checked={selectedBrands.includes(brand)}
                 onChange={() =>
                   setSelectedBrands((prevBrands) =>

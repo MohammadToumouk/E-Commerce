@@ -58,7 +58,7 @@ export const Featured = () => {
   return (
     <>
     
-    <div ref={ref} className={`fade-in ${inView ? 'visible' : ''} flex lg:justify-center md:justify-center justify-center w-10/12 m-0 p-0 `}>
+    <div ref={ref} className={`fade-in ${inView ? 'visible' : ''} flex lg:justify-center md:justify-center justify-center w-7/12  p-0 `}>
     <div 
     className='w-4/12 md:w-6/12 lg:w-8/12 border-lg min-w-[250px] min-h-[15vh] ml-8 flex flex-col gap-5 md:flex-col lg:flex-row'>
         

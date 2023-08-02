@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom';
-import '../Navbar/navbar.css';
-import Collapse from 'flowbite/lib/esm/components/collapse';
-import axios from 'axios';
+import { Link } from "react-router-dom";
+import "../Navbar/navbar.css";
+import Collapse from "flowbite/lib/esm/components/collapse";
+import axios from "axios";
 
 import {
   HoverCard,
@@ -10,7 +10,10 @@ import {
 } from "../shadcn/hover-card";
 
 import { Button } from "../Button/button";
-import { LogOutIcon, UserIcon, XIcon } from 'lucide-react';
+
+import { LogOutIcon, UserIcon, XIcon } from "lucide-react";
+import { loadStripe } from '@stripe/stripe-js';
+import { Elements, CardElement } from '@stripe/react-stripe-js'; 
 
 import { useToast } from "../shadcn/use-toast";
 
@@ -22,71 +25,126 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../shadcn/dropdown-menu";
-import { useState,useEffect,useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
+
+const stripePromise = loadStripe('pk_test_51N2Y22KydIDbyPlEkUYJimKUkEtYf7AJD0ef5XZ5JPRbdJjsrFnKTcgDK0rw3yIT2LJK4LnLzhNXz6NF9VNwGyTn00GEMHCqtJ');
+const secretkey = "sk_test_51N2Y22KydIDbyPlEtk5uN1TDRkv0gMH3o7RiafTXgF2YoUWZUzkp01HhHb6SjTb4qWa77iukwfyMKleYcdDV84xw00TBDzokiB";
 
 
-const Navbar = ({customer, shoppingList, setShoppingList}) => {
-  const { toast } = useToast()
-  
+const Navbar = ({ customer, shoppingList, setShoppingList }) => {
+  const { toast } = useToast();
+
+
   const targetElRef = useRef(null);
   const triggerElRef = useRef(null);
 
-       
-    const calculateTotalBalance = () => {
-      let totalBalance = 0;
-      shoppingList?.cart?.items?.forEach((item) => {
-        totalBalance += item.price * item.quantity;
-      });
-      return totalBalance;
-    };
+  const calculateTotalBalance = () => {
+    let totalBalance = 0;
+    shoppingList?.cart?.items?.forEach((item) => {
+      totalBalance += item.price * item.quantity;
+    });
+    return totalBalance;
+  };
 
-    const handleLogout = async () => {
-      await axios.post('http://localhost:3069/customer/logout',{headers: {"Cookie": ""}}, {withCredentials: true })
+  // the code i just added
+  const [shoppingCart, setShoppingCart] = useState();
+
+  useEffect(() => {
+    const fetchShoppingCart = async () => {
+      await axios
+        .get("http://localhost:3069/cart", { withCredentials: true })
         .then((response) => {
-          console.log(response)
+          setShoppingCart(response.data);
+          console.log(shoppingCart?.cart?.items);
         })
         .catch((error) => {
-          console.log(error)
-        })
-  
-      window.location.href = "/shop"
-    }
+          console.log(error);
+        });
+    };
+    fetchShoppingCart();
+  }, []);
+
+  const handleLogout = async () => {
+    await axios
+      .post(
+        "http://localhost:3069/customer/logout",
+        { headers: { Cookie: "" } },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    window.location.href = "/shop";
+  };
+
+ 
+    const handleCheckOut = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3069/stripe/checkout/create-checkout-session",
+          {
+            shoppingCart: {
+              cart: { items: shoppingCart?.cart?.items, _id: shoppingCart?.cart?._id },
+            },
+          },
+          {
+            headers: {
+              'Authorization': `Bearer ${secretkey}`,
+              'Content-Type': 'application/json', 
+            },
+            withCredentials: true,
+          }
+        );
+    
+        const data = response.data;
+        const stripeSessionUrl = data.url;
+    
+        // Redirect the user to the Stripe Checkout page
+        window.location.href = stripeSessionUrl;
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+ /*    useEffect(() =>{
+      handleCheckOut();
+  },[shoppingCart]) */
   
 
-    const handleRemoveFromCart = async (productId, name) => {
-      try {
-        const response = await axios.delete(`http://localhost:3069/cart/remove/${productId}`,
+  const handleRemoveFromCart = async (productId, name) => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:3069/cart/remove/${productId}`,
         {
           withCredentials: true,
-        },
+        }
       );
 
-        console.log('Response from server:', response.data);
-        //Add any further actions or notifications for successful submission here.
+      console.log("Response from server:", response.data);
+      //Add any further actions or notifications for successful submission here.
 
-        setShoppingList({cart: response.data.cart})
+      setShoppingList({ cart: response.data.cart });
 
-        toast({
-          title: `${name} successfully removed from cart`,
-          // action: (
-          //   <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
-          // ),
+      toast({
+        title: `${name} successfully removed from cart`,
+        // action: (
+        //   <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+        // ),
+      });
 
-        })
-
-        fetchShoppingCart()
-      } catch (error) {
-        // console.error('Error while submitting:', error);// Add error handling or notifications for failed submissions here.
-        // console.log("DataWithError", values)
-        console.log("Error", error)
-      }
-      // console.log("testData", values)
+      fetchShoppingCart();
+    } catch (error) {
+      // console.error('Error while submitting:', error);// Add error handling or notifications for failed submissions here.
+      // console.log("DataWithError", values)
+      console.log("Error", error);
     }
+    // console.log("testData", values)
+  };
 
-
-  return (
-    
-<nav className="bg-white border-gray-200 dark:bg-gray-900">
+  <nav className="bg-white border-gray-200 dark:bg-gray-900">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
     <a href="http://localhost:5173" class="flex items-center">
         <img src="https://i.ibb.co/2h36knH/logo.jpg" class="h-16 mr-3" alt="Emazing Logo" />
@@ -232,5 +290,3 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
 }
 
 export default Navbar;
-
-

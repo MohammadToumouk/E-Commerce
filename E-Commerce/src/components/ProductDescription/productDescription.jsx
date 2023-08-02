@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ProductDescription.css';
+import './productDescription.css';
 
 import axios from 'axios';
 

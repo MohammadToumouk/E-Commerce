@@ -15,7 +15,7 @@ export const Stripe = () => {
   const handlePayment = async () => {
     try {
       const response = await axios.post(
-        baseUrl + '/api/stripe/checkout/create-checkout-session',
+        (baseUrl || "") + '/api/stripe/checkout/create-checkout-session',
         { amount: paymentAmount },
         {
           headers: {
@@ -58,7 +58,7 @@ export const Stripe = () => {
       <h5>$20.00</h5>
       </div>
     </div>
-    <form action={baseUrl + "/api/stripe/checkout/create-checkout-session"} method="POST">
+    <form action={(baseUrl || "") + "/api/stripe/checkout/create-checkout-session"} method="POST">
       <button type="submit">
         Checkout
       </button>

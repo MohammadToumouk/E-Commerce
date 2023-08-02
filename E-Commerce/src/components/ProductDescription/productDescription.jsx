@@ -46,7 +46,7 @@ const ProductDescription = ({ product, setShoppingList, shoppingList }) => {
 
   const handleAddToCart = async () => {
     try {
-      const response = await axios.post(baseUrl + '/api/cart/add', {
+      const response = await axios.post((baseUrl || "") + '/api/cart/add', {
         productId: product._id,
         brand: product.brand,
         name: product.name,

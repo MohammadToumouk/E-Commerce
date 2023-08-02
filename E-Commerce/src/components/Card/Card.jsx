@@ -31,7 +31,7 @@ const Card = ({ available, imageSrc, productName, price, color, currency, produc
 
   // const handleAddToCart = async () => {
   //   try {
-  //     const response = await axios.post(baseUrl + '/api/cart/add', {
+  //     const response = await axios.post((baseUrl || "") + '/api/cart/add', {
         
   //       productId: productId,
   //       productName: productName,

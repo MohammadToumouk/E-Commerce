@@ -14,14 +14,14 @@ const cartRouter = require("./routes/cartRoutes");
 require("dotenv/config");
 const config = require("./utils/config");
 
-const port = process.env.PORT || 3069;
+const port = 3069;
 const app = express();
 app.use(cookieParser());
 app.use(express.json());
 require("./db");
 
 app.use(express.static(path.join(__dirname, "E-Commerce", "dist")));
-app.use(express.static(path.join(__dirname, "Admin-Dashboard", "dist")));
+//app.use(express.static(path.join(__dirname, "Admin-Dashboard", "dist")));
 
 const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
 
@@ -49,7 +49,7 @@ app.use("/api/stripe", stripeRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "E-Commerce", "dist", "index.html"));
-  res.sendFile(path.join(__dirname, "Admin-Dashboard", "dist", "index.html"));
+  //res.sendFile(path.join(__dirname, "Admin-Dashboard", "dist", "index.html"));
 });
 
 app.use(errorHandler);

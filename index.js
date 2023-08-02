@@ -14,7 +14,7 @@ const cartRouter = require("./routes/cartRoutes");
 require("dotenv/config");
 const config = require("./utils/config");
 
-const port = 3069;
+const port = process.env.PORT || 3069;
 const app = express();
 app.use(cookieParser());
 app.use(express.json());

@@ -2,9 +2,11 @@
     max-width: 1000px;
     margin: 100px auto;
     padding: 20px;
+    
 }
 
 .blog-post {
+    
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,6 +22,7 @@
 }
 
 .blog-title {
+    
     font-size: 49px;
     margin-bottom: 50px;
     text-align: center;
@@ -27,6 +30,7 @@
 }
 
 .blog-content {
+    
     font-size: 20px;
     text-align: justify;
     margin-top: 30px;

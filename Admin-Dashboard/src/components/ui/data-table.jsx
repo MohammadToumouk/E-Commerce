@@ -41,7 +41,7 @@ export function DataTable({
     state: {
       columnFilters,
       // This is a hack to make the table think it's paginated
-      pageSize: data.length,
+      pageSize: data.length ,
       pageIndex: 0,
     }, 
   })

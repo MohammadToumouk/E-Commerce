@@ -9,6 +9,8 @@ import { useToast } from "../shadcn/use-toast"
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL
 
+import { useInView } from 'react-intersection-observer';
+
 const ProductDescription = ({ product, setShoppingList, shoppingList }) => {
   const { toast } = useToast()
 
@@ -17,6 +19,10 @@ const ProductDescription = ({ product, setShoppingList, shoppingList }) => {
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedSize, setSelectedSize] = useState('');
   const [selectedQuantity, setSelectedQuantity] = useState(1); // Default quantity is set to 1
+  const [ref, inView] = useInView({
+    triggerOnce: true, // The fade-in animation will be triggered only once when the component enters the viewport
+    threshold: 0.1, // Percentage of component visibility required to trigger the animation
+  });
 
   // console.log("setShoppingListPD", setShoppingList)
   // console.log("shoppingList", shoppingList)
@@ -90,7 +96,7 @@ const ProductDescription = ({ product, setShoppingList, shoppingList }) => {
   }
 
   return (
-    <div className="product-description">
+    <div ref={ref} className={`product-description fade-in ${inView ? 'visible' : ''}`} >
       <h2>{name}</h2>
       <div className="divider"></div>
 

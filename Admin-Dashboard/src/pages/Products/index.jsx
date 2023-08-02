@@ -14,10 +14,10 @@ import { ProductColumns } from "../../components/Tables/columns"
 import { formatter } from '@/lib/utils'
 import Sidebar from '@/components/Sidebar'
 import { Link } from 'react-router-dom'
- 
+
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
-const Products = () => {
+const Products = ({user}) => {
   const [products, setProducts] = useState()
 
   useEffect(() => {
@@ -47,7 +47,7 @@ const Products = () => {
 
   return (
     <div className='products-container'>
-      <Sidebar />
+      <Sidebar user={user}/>
       <div className='products-content'>
         <div className='products-header'>
           <TitleHeadings 

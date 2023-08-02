@@ -109,6 +109,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
     }
 
     const handleCheckOut = async () => {
+      console.log("sadsadasdyxcyxc")
       try {
         const response = await axios.post((baseUrl || "") +
           "/api/stripe/checkout/create-checkout-session",
@@ -127,6 +128,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
         );
     
         const data = response.data;
+        console.log("cartData", data)
         const stripeSessionUrl = data.url;
         await  fetchShoppingCart();
     

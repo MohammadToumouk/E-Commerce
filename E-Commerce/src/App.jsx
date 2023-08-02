@@ -32,6 +32,7 @@ const App = () => {
       await axios.get('http://localhost:3069/cart', { withCredentials: true })
         .then((response) => {
           setShoppingList(response.data)
+          console.log(shoppingList.cart)
         })
         .catch((error) => {
           console.log(error)
@@ -60,8 +61,9 @@ const App = () => {
     <BrowserRouter>
       <Toaster />
       <Navbar customer={customer} shoppingList={shoppingList} setShoppingList={setShoppingList} />
+      {/* <Stripe /> */}
       <Routes>
-        {/* <Stripe /> */}
+        
         {/* <Sidebar /> */}
         <Route path="/" exact element={<HomePage />} />
         <Route path="/shop/:id" element={<ProductPage setShoppingList={setShoppingList} shoppingList={shoppingList}/>} />

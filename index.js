@@ -33,6 +33,8 @@ const corsOptions = {
   },
   credentials: true,
 };
+
+
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use("/user", userRouter);

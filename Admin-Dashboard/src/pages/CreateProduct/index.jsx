@@ -5,7 +5,7 @@ import "./CreateProduct.css"
 import TitleHeadings from '@/components/TitleHeading'
 
 import axios from 'axios'
-
+import { useToast } from '@/components/ui/use-toast'
 import * as z from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -36,6 +36,7 @@ const formSchema = z.object({
 
  
 const CreateProduct = () => {
+  const { toast } = useToast()
   const [imageUrl, setImageUrl] = useState();
   const [textareaValue, setTextareaValue] = useState("");
   const [textareaSizesValue, setTextareaSizesValue] = useState("");
@@ -75,6 +76,11 @@ const CreateProduct = () => {
       });
 
       console.log('Response from server:', response.data);
+      toast({
+        title: "Product has been updated",
+        type: "success",
+        duration: 5000,
+      })
       // Add any further actions or notifications for successful submission here.
     } catch (error) {
       console.error('Error while submitting:', error);// Add error handling or notifications for failed submissions here.

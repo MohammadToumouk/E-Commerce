@@ -57,7 +57,7 @@ export const Banner2 = () => {
           />
           <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center ">
             <p
-              className={`lg:text-4xl md:text-1xl text-xs text-white bg-black mb-10 transition-all duration-500 ${
+              className={`lg:text-4xl md:text-1xl text-xs font-poppins font-sans text-white bg-black mb-10 transition-all duration-500 ${
                 isHovered2 ? 'opacity-75' : ''
               }`}
             >
@@ -65,7 +65,7 @@ export const Banner2 = () => {
             </p>
             <a href="/shop">
             <button
-              className={`text-black bg-white px-6 py-3 font-bold rounded-lg transition-all duration-500 ${
+              className={`text-black bg-white px-6 py-3 font-poppins font-sans font-bold rounded-lg transition-all duration-500 ${
                 isHovered2 ? 'opacity-90' : ''
               }`}
             >

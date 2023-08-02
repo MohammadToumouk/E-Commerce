@@ -10,7 +10,7 @@ import ProductPage from './pages/ProductPage/ProductPage';
 //import './app.css';
 import Login from './components/Login/login';
 import Signup from './components/Signup/signup';
-import MyProfile from './pages/MyProfile/MyProfile';
+import MyProfile from './pages/MyProfile/myprofile';
 import Stripe from './components/stripe';
 import { SuccessPayment } from './pages/PaymentPages/SuccessPayment';
 import { ErrorPayment } from './pages/PaymentPages/ErrorPayment';

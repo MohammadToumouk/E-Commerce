@@ -7,8 +7,9 @@ import { useInView } from 'react-intersection-observer';
 import '../FadeInScroll.css'
 import { Link } from 'react-router-dom';
 
-const baseUrl = import.meta.env.VITE_BACKEND_URL
+import axios from 'axios';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
 
 export const Featured = () => {
     const [filteredProducts, setFilteredProducts] = useState([]);
@@ -46,14 +47,25 @@ export const Featured = () => {
       }; */
 
       useEffect(() => {
-        fetch(baseUrl + '/api/product?limit=5')
-          .then((response) => response.json())
-          .then((data) => {
-            setProducts(data.products);
-          })
-          .catch((error) => {
+        const fetchProducts = async () => {
+          try {
+            const response = await axios.get(baseUrl + '/api/product?limit=5');
+            setProducts(response.data.products);
+          } catch (error) {
             console.error('Error fetching data:', error);
-          });
+          }
+        };
+
+        fetchProducts();
+
+        // fetch(baseUrl + '/api/product?limit=5')
+        //   .then((response) => response.json())
+        //   .then((data) => {
+        //     setProducts(data.products);
+        //   })
+        //   .catch((error) => {
+        //     console.error('Error fetching data:', error);
+        //   });
       }, []);
 
   return (

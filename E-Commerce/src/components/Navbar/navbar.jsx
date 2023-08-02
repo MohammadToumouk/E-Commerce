@@ -111,7 +111,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
     const handleCheckOut = async () => {
       try {
         const response = await axios.post((baseUrl || "") +
-          "/api/stripe/checkout/create-checkout-session",
+          "/stripe/checkout/create-checkout-session",
           {
             shoppingCart: {
               cart: { items: shoppingCart?.cart?.items, _id: shoppingCart?.cart?._id },

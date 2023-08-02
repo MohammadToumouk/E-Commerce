@@ -79,7 +79,7 @@ const App = () => {
         <Route path="/blog" element={<Blog />}/>
 
         <Route path="/successpayment" element={<SuccessPayment />}/>  
-        <Route path="*" element={<ErrorPayment />}/>
+        <Route path="*" element={<ShopPage />}/>
       </Routes>
       <SecondFooter />
     </BrowserRouter>

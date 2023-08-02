@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import './Myprofile.css'
+import './myprofile.css'
 
 
 const initialProfileItems = [

@@ -70,15 +70,15 @@ export const OrderColumns = [
   },
   {
     accessorKey: "name",
-    header: "Name",
+    header: "Order ID",
   },
   {
     accessorKey: "shippingAddress",
     header: "Shipping Address",
   },
   {
-    accessorKey: "products",
-    header: "Product",
+    accessorKey: "customer",
+    header: "Customer",
   },
   // {
   //   accessorKey: "color",
@@ -100,10 +100,10 @@ export const OrderColumns = [
     accessorKey: "paymentStatus",
     header: "Payment",
   },
-  {
+  /* {
     accessorKey: "shippingStatus",
     header: "Shipping",
-  },
+  }, */
   {
     accessorKey: "updatedAt",
     header: "Updated At",

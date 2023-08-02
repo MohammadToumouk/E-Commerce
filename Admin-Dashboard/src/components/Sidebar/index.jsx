@@ -9,7 +9,7 @@ import { LogOut, LogOutIcon, PowerIcon, ActivityIcon } from 'lucide-react'
 
 const Sidebar = ({user}) => {
 
-  console.log("currentUser:", user)
+ // console.log("currentUser:", user)
 
   const handleLogout = async () => {
     await axios.post('http://localhost:3069/user/logout',{headers: {"Cookie": ""}}, {withCredentials: true })

@@ -44,7 +44,7 @@ const Products = ({user}) => {
   console.log("allProducts", products)
 
   return (
-    <div className='products-container'>
+    <div className='products-container '>
       <Sidebar user={user}/>
       <div className='products-content'>
         <div className='products-header'>

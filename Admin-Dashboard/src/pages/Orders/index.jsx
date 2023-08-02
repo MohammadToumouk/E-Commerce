@@ -16,12 +16,12 @@ import Sidebar from '@/components/Sidebar'
  
 const Orders = ({user}) => {
   const [orders, setOrders] = useState()
-
+  const [paymentIntents, setPaymentIntents] = useState([]);
   useEffect(() => {
     const fetchOrders = async () => {
-        await axios.get('http://localhost:3069/order', { withCredentials: true })
+        await axios.get('http://localhost:3069/stripe/checkout/create-checkout-session', { withCredentials: true })
           .then((response) => {
-            setOrders(response.data)
+            setPaymentIntents(response.data.paymentIntents.data)
           })
           .catch((error) => {
             console.log(error)
@@ -30,21 +30,22 @@ const Orders = ({user}) => {
     fetchOrders()
   }, [])
 
-  const formattedOrders = orders?.orders?.map((order) => ({
-    id: order._id,
-    name: order.name,
-    products: order?.products?.map((product) => product.product +" ("+ product.quantity + ")").join(', '),
-    totalQuantity: order?.products?.map((product) => product.quantity).reduce((a, b) => a + b, 0),
-    total: formatter.format(order.total),
-    paymentStatus: order.paymentStatus,
-    shippingAddress: order.shippingAddress,
-    shippingStatus: order.shippingStatus,
-    quantity: order.quantity,
-    createdAt: format(new Date(order.createdAt), 'dd/MM/yyyy'),
-    updatedAt: format(new Date(order.updatedAt), 'dd/MM/yyyy'),
-  }))
+  const formattedOrders = paymentIntents.map((intent) => ({
+    id: intent.id,
+    name: intent.id, // Assuming 'name' corresponds to 'description' in the JSON
+    customer: intent.shipping?.name, // Assuming 'products' corresponds to 'shipping.name' in the JSON
+    totalQuantity: intent.amount_received,
+    total: formatter.format(intent.amount / 100), // Assuming 'total' corresponds to 'amount' in the JSON
+    paymentStatus: intent.status,
+    shippingAddress: intent.shipping?.address?.city + " " + intent.shipping?.address?.country + " " + intent.shipping?.address?.line1 + " " + intent.shipping?.address?.line2 ,
+    shippingStatus: intent.shipping?.carrier,
+    quantity: intent.amount_received,
+    createdAt: format(new Date(intent.created * 1000), 'dd/MM/yyyy'),
+    updatedAt: format(new Date(intent.created * 1000), 'dd/MM/yyyy'),
+  }));
+  
 
-  console.log("allOrders", orders?.orders)
+
 
   return (
     <div className='orders-container'>
@@ -53,7 +54,7 @@ const Orders = ({user}) => {
         <div className='orders-header'>
           <TitleHeadings 
             title='Orders'
-            elements={orders?.orders?.length}
+            elements={paymentIntents?.length}
             subtitle='Manage all of your orders'
           />
           {/* <Button 
@@ -65,7 +66,7 @@ const Orders = ({user}) => {
           </Button> */}
         </div>
         <div className='mt-10'>
-            {formattedOrders && <DataTable columns={OrderColumns} data={formattedOrders} searchKey="products"/>}
+            {paymentIntents && <DataTable columns={OrderColumns} data={formattedOrders} searchKey="products"/>}
         </div>
       </div>
     </div>

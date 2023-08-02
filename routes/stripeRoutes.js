@@ -9,6 +9,9 @@ const { addItemToCart, getCustomerCart } = require("../controllers/cartControlle
 stripeRouter.use(express.static("public"));
 stripeRouter.use(bodyParser.json());
 
+
+
+
 async function createStripePrice(productID, price, currency) {
   try {
     const priceObj = await stripe.prices.create({
@@ -92,6 +95,22 @@ stripeRouter.post(
       }
     }
   );
+
+  stripeRouter.get("/checkout/create-checkout-session", 
+  async (req, res, next) => {
+    try {
+      const paymentIntents = await stripe.paymentIntents.list({
+        limit: 100, // You can adjust the limit to the number of payments you want to retrieve
+      });
+
+      // Send the payment intents as a response
+      res.json({ paymentIntents });
+    } catch (error) {
+      // Pass the error to the error handling middleware
+      next(error);
+    }
+  });
+
   
 
 // Error handling middleware for general errors

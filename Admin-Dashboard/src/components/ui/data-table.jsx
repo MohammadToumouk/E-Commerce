@@ -48,13 +48,13 @@ export function DataTable({
 
   return (
     <div>
-      <div className="flex items-center ml-8 pb-5 space-x-4">
+      <div className="flex items-center ml-8 pb-5 space-x-4 ">
         <SearchBar 
           value={(table.getColumn(searchKey)?.getFilterValue()) ?? ""}
           onChange={(event) => table.getColumn(searchKey)?.setFilterValue(event.target.value)}
         />
       </div>
-      <div className="rounded-md border mr-12 ml-8">
+      <div className="rounded-md border mr-12 ml-8 h-[60vh] overflow-scroll">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -100,7 +100,7 @@ export function DataTable({
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4 mr-12">
-        <Button
+       {/*  <Button
           variant="outline"
           size="sm"
           onClick={() => table.previousPage()}
@@ -117,7 +117,7 @@ export function DataTable({
           className="data-table-paginationButton"
         >
           Next
-        </Button>
+        </Button> */}
       </div>
     </div>
   )

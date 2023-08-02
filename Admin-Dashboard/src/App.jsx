@@ -36,7 +36,7 @@ function App() {
     }
   }, [])
 
-  console.log("currentUser:", user)
+  //console.log("currentUser:", user)
 
   if (user) {
     return (

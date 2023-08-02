@@ -47,12 +47,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home user={user}/>} />
         <Route path="/dashboard" element={<Dashboard user={user} />} />
-        <Route path="/products" element={<Products />} />
+        <Route path="/products" element={<Products user={user} />} />
         <Route path="/products/add-new-product" element={<CreateProduct  />} />
         <Route path="/products/:id" element={<EditProduct />} />
         <Route path="/orders/:id" element={<EditOrder />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/settings//*" element={<Settings />} /> 
+        <Route path="/orders" element={<Orders user={user} />} />
+        <Route path="/settings//*" element={<Settings user={user} />} /> 
       </Routes>
       </>
     )

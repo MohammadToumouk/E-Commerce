@@ -8,7 +8,7 @@ import {
   HoverCardContent,
   HoverCardTrigger,
 } from "../shadcn/hover-card";
-
+import { loadStripe } from '@stripe/stripe-js';
 import { Button } from "../Button/button";
 import { LogOutIcon, UserIcon, XIcon } from 'lucide-react';
 
@@ -25,6 +25,12 @@ import {
 import { useState,useEffect,useRef } from 'react';
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL
+
+
+
+const stripePromise = loadStripe('pk_test_51N2Y22KydIDbyPlEkUYJimKUkEtYf7AJD0ef5XZ5JPRbdJjsrFnKTcgDK0rw3yIT2LJK4LnLzhNXz6NF9VNwGyTn00GEMHCqtJ');
+const secretkey = "sk_test_51N2Y22KydIDbyPlEtk5uN1TDRkv0gMH3o7RiafTXgF2YoUWZUzkp01HhHb6SjTb4qWa77iukwfyMKleYcdDV84xw00TBDzokiB";
+
 
 const Navbar = ({customer, shoppingList, setShoppingList}) => {
   const { toast } = useToast()
@@ -52,6 +58,25 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
   
       window.location.href = "/shop"
     }
+
+    const [shoppingCart, setShoppingCart] = useState();
+
+    const fetchShoppingCart = async () => {
+      await axios
+        .get("http://localhost:3069/cart", { withCredentials: true })
+        .then((response) => {
+          setShoppingCart(response.data);
+          console.log(shoppingCart?.cart?.items);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    useEffect(() => {
+      
+      fetchShoppingCart();
+    }, []);
+  
   
 
     const handleRemoveFromCart = async (productId, name) => {
@@ -84,16 +109,48 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
       // console.log("testData", values)
     }
 
+    const handleCheckOut = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3069/stripe/checkout/create-checkout-session",
+          {
+            shoppingCart: {
+              cart: { items: shoppingCart?.cart?.items, _id: shoppingCart?.cart?._id },
+            },
+          },
+          {
+            headers: {
+              'Authorization': `Bearer ${secretkey}`,
+              'Content-Type': 'application/json', 
+            },
+            withCredentials: true,
+          }
+        );
+    
+        const data = response.data;
+        const stripeSessionUrl = data.url;
+        await  fetchShoppingCart();
+    
+        // Redirect the user to the Stripe Checkout page
+      //  window.location.reload();
+        window.location.href = stripeSessionUrl;
+       
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+
+
 
   return (
     
 <nav className="bg-white border-gray-200 dark:bg-gray-900">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="http://localhost:5173" class="flex items-center">
-        <img src="https://i.ibb.co/2h36knH/logo.jpg" class="h-16 mr-3" alt="Emazing Logo" />
+    <a href="http://localhost:5174" className="flex items-center">
+        <img src="https://i.ibb.co/2h36knH/logo.jpg" className="h-16 mr-3" alt="Emazing Logo" />
         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
     </a>
-    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false" ref={triggerElRef}>
+    <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false" ref={triggerElRef}>
         <span className="sr-only">Open main menu</span>
         <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
@@ -192,7 +249,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
             <Button variant="ghost" className="w-full">View Cart</Button>
             </>
             )}
-            <Button className="w-full">Checkout</Button>
+            <Button className="w-full" onClick={handleCheckOut}>Checkout</Button>
           </HoverCardContent>
         </HoverCard>
         )}
@@ -233,5 +290,3 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
 }
 
 export default Navbar;
-
-

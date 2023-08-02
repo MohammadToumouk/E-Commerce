@@ -3,6 +3,7 @@
 .shop-page {
     display: flex;
     justify-content: center;
+    font-family: 'Poppins', sans-serif;
 }
 
 .sidebar-container {

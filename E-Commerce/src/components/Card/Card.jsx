@@ -73,7 +73,7 @@ const Card = ({ available, imageSrc, productName, price, color, currency, produc
         </div>
       )}
       <div className="image-wrapper">
-        <img src={imageSrc} alt="Product" className="product-image" />
+        <img src={imageSrc} alt="Product" className="product-image bg-transparent mix-blend-multiply" />
       </div>
  
       <div className="details">

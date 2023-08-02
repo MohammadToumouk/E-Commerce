@@ -16,7 +16,7 @@ import Sidebar from '@/components/Sidebar'
 
 const baseUrl = import.meta.env.VITE_BACKEND_URL;
  
-const Orders = () => {
+const Orders = ({user}) => {
   const [orders, setOrders] = useState()
 
   useEffect(() => {
@@ -50,7 +50,7 @@ const Orders = () => {
 
   return (
     <div className='orders-container'>
-      <Sidebar />
+      <Sidebar user={user}/>
       <div className='orders-content'>
         <div className='orders-header'>
           <TitleHeadings 

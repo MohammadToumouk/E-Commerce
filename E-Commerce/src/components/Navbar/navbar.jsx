@@ -60,18 +60,19 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
 
     const [shoppingCart, setShoppingCart] = useState();
 
+    const fetchShoppingCart = async () => {
+      await axios
+        .get("http://localhost:3069/cart", { withCredentials: true })
+        .then((response) => {
+          setShoppingCart(response.data);
+          console.log(shoppingCart?.cart?.items);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
     useEffect(() => {
-      const fetchShoppingCart = async () => {
-        await axios
-          .get("http://localhost:3069/cart", { withCredentials: true })
-          .then((response) => {
-            setShoppingCart(response.data);
-            console.log(shoppingCart?.cart?.items);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      };
+      
       fetchShoppingCart();
     }, []);
   
@@ -127,10 +128,12 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
     
         const data = response.data;
         const stripeSessionUrl = data.url;
+        await  fetchShoppingCart();
     
         // Redirect the user to the Stripe Checkout page
       //  window.location.reload();
         window.location.href = stripeSessionUrl;
+       
       } catch (err) {
         console.error(err.message);
       }
@@ -142,7 +145,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
     
 <nav className="bg-white border-gray-200 dark:bg-gray-900">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="http://localhost:5173" className="flex items-center">
+    <a href="http://localhost:5174" className="flex items-center">
         <img src="https://i.ibb.co/2h36knH/logo.jpg" className="h-16 mr-3" alt="Emazing Logo" />
         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
     </a>

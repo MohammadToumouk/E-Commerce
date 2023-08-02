@@ -11,11 +11,11 @@ import NotificationsPage from "./SettingsTabs/Notifications/NotificationsPage"
 import ApperancePage from "./SettingsTabs/Apperance/ApperancePage"
 import DisplayPage from "./SettingsTabs/Display/DisplayPage"
 
-const Settings = () => {
+const Settings = ({user}) => {
   return (
     <>
     <div className='settings-container'>
-      <Sidebar />
+    <Sidebar user={user}/>
       <div className='settings-content'>
         <div className='settings-header'>
           <TitleHeadings title='Settings' subtitle='' />

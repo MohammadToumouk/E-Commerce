@@ -4,7 +4,7 @@ const productController = require("../controllers/productController");
 const authMiddleware = require("../middleware/authMiddleware");
 const cloudinary = require("../utils/cloudinary");
 const upload = require("../middleware/multer");
-const errorHandler = require("../middleware/errorhandler");
+const errorHandler = require("../middleware/errorHandler");
 const verificationMiddleware = require("../middleware/verfiyToken");
 
 // Create a new product

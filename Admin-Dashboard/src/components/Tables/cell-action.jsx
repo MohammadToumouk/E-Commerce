@@ -5,8 +5,29 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Button } from "../ui/button"
 import { Edit, MoreHorizontal, Trash } from "lucide-react"
 import { Link, NavLink } from "react-router-dom"
+import axios from "axios"
 
 export const CellAction = ({data}) => {
+    
+    console.log("data:", data)
+
+    const handleRemoveFromCart = async () => {
+        try {
+            const response = await axios.delete(`http://localhost:3069/product/${data.id}`,
+                { withCredentials: true },
+            )
+            console.log("responseRemove", response)
+            // toast({
+            //     title: `${data.name} Product successfully deleted`,
+            //     type: "success",
+            //     duration: 5000,
+            // })
+      
+        } catch (error) {
+            console.log("remove", error)
+        }
+    }
+    
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -25,7 +46,7 @@ export const CellAction = ({data}) => {
                         Edit
                     </DropdownMenuItem>
                 </NavLink>
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={handleRemoveFromCart}>
                     <Trash className="h-4 w-4 mr-2 text-red-600" />
                     <span className="text-red-600">Delete</span>
                 </DropdownMenuItem>

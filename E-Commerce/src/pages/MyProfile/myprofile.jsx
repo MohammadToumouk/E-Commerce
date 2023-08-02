@@ -19,8 +19,20 @@ const formatAddress = (address) => {
   return `${street}, ${city}, ${state}, ${postalCode}`;
 };
 
-const MyProfile = () => {
+const MyProfile = ({setCustomer, customer}) => {
   const [profileItems, setProfileItems] = useState(initialProfileItems);
+  const [firstname, setFirstname] = useState(customer?.customer?.firstname)
+  const [lastname, setLastname] = useState(customer?.customer?.lastname)
+  const [email, setEmail] = useState(customer?.customer?.email)
+  const [phone, setPhone] = useState(customer?.customer?.phone)
+  const [address, setAddress] = useState(customer?.customer?.address)
+  const [city, setCity] = useState(customer?.customer?.city)
+  const [state, setState] = useState(customer?.customer?.state)
+  const [postalCode, setPostalCode] = useState(customer?.customer?.postalCode)
+  const [isEditing, setIsEditing] = useState(false)
+
+  
+  console.log("customer:", customer)
 
   const handleEditClick = (index) => {
     setProfileItems((prevItems) => {
@@ -38,10 +50,62 @@ const MyProfile = () => {
     });
   };
 
+
+{/* <---emi-start---> */}
   return (
     <div className="profile-container">
       <h1>My Profile</h1>
       <div className="profile-info">
+        <div className="profile-item">
+          <label>Name:</label>
+          <div>
+          <input
+              type="text"
+              value={firstname}
+              placeholder="First Name"
+              onChange={(e) => { setFirstname(e.target.value) }}
+              className="profile-input"
+            />
+          </div>
+        </div>
+        <div className="profile-item">
+          <label>Last Name:</label>
+          <div>
+          <input
+              type="text"
+              value={lastname}
+              placeholder="Last Name"
+              onChange={(e) => { setLastname(e.target.value) }}
+              className="profile-input"
+            />
+          </div>
+        </div>
+        <div className="profile-item">
+          <label>E-Mail:</label>
+          <div>
+          <input
+              type="text"
+              value={email}
+              placeholder="E-Mail"
+              onChange={(e) => { setEmail(e.target.value) }}
+              className="profile-input"
+            />
+          </div>
+        </div>
+        <div className="profile-item">
+          <label>Phone:</label>
+          <div>
+          <input
+              type="text"
+              value={phone}
+              placeholder="Phone Number"
+              onChange={(e) => { setPhone(e.target.value) }}
+              className="profile-input"
+            />
+          </div>
+        </div>
+{/* <---emi-end---> */}
+
         {profileItems.map((item, index) => (
           <div className="profile-item" key={index}>
             <label>{item.label}:</label>

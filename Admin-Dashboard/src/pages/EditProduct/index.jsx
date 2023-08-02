@@ -5,57 +5,48 @@ import "./Edit.Product.css"
 import TitleHeadings from '@/components/TitleHeading'
 
 import axios from 'axios'
+import { useToast } from '@/components/ui/use-toast'
 
-import * as z from "zod"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-
-import { PlusCircle, XIcon } from 'lucide-react'
+import { XIcon } from 'lucide-react'
 import Sidebar from '@/components/Sidebar'
 import { Link, useParams } from 'react-router-dom'
 
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
-
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
 import { TextareaWithLabel } from '@/components/Textarea'
 import UploadWidget from '@/components/UploadWidget'
 
-const formSchema = z.object({
-  name: z.string().min(3).max(20),
-  images: z.array(z.object({ url: z.string().url() })).min(1),
-  price: z.string().min(1).max(50),
-  quantity: z.string().min(1).max(50),
-  category: z.string().min(1).max(50),
-  sizes: z.array(z.string()).min(0), // Mindestlänge auf 0 gesetzt
-  color: z.array(z.string()).min(0), // Mindestlänge auf 0 gesetzt
-  description: z.string().min(0).max(255),
-});
 
  
 const EditProduct = () => {
-  const [imageUrl, setImageUrl] = useState();
-  const [textareaValue, setTextareaValue] = useState("");
-  const [textareaSizesValue, setTextareaSizesValue] = useState("");
-  const [textareaColorValue, setTextareaColorValue] = useState("");
+  const productId = useParams();
+  const { toast } = useToast()
+  const [product, setProduct] = useState();
 
   const [brand , setBrand] = useState();
   const [name, setName] = useState();
-
-  const productId = useParams();
-  const [product, setProduct] = useState()
-
-  console.log("brand", brand)
-  console.log("name", name)
+  const [imageUrl, setImageUrl] = useState();
+  const [price, setPrice] = useState();
+  const [quantity, setQuantity] = useState();
+  const [category, setCategory] = useState();
+  const [sizes, setSizes] = useState();
+  const [color, setColor] = useState();
+  const [description, setDescription] = useState();
 
   useEffect(() => {
     const fetchProduct = async () => {
         await axios.get( `http://localhost:3069/product/${productId.id}`, { withCredentials: true })
           .then((response) => {
             setProduct(response.data)
-            setName(response.data.product.name)
             setBrand(response.data.product.brand)
+            setName(response.data.product.name)
+            setImageUrl(response.data.product.images[0])
+            setPrice(response.data.product.price)
+            setQuantity(response.data.product.quantity)
+            setCategory(response.data.product.category)
+            setSizes(response.data.product.sizes)
+            setColor(response.data.product.color)
+            setDescription(response.data.product.description)
           })
           .catch((error) => {
             console.log(error)
@@ -66,34 +57,16 @@ const EditProduct = () => {
 
   console.log("product", product)
  
+  const onSubmit = async (e) => {
+    e.preventDefault();
 
-  const form = useForm({
-    resolver: zodResolver(formSchema),
-    // defaultValues: {
-    //     name: product.name,
-    //     brand: brand,
-    //     images: [],
-    //     price: "",
-    //     quantity: "",
-    //     category: "",
-    //     sizes: [],
-    //     color: [],
-    //     description: "",
-    // },
-  })
-
-  const onSubmit = async (values) => {
     try {
-
-      const response = await axios.post('http://localhost:3069/product/', {
-        name: values.name,
-        images: values.images[0]["url"],
-        price: parseInt(values.price),
-        quantity: parseInt(values.quantity),
-        category: values.category,
-        sizes: values.sizes,
-        color: values.color,
-        description: values.description,
+      const response = await axios.put(`http://localhost:3069/product/${productId.id}`, {
+        name: name,
+        images: [imageUrl],
+        price: parseInt(price),
+        quantity: parseInt(quantity),
+        description: description,
       }, {
         headers: {
           'Content-Type': 'application/json'
@@ -102,30 +75,19 @@ const EditProduct = () => {
 
       console.log('Response from server:', response.data);
       // Add any further actions or notifications for successful submission here.
+      toast({
+        title: "Product has been updated",
+        type: "success",
+        duration: 5000,
+      })
+
     } catch (error) {
       console.error('Error while submitting:', error);// Add error handling or notifications for failed submissions here.
-      console.log("DataWithError", values)
+      console.log("DataWithError", error)
     }
 
-    console.log("testData", values)
   }
 
-  const handleDescriptionChange = (newValue) => {
-    setTextareaValue(newValue);
-    form.setValue("description",  newValue );
-  };
-
-  const handleSizesChange = (newValue) => {
-    const sizesArray = newValue.split('\n').map((size) => size.trim());
-    setTextareaSizesValue(sizesArray);
-    form.setValue("sizes", sizesArray);
-  };
-
-  const handleColorChange = (newValue) => {
-    const colorArray = newValue.split('\n').map((size) => size.trim());
-    setTextareaColorValue(colorArray);
-    form.setValue("color", colorArray);
-  };
 
   const handleImageUpload = async (newImage) => {
     await setImageUrl(newImage);
@@ -155,180 +117,57 @@ const EditProduct = () => {
         </div>
         <div className='my-10 pl-8'>
           <div className='flex items-center'>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)}>
+              <form onSubmit={onSubmit}>
               <div className='flex justify-center items-start'>
                 <div className='inputs-container'> 
-                  <FormField 
-                    control={form.control} 
-                    name="name" 
-                    render={({ field }) => (
-                      <FormItem>
-                          <FormLabel>Name*</FormLabel>
-                          <FormControl>
-                            <>
-                            <Input type="text" value={"asdasd"} className="add-product-input" {...field} />
-                            </>
-                          </FormControl>
-                          <FormMessage>
-
-                          </FormMessage>
-                      </FormItem>
-                    )}
-                  />
-                  <FormField 
-                    control={form.control} 
-                    name="brand" 
-                    render={({ field }) => (
-                      <FormItem className='input-item-container'>
-                          <FormLabel>Brand*</FormLabel>
-                          <FormControl>
-                            <Input type="text" placeholder={brand} className="add-product-input" {...field} />
-                          </FormControl>
-                          <FormMessage>
-
-                          </FormMessage>
-                      </FormItem>
-                    )}
-                  />
-                  <PlusCircle />
-                  <FormField 
-                    control={form.control} 
-                    name="price" 
-                    render={({ field }) => (
-                      <FormItem className='input-item-container'>
-                          <FormLabel>Price*</FormLabel>
-                          <FormControl>
-                          <Input type="number" placeholder="Price in $" className="add-product-input"{...field} />
-                          </FormControl>
-                          <FormMessage>
-                          </FormMessage>
-                      </FormItem>
-                    )}
-                  /> 
-                  <FormField 
-                    control={form.control} 
-                    name="quantity" 
-                    render={({ field }) => (
-                      <FormItem className='input-item-container'>
-                          <FormLabel>Quantity*</FormLabel>
-                          <FormControl>
-                          <Input type="number" min="0" placeholder="Amount in Stock" className="add-product-input" {...field} />
-                          </FormControl>
-                          <FormMessage>
-                          </FormMessage>
-                      </FormItem>
-                    )}
-                  />
-                  <FormField 
-                    control={form.control} 
-                    name="category" 
-                    render={({ field }) => (
-                      <FormItem className='input-item-container'>
-                        <FormLabel>Category*</FormLabel>
-                          <FormControl>
-                            <select id="mySelect" name="category" className='category-container' {...field}>
-                              <option hidden className='category-placeholder'>Select a category</option>
-                              <option value="accessories">Accessories</option>
-                              <option value="bags">Bags</option>
-                              <option value="clothes">Clothes</option>
-                              <option value="drinks">Drinks</option>
-                              <option value="electronics">Electronics</option>
-                              <option value="groceries">Groceries</option>
-                              <option value="jewelry">Jewelry</option>
-                              <option value="mobiles">Mobiles</option>
-                              <option value="notebook">Notebook</option>
-                              <option value="shoes">Shoes</option>
-                              <option value="sports">Sports</option>
-                              <option value="toys">Toys</option>
-                              <option value="watches">Watches</option>
-                            </select>                    
-                          </FormControl>
-                        <FormMessage>
-                        </FormMessage>
-                      </FormItem>
-                    )}
-                  />
-                  <FormField 
-                    control={form.control} 
-                    name="sizes" 
-                    render={({ field }) => (
-                      <FormItem className='input-item-container'>
-                        <FormLabel></FormLabel>
-                        <FormControl>
-                          <TextareaWithLabel
-                           label={"Sizes"}
-                           placeholder="Please type every size on a new line (e.g. S, M, L, XL, ...)"
-                           className="add-product-input"
-                           {...field}
-                           rows={3}
-                           value={textareaSizesValue} // Make sure this is set correctly
-                           onChange={handleSizesChange}
-                          />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
-                  <FormField 
-                    control={form.control} 
-                    name="color" 
-                    render={({ field }) => (
-                      <FormItem className='input-item-container'>
-                        <FormLabel></FormLabel>
-                        <FormControl>
-                          <TextareaWithLabel
-                            label={"Color"}
-                            placeholder="Please type every color on a new line (e.g. red, blue, green, ...)"
-                            className="add-product-input"
-                            {...field}
-                            rows={2}
-                            value={textareaColorValue} // Make sure this is set correctly
-                            onChange={handleColorChange}
-                          />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
+                  <label className="add-product-input-container" >
+                    Name* 
+                  </label>
+                  <div className="add-product-input-container" >
+                    <input type="text" value={name} className="add-product-input" onChange={(e) => setName(e.target.value)} />
+                  </div>
+                  <label className="add-product-input-container mt-5" >
+                    Brand* 
+                  </label>
+                  <div className="add-product-input-container" >
+                    <input type="text" value={brand} className="add-product-input" onChange={(e) => setBrand(e.target.value)} />
+                  </div>
+                  <label className="add-product-input-container mt-5" >
+                    Price* 
+                  </label>
+                  <div className="add-product-input-container" >
+                    <input type="number" value={price} className="add-product-input" onChange={(e) => setPrice(e.target.value)} />
+                  </div>
+                  <label className="add-product-input-container mt-5" >
+                    Quantity* 
+                  </label>
+                  <div className="add-product-input-container" >
+                    <input type="number" value={quantity} className="add-product-input" onChange={(e) => setQuantity(e.target.value)} />
+                  </div>
+                  <div className='input-item-container mt-2 '>
+        
+                    <label>Description</label>
+                      <textarea
+                      value={description} // Make sure this is set correctly
+                      placeholder={"Please type your description for your product here"}
+                      className="add-product-input w-[550px]  h-[220px]"
+                      onChange={(e) => setDescription(e.target.value)}
+                    />
+                  </div>              
                 </div>
                 <div className='ml-12'>
-                   <FormField 
-                    control={form.control} 
-                    name="images" 
-                    render={({ field }) => (
-                      <FormItem className='input-item-container'>
-                          <FormLabel>Image Upload*</FormLabel>
-                          <FormControl>
-                            <UploadWidget onImageUpload={handleImageUpload} {...field} />
-                          </FormControl>
-                          <FormMessage>
-                          </FormMessage>
-                      </FormItem>
-                    )}
-                  />
-                  <FormField 
-                    control={form.control} 
-                    name="description" 
-                    render={({ field }) => (
-                      <FormItem className='input-item-container'>
-                          <FormLabel></FormLabel>
-                          <FormControl>
-                             <TextareaWithLabel 
-                              label={"Description"}
-                              placeholder={"Type your product description here."}
-                              className="add-product-input w-[580px]  h-[120px]"
-                              onChange={handleDescriptionChange} />
-                          </FormControl>
-                      </FormItem>
-                    )}
-                  /> 
+                      <div className='input-item-container'>
+                          <label>Image Upload*</label>
+                          <div>
+                            <UploadWidget onImageUpload={handleImageUpload} setImageUrl={setImageUrl} imageUrl={imageUrl}/>
+                          </div>
+                      </div>
                  </div>
               </div>
-                  <div className="space-x-2 flex justify-end items-center w-full">
-                      <Button disabled={imageUrl ? false : true} className="create-product-button" type="submit">Create</Button>
+                  <div className="space-x-2 flex justify-start items-center w-full mt-20">
+                      <Button onSubmit={onSubmit} disabled={imageUrl ? false : true} className="create-product-button px-10" >Update</Button>
                   </div>
-              </form>
-            </Form>
-          
+              </form> 
           </div>
         </div>
       </div>

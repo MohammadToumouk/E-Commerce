@@ -13,6 +13,8 @@ import SettingsProfilePage from './pages/Settings/SettingsTabs/Profile/ProfilePa
 import Home from './pages/Home'
 import CreateProduct from './pages/CreateProduct'
 import EditProduct from './pages/EditProduct'
+import { Toaster } from './components/ui/toaster'
+import EditOrder from './pages/EditProduct copy'
 
 
 function App() {
@@ -38,15 +40,19 @@ function App() {
 
   if (user) {
     return (
-        <Routes>
-          <Route path="/" element={<Home user={user}/>} />
-          <Route path="/dashboard" element={<Dashboard user={user} />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/add-new-product" element={<CreateProduct  />} />
-          <Route path="/products/:id" element={<EditProduct />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/settings//*" element={<Settings />} /> 
-        </Routes>
+    <>  
+      <Toaster />
+      <Routes>
+        <Route path="/" element={<Home user={user}/>} />
+        <Route path="/dashboard" element={<Dashboard user={user} />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/add-new-product" element={<CreateProduct  />} />
+        <Route path="/products/:id" element={<EditProduct />} />
+        <Route path="/orders/:id" element={<EditOrder />} />
+        <Route path="/orders" element={<Orders />} />
+        <Route path="/settings//*" element={<Settings />} /> 
+      </Routes>
+      </>
     )
   }
 

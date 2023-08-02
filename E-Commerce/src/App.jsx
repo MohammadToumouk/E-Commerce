@@ -53,7 +53,6 @@ const App = () => {
     fetchCustomer()
   }, []);
 
-  
 
   return (
 
@@ -70,7 +69,7 @@ const App = () => {
         <Route path="/About" element={<AboutUs />} />
         <Route path="/login" element={<Login />}/>
         <Route path="/signup" element={<Signup />}/>
-        <Route path="/myprofile" element={<MyProfile />}/>
+        <Route path="/myprofile" element={<MyProfile setCustomer={setCustomer} customer={customer}/>}/>
         <Route path="/login" element={<Login />}/>  
         <Route path="/contact" element={<Contact />}/>
         <Route path="/blog" element={<Blog />}/>

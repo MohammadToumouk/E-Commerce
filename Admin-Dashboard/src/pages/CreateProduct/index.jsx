@@ -83,6 +83,7 @@ const CreateProduct = () => {
     }
 
     console.log("testData", values)
+    window.location.href = "/products"
   }
 
   const handleDescriptionChange = (newValue) => {

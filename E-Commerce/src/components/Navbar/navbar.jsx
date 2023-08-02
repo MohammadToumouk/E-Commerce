@@ -12,7 +12,7 @@ import {
 import { Button } from "../Button/button";
 import { LogOutIcon, UserIcon, XIcon } from 'lucide-react';
 
-import { useToast } from "../shadcn/use-toast"
+import { useToast } from "../shadcn/use-toast";
 
 import {
   DropdownMenu,
@@ -26,9 +26,7 @@ import { useState,useEffect,useRef } from 'react';
 
 
 const Navbar = ({customer, shoppingList, setShoppingList}) => {
-
   const { toast } = useToast()
-  
   
   const targetElRef = useRef(null);
   const triggerElRef = useRef(null);
@@ -101,7 +99,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
         </svg>
     </button>
     <div className="hidden w-full md:block md:w-auto" id="navbar-default" ref={targetElRef}>
-      <ul class="font-medium  flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+      <ul className="font-medium  flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
       <Link to="/" className="navigation-link text-black">
             Home
           </Link>
@@ -179,7 +177,7 @@ const Navbar = ({customer, shoppingList, setShoppingList}) => {
                       className="shopping-cart-trash-icon text-red-600 cursor-pointer"
                       style={{ width: '15px', height: '15px' }}
 
-                      onClick={() => handleRemoveFromCart( item.product._id, item.name)}
+                      onClick={() => handleRemoveFromCart( item.product?._id || item.product, item.name)}
 
                    />
                   </div>

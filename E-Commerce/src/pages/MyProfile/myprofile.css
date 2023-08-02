@@ -1,17 +1,12 @@
 .profile-container {
+    margin: 30px 300px;
+    height: 55vh;
 
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 40px;
-    background-color: #f6f6f6;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin: 150px auto;
 }
 
 .profile-container h1 {
-    font-size: 28px;
-    margin-bottom: 20px;
+    font-size: 40px;
+    margin-bottom: 40px;
     font-weight: bold;
 }
 
@@ -21,13 +16,20 @@
     gap: 10px;
 }
 
+.profile-input {
+    padding: 8px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    width: 540px;
+}
+
 .address-sub-input {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
-
-
 
 .profile-item {
     display: flex;
@@ -48,5 +50,5 @@
 }
 
 .profile-item:not(:last-child) {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }

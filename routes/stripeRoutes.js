@@ -73,8 +73,8 @@ stripeRouter.post(
         line_items: lineItems,
 
         mode: "payment",
-        success_url: `${(baseUrl || "") + "/successpayment"}?success=true`,
-        cancel_url: `${(baseUrl || "") + "/failed"}?canceled=true`,
+        success_url: `${"https://e-commerce-ct9i.onrender.com/successpayment"}?success=true`,
+        cancel_url: `${"https://e-commerce-ct9i.onrender.com/failed"}?canceled=true`,
       });
       res.json({ url: session.url });
       // res.redirect( session.url);
@@ -98,6 +98,7 @@ stripeRouter.use((error, req, res, next) => {
 
 // Error handling middleware for Stripe-related errors
 stripeRouter.use((error, req, res, next) => {
+  console.log(error);
   if (error.type === "StripeCardError") {
     // Handle Stripe card errors
     res.status(400).json({ error: error.message });
@@ -106,9 +107,11 @@ stripeRouter.use((error, req, res, next) => {
     res.status(400).json({ error: error.message });
   } else if (error.type === "StripeAPIError") {
     // Handle API errors
+    console.log(error);
     res.status(500).json({ error: "Stripe API error." });
   } else {
     // Handle other types of errors
+    console.log(error);
     res.status(500).json({ error: "Something went wrong with the payment." });
   }
 });

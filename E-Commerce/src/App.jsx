@@ -7,7 +7,7 @@ import ShopPage from '../src/pages/ShopPage/ShopPage';
 import Navbar from './components/Navbar/navbar';
 import Footer from './components/Footer/Footer';
 import ProductPage from './pages/ProductPage/ProductPage';
-import './app.css';
+//import './app.css';
 import Login from './components/Login/login';
 import Signup from './components/Signup/signup';
 import MyProfile from './pages/MyProfile/MyProfile';

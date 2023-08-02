@@ -1,19 +1,16 @@
-import { Link } from "react-router-dom";
-import "../Navbar/navbar.css";
-import Collapse from "flowbite/lib/esm/components/collapse";
-import axios from "axios";
+import { Link } from 'react-router-dom';
+import '../Navbar/navbar.css';
+import Collapse from 'flowbite/lib/esm/components/collapse';
+import axios from 'axios';
 
 import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
 } from "../shadcn/hover-card";
-
-import { Button } from "../Button/button";
-
-import { LogOutIcon, UserIcon, XIcon } from "lucide-react";
 import { loadStripe } from '@stripe/stripe-js';
-import { Elements, CardElement } from '@stripe/react-stripe-js'; 
+import { Button } from "../Button/button";
+import { LogOutIcon, UserIcon, XIcon } from 'lucide-react';
 
 import { useToast } from "../shadcn/use-toast";
 
@@ -25,63 +22,91 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../shadcn/dropdown-menu";
-import { useState, useEffect, useRef } from "react";
+import { useState,useEffect,useRef } from 'react';
+
+
+
 
 const stripePromise = loadStripe('pk_test_51N2Y22KydIDbyPlEkUYJimKUkEtYf7AJD0ef5XZ5JPRbdJjsrFnKTcgDK0rw3yIT2LJK4LnLzhNXz6NF9VNwGyTn00GEMHCqtJ');
 const secretkey = "sk_test_51N2Y22KydIDbyPlEtk5uN1TDRkv0gMH3o7RiafTXgF2YoUWZUzkp01HhHb6SjTb4qWa77iukwfyMKleYcdDV84xw00TBDzokiB";
 
 
-const Navbar = ({ customer, shoppingList, setShoppingList }) => {
-  const { toast } = useToast();
-
-
+const Navbar = ({customer, shoppingList, setShoppingList}) => {
+  const { toast } = useToast()
+  
   const targetElRef = useRef(null);
   const triggerElRef = useRef(null);
 
-  const calculateTotalBalance = () => {
-    let totalBalance = 0;
-    shoppingList?.cart?.items?.forEach((item) => {
-      totalBalance += item.price * item.quantity;
-    });
-    return totalBalance;
-  };
+       
+    const calculateTotalBalance = () => {
+      let totalBalance = 0;
+      shoppingList?.cart?.items?.forEach((item) => {
+        totalBalance += item.price * item.quantity;
+      });
+      return totalBalance;
+    };
 
-  // the code i just added
-  const [shoppingCart, setShoppingCart] = useState();
-
-  useEffect(() => {
-    const fetchShoppingCart = async () => {
-      await axios
-        .get("http://localhost:3069/cart", { withCredentials: true })
+    const handleLogout = async () => {
+      await axios.post( 'http://localhost:3069/customer/logout',{headers: {"Cookie": ""}}, {withCredentials: true })
         .then((response) => {
-          setShoppingCart(response.data);
-          console.log(shoppingCart?.cart?.items);
+          console.log(response)
         })
         .catch((error) => {
-          console.log(error);
-        });
-    };
-    fetchShoppingCart();
-  }, []);
+          console.log(error)
+        })
+  
+      window.location.href = "/shop"
+    }
 
-  const handleLogout = async () => {
-    await axios
-      .post(
-        "http://localhost:3069/customer/logout",
-        { headers: { Cookie: "" } },
-        { withCredentials: true }
-      )
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    const [shoppingCart, setShoppingCart] = useState();
 
-    window.location.href = "/shop";
-  };
+    useEffect(() => {
+      const fetchShoppingCart = async () => {
+        await axios
+          .get("http://localhost:3069/cart", { withCredentials: true })
+          .then((response) => {
+            setShoppingCart(response.data);
+            console.log(shoppingCart?.cart?.items);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      };
+      fetchShoppingCart();
+    }, []);
+  
+  
 
- 
+    const handleRemoveFromCart = async (productId, name) => {
+      try {
+        const response = await axios.delete(`http://localhost:3069/cart/remove/${productId}`,
+        {
+          withCredentials: true,
+        },
+      );
+
+        console.log('Response from server:', response.data);
+        //Add any further actions or notifications for successful submission here.
+
+        setShoppingList({cart: response.data.cart})
+
+        toast({
+          title: `${name} successfully removed from cart`,
+          // action: (
+          //   <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
+          // ),
+
+        })
+
+        fetchShoppingCart()
+      } catch (error) {
+        // console.error('Error while submitting:', error);// Add error handling or notifications for failed submissions here.
+        // console.log("DataWithError", values)
+        console.log("Error", error)
+      }
+      // console.log("testData", values)
+    }
+
     const handleCheckOut = async () => {
       try {
         const response = await axios.post(
@@ -104,53 +129,24 @@ const Navbar = ({ customer, shoppingList, setShoppingList }) => {
         const stripeSessionUrl = data.url;
     
         // Redirect the user to the Stripe Checkout page
+      //  window.location.reload();
         window.location.href = stripeSessionUrl;
       } catch (err) {
         console.error(err.message);
       }
     };
- /*    useEffect(() =>{
-      handleCheckOut();
-  },[shoppingCart]) */
-  
 
-  const handleRemoveFromCart = async (productId, name) => {
-    try {
-      const response = await axios.delete(
-        `http://localhost:3069/cart/remove/${productId}`,
-        {
-          withCredentials: true,
-        }
-      );
 
-      console.log("Response from server:", response.data);
-      //Add any further actions or notifications for successful submission here.
 
-      setShoppingList({ cart: response.data.cart });
-
-      toast({
-        title: `${name} successfully removed from cart`,
-        // action: (
-        //   <ToastAction altText="Goto schedule to undo">Undo</ToastAction>
-        // ),
-      });
-
-      fetchShoppingCart();
-    } catch (error) {
-      // console.error('Error while submitting:', error);// Add error handling or notifications for failed submissions here.
-      // console.log("DataWithError", values)
-      console.log("Error", error);
-    }
-    // console.log("testData", values)
-  };
-
-  <nav className="bg-white border-gray-200 dark:bg-gray-900">
+  return (
+    
+<nav className="bg-white border-gray-200 dark:bg-gray-900">
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-    <a href="http://localhost:5173" class="flex items-center">
-        <img src="https://i.ibb.co/2h36knH/logo.jpg" class="h-16 mr-3" alt="Emazing Logo" />
+    <a href="http://localhost:5173" className="flex items-center">
+        <img src="https://i.ibb.co/2h36knH/logo.jpg" className="h-16 mr-3" alt="Emazing Logo" />
         <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
     </a>
-    <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false" ref={triggerElRef}>
+    <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false" ref={triggerElRef}>
         <span className="sr-only">Open main menu</span>
         <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h15M1 7h15M1 13h15"/>
@@ -249,7 +245,7 @@ const Navbar = ({ customer, shoppingList, setShoppingList }) => {
             <Button variant="ghost" className="w-full">View Cart</Button>
             </>
             )}
-            <Button className="w-full">Checkout</Button>
+            <Button className="w-full" onClick={handleCheckOut}>Checkout</Button>
           </HoverCardContent>
         </HoverCard>
         )}

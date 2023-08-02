@@ -21,7 +21,7 @@ app.use(express.json());
 require("./db");
 
 app.use(express.static(path.join(__dirname, "E-Commerce", "dist")));
-//app.use(express.static(path.join(__dirname, "Admin-Dashboard", "dist")));
+app.use(express.static(path.join(__dirname, "Admin-Dashboard", "dist")));
 
 const allowedOrigins = ["http://localhost:5173", "http://localhost:5174"];
 
@@ -49,7 +49,7 @@ app.use("/api/stripe", stripeRouter);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "E-Commerce", "dist", "index.html"));
-  //res.sendFile(path.join(__dirname, "Admin-Dashboard", "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "Admin-Dashboard", "dist", "index.html"));
 });
 
 app.use(errorHandler);

@@ -8,7 +8,7 @@ const customerRoutes = require("./routes/customerRoutes");
 const stripeRouter = require("./routes/stripeRoutes");
 const orderRouter = require("./routes/orderRoutes");
 const cookieParser = require("cookie-parser");
-const { errorHandler } = require("./middleware/errorhandler");
+const { errorHandler } = require("./middleware/errorHandler");
 const bodyParser = require("body-parser");
 const cartRouter = require("./routes/cartRoutes");
 require("dotenv/config");

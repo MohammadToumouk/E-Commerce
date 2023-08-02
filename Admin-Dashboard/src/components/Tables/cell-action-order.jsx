@@ -7,13 +7,13 @@ import { Edit, MoreHorizontal, Trash } from "lucide-react"
 import { Link, NavLink } from "react-router-dom"
 import axios from "axios"
 
-export const CellAction = ({data, setProducts}) => {
+export const CellActionOrder = ({data, setProducts}) => {
     
     console.log("data:", data)
 
     const handleRemoveFromCart = async () => {
         try {
-            const response = await axios.delete(`http://localhost:3069/product/${data.id}`,
+            const response = await axios.delete(`http://localhost:3069/orders/${data.id}`,
                 { withCredentials: true },
             )
             console.log("responseRemove", response)
@@ -42,7 +42,7 @@ export const CellAction = ({data, setProducts}) => {
                 <DropdownMenuLabel>
                     Update
                 </DropdownMenuLabel>
-                <NavLink to={`/products/${data.id}`}>
+                <NavLink to={`/orders/${data.id}`}>
                     <DropdownMenuItem>
                         <Edit className="h-4 w-4 mr-2" />
                         Edit

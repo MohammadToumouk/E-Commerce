@@ -1,5 +1,5 @@
 import {useEffect, useState } from 'react'
-import "./Edit.Product.css"
+import "./EditOrder.css"
 "use client"
 
 import TitleHeadings from '@/components/TitleHeading'
@@ -18,8 +18,8 @@ import UploadWidget from '@/components/UploadWidget'
 
 
  
-const EditProduct = () => {
-  const productId = useParams();
+const EditOrder = () => {
+  const orderId = useParams();
   const { toast } = useToast()
   const [product, setProduct] = useState();
 
@@ -35,7 +35,7 @@ const EditProduct = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-        await axios.get( `http://localhost:3069/product/${productId.id}`, { withCredentials: true })
+        await axios.get( `http://localhost:3069/orders/${orderId.id}`, { withCredentials: true })
           .then((response) => {
             setProduct(response.data)
             setBrand(response.data.product.brand)
@@ -102,8 +102,8 @@ const EditProduct = () => {
       <div className='products-content'>
         <div className='products-header'>
           <TitleHeadings 
-            title='Edit Product'
-            subtitle="Change your product's information here"
+            title='Edit Orders'
+            subtitle="Change your orders here"
           />
           <Link to='/products'>
             <Button 
@@ -175,4 +175,4 @@ const EditProduct = () => {
   )
 }
 
-export default EditProduct
+export default EditOrder

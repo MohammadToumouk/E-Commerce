@@ -49,7 +49,7 @@ export const Featured = () => {
       useEffect(() => {
         const fetchProducts = async () => {
           try {
-            const response = await axios.get(baseUrl + '/api/product?limit=5');
+            const response = await axios.get((baseUrl || "") + '/api/product?limit=5');
             setProducts(response.data.products);
           } catch (error) {
             console.error('Error fetching data:', error);
@@ -88,7 +88,7 @@ export const Featured = () => {
             productId={product._id}
           />
         ))} */}
-{products.map((product) => (
+{products?.map((product) => (
 <div className="group my-10 flex w-full max-w-xs min-w-[250px] flex-col overflow-hidden rounded-[25px] border ml-2 gap-5 border-gray-100 bg-white shadow-md" key={product._id}>
   <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
     <img className="peer absolute top-0 right-0 h-full w-fit object-cover" src={product.images[0]}  alt="product image" />

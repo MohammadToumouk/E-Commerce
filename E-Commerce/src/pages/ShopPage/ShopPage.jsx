@@ -16,7 +16,7 @@ const ShopPage = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(baseUrl + '/api/product/');
+        const response = await axios.get((baseUrl || "") + '/api/product/');
         setProducts(response.data.products);
       } catch (error) {
         console.error('Error fetching data:', error);
@@ -25,7 +25,7 @@ const ShopPage = () => {
 
     fetchProducts();
 
-        // fetch(baseUrl + '/api/product/')
+        // fetch((baseUrl || "") + '/api/product/')
     //   .then((response) => response.json())
     //   .then((data) => {
     //     setProducts(data.products);

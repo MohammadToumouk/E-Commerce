@@ -20,7 +20,7 @@ const Login = () => {
 
     try {
       await axios.post(
-        baseUrl + '/api/customer/login',
+        (baseUrl || "") + '/api/customer/login',
         {
           email: email,
           password: password

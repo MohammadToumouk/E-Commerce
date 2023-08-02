@@ -12,7 +12,7 @@ const ProductPage = ({setShoppingList, shoppingList}) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(baseUrl + `/api/product/${id}`)
+    fetch((baseUrl || "") + `/api/product/${id}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

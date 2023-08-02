@@ -31,7 +31,7 @@ const App = () => {
   useEffect(() => {
     const fetchShoppingCart = async () => {
       
-      await axios.get(baseUrl + '/api/cart', { withCredentials: true })
+      await axios.get((baseUrl || "") + '/api/cart', { withCredentials: true })
         .then((response) => {
           setShoppingList(response.data)
          // console.log(shoppingList.cart)
@@ -45,7 +45,7 @@ const App = () => {
 
   useEffect(() => {
     const fetchCustomer = async () => {
-      await axios.get(baseUrl + '/api/customer/profile', { withCredentials: true })
+      await axios.get((baseUrl || "") + '/api/customer/profile', { withCredentials: true })
         .then((response) => {
           setCustomer(response.data)
         })

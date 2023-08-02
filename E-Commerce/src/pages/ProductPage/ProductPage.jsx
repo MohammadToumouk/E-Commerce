@@ -4,13 +4,15 @@ import ProductCard from '../../components/ProductCard/productCard';
 import ProductDescription from '../../components/ProductDescription/productDescription';
 import './ProductPage.css';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
+
 const ProductPage = ({setShoppingList, shoppingList}) => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3069/product/${id}`)
+    fetch(baseUrl + `/api/product/${id}`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);

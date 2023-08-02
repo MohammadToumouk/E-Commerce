@@ -32,10 +32,12 @@ const EditProduct = () => {
   const [sizes, setSizes] = useState();
   const [color, setColor] = useState();
   const [description, setDescription] = useState();
+  
+ const baseUrl = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {
     const fetchProduct = async () => {
-        await axios.get( `http://localhost:3069/product/${productId.id}`, { withCredentials: true })
+        await axios.get(baseUrl + `/api/product/${productId.id}`, { withCredentials: true })
           .then((response) => {
             setProduct(response.data)
             setBrand(response.data.product.brand)
@@ -61,7 +63,7 @@ const EditProduct = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.put(`http://localhost:3069/product/${productId.id}`, {
+      const response = await axios.put(baseUrl + `/api/product/${productId.id}`, {
         name: name,
         images: [imageUrl],
         price: parseInt(price),

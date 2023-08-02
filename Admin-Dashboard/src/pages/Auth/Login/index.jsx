@@ -11,6 +11,8 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { NavLink, Navigate } from 'react-router-dom';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
+
 const formSchema = z.object({
     email: z.string().email(),
     password: z.string().min(6).max(100),
@@ -27,7 +29,7 @@ const Login = () => {
 
     const onSubmit = async (data) => {
        try {
-        await axios.post('http://localhost:3069/user/login',{
+        await axios.post(baseUrl + '/api/user/login',{
             email: data.email,
             password: data.password
         },{

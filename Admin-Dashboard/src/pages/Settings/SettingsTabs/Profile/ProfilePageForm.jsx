@@ -20,6 +20,8 @@ import { Button } from "@/components/ui/button";
 import { TextareaWithLabel } from "@/components/Textarea";
 import UploadWidget from "@/components/UploadWidget";
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL;
+
 const formSchema = z.object({
   name: z.string().min(2).max(50),
   email: z.string().email(),
@@ -43,8 +45,8 @@ export const ProfilePageForm = () => {
 
   const onSubmit = async (values) => {
     try {
-      const response = await axios.put(
-        `http://localhost:3069/user/${userId}`,
+      const response = await axios.put(baseUrl +
+        `/api/user/${userId}`,
         {
           name: values.name,
           email: values.email,

@@ -7,6 +7,7 @@ import { useInView } from 'react-intersection-observer';
 import '../FadeInScroll.css'
 import { Link } from 'react-router-dom';
 
+const baseUrl = import.meta.env.VITE_BACKEND_URL
 
 
 export const Featured = () => {
@@ -45,7 +46,7 @@ export const Featured = () => {
       }; */
 
       useEffect(() => {
-        fetch('http://localhost:3069/product?limit=5')
+        fetch(baseUrl + '/api/product?limit=5')
           .then((response) => response.json())
           .then((data) => {
             setProducts(data.products);

@@ -1,54 +1,88 @@
 .profile-container {
-    margin: 30px 300px;
-    height: 55vh;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .profile-container h1 {
-    font-size: 40px;
-    margin-bottom: 40px;
+    font-size: 48px;
     font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.profile-header {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .profile-info {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-}
-
-.profile-input {
-    padding: 8px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    width: 540px;
-}
-
-.address-sub-input {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+    align-items: center;
+    width: 100%;
 }
 
 .profile-item {
     display: flex;
     align-items: center;
-    font-size: 18px;
-}
-
-.profile-item label {
-    font-weight: bold;
-    min-width: 120px;
-}
-
-.profile-item span {
-    flex: 1;
-    padding: 8px;
-    background-color: #f0f0f0;
-    border-radius: 5px;
-}
-
-.profile-item:not(:last-child) {
+    justify-content: space-between;
+    text-align: center;
+    height: 100px;
+    width: 100%;
     margin-bottom: 20px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-label {
+    font-size: 24px;
+    font-weight: bold;
+    min-width: 150px;
+    flex: 1;
+}
+
+.profile-data {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 2;
+    word-wrap: break-word;
+    width: 100%;
+
+}
+
+.address-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allow the address text to wrap to multiple lines */
+}
+
+.profile-input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 18px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.profile-button {
+    background-color: black;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-left: auto;
 }

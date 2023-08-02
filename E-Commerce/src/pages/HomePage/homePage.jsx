@@ -1,15 +1,15 @@
 import React, { useState,useEffect } from "react";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import "./HomePage.css";
 import "../../components/Navbar/navbar";
-import Privacy from "../Privacy/Privacy";
+//import Privacy from "../Privacy/Privacy";
 import Carousel from "../../components/Carousel/carousel";
-import { Featured } from "../../components/FeaturedProducts/Featured";
+import { Featured } from "../../components/FeaturedProducts/featured";
 import { ContactUsSection } from "../../components/ContactUs/ContactUsSection";
 import { Banner } from "../../components/Banner/Banner";
 import Banner2 from "../../components/Banner/Banner2";
-import { Plus, PlusCircle, XIcon } from 'lucide-react'
-import Stripe from "stripe";
+//import { Plus, PlusCircle, XIcon } from 'lucide-react'
+//import Stripe from "stripe";
 
 const HomePage = () => {
   const [scrollProgress, setScrollProgress] = useState(0);

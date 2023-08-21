@@ -2,14 +2,14 @@
 
 This project is an ecommerce application built using the MERN stack (MongoDB, Express.js, React, and Node.js) with Vite as the build tool. It includes an Admin Dashboard with a custom CMS (Content Management System) and a frontend where customers can place orders.
 
-Live Preview CMS: 
-https://admin-dashboard-ggrc.onrender.com
-Email:test8@gmail.com
+Live Preview CMS: <br/>
+https://admin-dashboard-ggrc.onrender.com <br/>
+Email:test8@gmail.com<br/>
 Password:123456
 
-Live Preview Ecommerce: 
-https://e-commerce-ct9i.onrender.com
-Email:janesmith@example.com
+Live Preview Ecommerce: <br/>
+https://e-commerce-ct9i.onrender.com<br/>
+Email:janesmith@example.com<br/>
 Password:12345678
 
 
